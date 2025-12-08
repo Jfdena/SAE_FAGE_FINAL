@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>FAGE - Actualite et Ressource</title>
+    <!-- Logo entete de l'onglet -->
+    <link rel="icon" href="../assets\img\lgFage1B.png" type="image/x-icon" />
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="../assets/css/stylesheet.css" />
+    <!-- Bootstrap CSS ENTETE -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+    ></script>
+    <!-- FAQ CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/faqs/faq-2/assets/css/faq-2.css">
+    <!-- <script src="https://unpkg.com/bs-brain@2.0.4/components/faqs/faq-2/assets/js/faq-2.js"></script> -->
+    <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/Javascript/Fichier.js"></script>
+</head>
+<body class="Actualite-Ressource">
+<!-- Header -->
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="Dossier%20php/index.php">
+                <img src="../assets/img/logo_navbar.png" height="40" width="auto" alt="Logo">
+            </a>
+
+            <!-- Bouton hamburger pour mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="Accueil.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="Assos_Projet.html">Asso & Projets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="Actualité_Ressources.html">Actualité & Ressources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="Dons_Engagement.html">Dons & Engagement</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="A_propos.html">À propos</a>
+                    </li>
+                </ul>
+
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Contenu principal -->
+<main class="Actualite-Ressource-Main">
+    <!-- SECTION ACTUALITÉ RESSOURCE 1 -->
+    <section class="Actualite-Ressource-container1">
+        <div class="Actualite1">
+            <!-- IMAGE DU PRÉSIDENT -->
+            <div class="card-president">
+                <div class="card-image">
+                    <img
+                            src="../assets/img/PAUL-President.jpeg"
+                            alt="Président de la FAGE"
+                    />
+                    <div class="card-overlay">
+                        <div class="president-info">
+                            <h4>Président de la FAGE</h4>
+                            <p>Découvrez ses tribunes et analyses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="#blog-fage" class="btn-blog-card">
+                        <span>📝 Lire le blog</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <!-- FAGE TOUT EN UN -->
+        <div class="Actualite2">
+            <h2 class="titre-principal tint-text">FAGE : Tout en Un!</h2>
+            <p class="description">
+                Votre portail unique pour les dernières nouvelles, les vidéos
+                captivantes, les communiqués de presse et les événements majeurs de
+                la FAGE. Ne manquez rien!
+            </p>
+            <div class="boutons-accueil">
+                <a href="#nos-actualites" class="btn-decouvrir">Voir les actualités</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION ACTUALITÉ RESSOURCE 2 VIDÉO -->
+    <section class="Actualite-Ressource-container2" id="video-hero">
+        <!-- Première vidéo en arrière-plan -->
+        <video autoplay muted loop playsinline class="background-video active" id="video1">
+            <source src="../assets/videos/VideoAgorae.mp4" type="video/mp4" />
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+
+        <!-- Deuxième vidéo (cachée au début) -->
+        <video muted loop playsinline class="background-video" id="video2">
+            <source src="../assets/videos/AssoliadeTeaser.mov" type="video/mp4" />
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+
+        <!-- Overlay pour meilleure lisibilité -->
+        <div class="video-overlay"></div>
+
+        <!-- Contenu par-dessus la vidéo -->
+        <div class="video-content">
+            <h2 id="video-title">AGORAE 2024</h2>
+            <p id="video-description">Le grand rassemblement étudiant de la FAGE</p>
+            <!-- Lien vers la section Événements -->
+            <a href="#evenements" class="btn-video">Découvrir l'événement</a>
+        </div>
+
+        <!-- Indicateur de défilement -->
+        <button class="scroll-indicator" id="changeVideoBtn">
+            <span>Changer la vidéo</span>
+            <div class="scroll-arrow"></div>
+        </button>
+
+        <!-- Indicateur de vidéo active -->
+        <div class="video-indicators">
+            <button class="video-indicator active" data-video="1"></button>
+            <button class="video-indicator" data-video="2"></button>
+        </div>
+    </section>
+
+    <!-- SECTION ACTUALITÉ RESSOURCE 3 INFORMATIONS CLÉS -->
+    <section class="Actualite-Ressource-container3">
+        <h3 class="titre-section">Informations Clés</h3>
+
+        <div class="container3-infos-cle">
+            <div class="info-principale">
+                <h4>Ce Qui Vous Attend</h4>
+            </div>
+            <!-- Actualités Fraîches -->
+            <div class="info-carte">
+                <div class="carte-icone">📰</div>
+                <h4>Actualités Fraîches</h4>
+                <p>
+                    Restez informé des dernières nouvelles et des articles de fond de
+                    la FAGE. Le savoir à portée de clic.
+                </p>
+            </div>
+            <!-- Ressources Utiles -->
+            <div class="info-carte">
+                <div class="carte-icone">📚</div>
+                <h4>Ressources Utiles</h4>
+                <p>
+                    Accédez à une mine d'informations, des revues de presse aux
+                    contacts presse, tout est là pour vous.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION ACTUALITÉ RESSOURCE 4 ÉVÉNEMENTS -->
+    <section class="Actualite-Ressource-container4" id="evenements">
+        <!-- Titre Événements -->
+        <div class="carousel-header">
+            <h3 class="titre-section">Suivez nos Événements</h3>
+            <p>Découvrez les grands rendez-vous de la FAGE</p>
+        </div>
+        <!-- Carousel Événements -->
+        <div class="carousel-container">
+            <!-- Contenu carousel -->
+            <div class="carousel-track">
+                <!-- Slide 1 - Congrès National -->
+                <div class="carousel-slide active" data-category="congres">
+                    <div class="slide-image">
+                        <img
+                                src="../assets/img/CongresNational.jpeg"
+                                alt="Congrès National de la FAGE"
+                        />
+                    </div>
+                    <!-- Slide Content -->
+                    <div class="slide-content">
+                        <span class="slide-category">Congrès National</span>
+                        <h4>
+                            <a href="../assets/pdf/CongresFage.pdf" target="_blank"
+                            >Congrès National de la FAGE</a
+                            >
+                        </h4>
+                        <p>
+                            La FAGE vous donne rendez-vous à son 36ème Congrès National,
+                            placé sous le thème : « Les associations au service de
+                            l'intérêt général ». Chaque année, au mois de septembre, la
+                            FAGE rassemble les esprits dynamiques et engagés de la
+                            communauté étudiante pour cet événement incontournable.
+                        </p>
+                        <!-- PDF Congrès National -->
+                        <a href="../assets/pdf/CongresFage.pdf" target="_blank" class="btn-slide"
+                        >Voir le programme</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Slide 2 - Université d'été -->
+                <div class="carousel-slide" data-category="universite">
+                    <div class="slide-image">
+                        <img
+                                src="../assets/img/AssoliadeEvenement.png"
+                                alt="Université d'été de la FAGE"
+                        />
+                    </div>
+                    <!-- Slide Content -->
+                    <div class="slide-content">
+                        <span class="slide-category">Université d'été</span>
+                        <h4>
+                            <a href="../assets/pdf/Programme_Assoliades2025.pdf" target="_blank"
+                            >Université d'été de la FAGE</a
+                            >
+                        </h4>
+                        <p>
+                            Chaque été, la FAGE organise son Université d'été pour former
+                            les étudiants engagés et préparer la rentrée universitaire.
+                            Un moment unique de partage, de formation et d'échanges
+                            autour des enjeux de l'enseignement supérieur.
+                        </p>
+                        <a href="../assets/pdf/Programme_Assoliades2025.pdf" target="_blank" class="btn-slide"
+                        >Découvrir le programme</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Slide 3 - Séminaire National -->
+                <div class="carousel-slide" data-category="seminaire">
+                    <div class="slide-image">
+                        <img
+                                src="../assets/img/SeminaireNationaleDesElu.png"
+                                alt="Séminaire National de la FAGE"
+                        />
+                    </div>
+                    <!-- Slide Content -->
+                    <div class="slide-content">
+                        <span class="slide-category">Séminaire National</span>
+                        <h4>
+                            <a href="../assets/pdf/CATALOGUEDEFORMATION-SNEE.pdf" target="_blank"
+                            >Séminaire National des Élus Étudiants</a
+                            >
+                        </h4>
+                        <p>
+                            Le Séminaire National rassemble les élus étudiants de toute
+                            la France pour échanger sur les bonnes pratiques, se former
+                            aux enjeux institutionnels et construire ensemble des
+                            stratégies pour mieux représenter les étudiants.
+                        </p>
+                        <a href="../assets/pdf/CATALOGUEDEFORMATION-SNEE.pdf" target="_blank" class="btn-slide"
+                        >En savoir plus</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Slide 4 - Journées Nationales -->
+                <div class="carousel-slide" data-category="journees">
+                    <div class="slide-image">
+                        <img
+                                src="../assets/img/JourneesNationalesDeLinnovation.png"
+                                alt="Journées Nationales de la FAGE"
+                        />
+                    </div>
+                    <!-- Slide Content -->
+                    <div class="slide-content">
+                        <span class="slide-category">Journées Nationales</span>
+                        <h4>
+                            <a href="../assets/pdf/GuideinscriptionJNIS-2025.pdf" target="_blank"
+                            >Journées Nationales des Associations</a
+                            >
+                        </h4>
+                        <p>
+                            Les Journées Nationales sont l'occasion pour les associations
+                            membres de la FAGE de se rencontrer, d'échanger sur leurs
+                            projets et de bénéficier de formations adaptées à leurs
+                            besoins. Un temps fort du réseau associatif étudiant.
+                        </p>
+                        <!-- Lien vers le guide d'inscription en PDF -->
+                        <a href="../assets/pdf/GuideinscriptionJNIS-2025.pdf" target="_blank" class="btn-slide"
+                        >S'inscrire</a
+                        >
+                    </div>
+                </div>
+
+                <!-- Slide 5 - États Généraux -->
+                <div class="carousel-slide" data-category="etats">
+                    <div class="slide-image">
+                        <img
+                                src="../assets/img/EtatsGenerauxEvent.png"
+                                alt="États Généraux de la FAGE"
+                        />
+                    </div>
+                    <!-- Slide Content -->
+                    <div class="slide-content">
+                        <span class="slide-category">États Généraux</span>
+                        <h4>
+                            <a href="https://www.erasmusplus-jeunesse.fr/site/focus-sur-le-dialogue-structure.html" target="_blank"
+                            >États Généraux de l'Engagement Étudiant</a
+                            >
+                        </h4>
+                        <p>
+                            Les États Généraux sont un temps de réflexion collective
+                            sur l'avenir de l'engagement étudiant. Pendant plusieurs
+                            jours, des ateliers, des débats et des conférences permettent
+                            de construire des propositions concrètes pour l'avenir.
+                        </p>
+                        <a href="https://www.erasmusplus-jeunesse.fr/site/focus-sur-le-dialogue-structure.html" target="_blank" class="btn-slide"
+                        >Voir</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contrôles du carrousel -->
+            <button
+                    class="carousel-btn carousel-prev"
+                    aria-label="Événement précédent"
+            >
+                ‹
+            </button>
+            <button
+                    class="carousel-btn carousel-next"
+                    aria-label="Événement suivant"
+            >
+                ›
+            </button>
+
+            <!-- Indicateurs de slide - 5 slides -->
+            <div class="carousel-indicators">
+                <button class="indicator active" data-slide="0"></button>
+                <button class="indicator" data-slide="1"></button>
+                <button class="indicator" data-slide="2"></button>
+                <button class="indicator" data-slide="3"></button>
+                <button class="indicator" data-slide="4"></button>
+            </div>
+        </div>
+
+        <!-- Filtres des événements - pour les slides -->
+        <div class="evenement-filtres">
+            <a href="#" class="filtre-btn active" data-filtre="all"
+            >Tous les événements</a
+            >
+            <a href="#" class="filtre-btn" data-filtre="congres"
+            >Congrès National</a
+            >
+            <a href="#" class="filtre-btn" data-filtre="universite"
+            >Université d'été</a
+            >
+            <a href="#" class="filtre-btn" data-filtre="seminaire"
+            >Séminaire National</a
+            >
+            <a href="#" class="filtre-btn" data-filtre="journees"
+            >Journées Nationales</a
+            >
+            <a href="#" class="filtre-btn" data-filtre="etats">États généraux</a
+            >
+        </div>
+    </section>
+    <!-- SECTION ACTUALITÉ RESSOURCE 5 NOS ACTUALITÉS -->
+    <section class="Actualite-Ressource-container5" id="nos-actualites">
+        <!-- Titre Nos Actualités -->
+        <div class="container5-header">
+            <div class="carousel-header">
+                <h3 class="titre-section tint-text">Nos Actualités</h3>
+                <p>
+                    Découvrez les dernières nouvelles et publications de la FAGE
+                </p>
+            </div>
+        </div>
+
+        <!-- Filtres -->
+        <div class="filtreTotal">
+            <form
+                    class="form-filtre"
+                    action="Actualité_Ressource.html"
+                    method="get"
+            >
+                <!-- Filtre Type d'actualité -->
+                <select name="c" id="news-types" aria-label="Types d'actualité">
+                    <option value="" selected>
+                        Choisissez un type d'actualités
+                    </option>
+                    <option value="2">Actualité</option>
+                    <option value="3">CP et DP</option>
+                    <option value="1">Interviews</option>
+                </select>
+
+                <!-- Thèmes -->
+                <select name="t" id="themes" aria-label="Thèmes">
+                    <option value="" selected>Thème</option>
+                    <option value="1">Enseignement supérieur</option>
+                    <option value="2">Social</option>
+                    <option value="3">Jeunesse</option>
+                    <option value="4">Innovation sociale</option>
+                    <option value="5">Formations</option>
+                </select>
+
+                <!-- Acteurs -->
+                <select name="p" id="actors" aria-label="Acteurs">
+                    <option value="" selected>Acteurs</option>
+                    <option value="1">Fage</option>
+                    <option value="2">Fédés territoriales</option>
+                    <option value="3">Fédés de filière</option>
+                    <option value="4">Membres associés</option>
+                </select>
+
+                <!-- Dates -->
+                <select name="dt" id="months" aria-label="Dates">
+                    <option value="" selected>Dates</option>
+                    <optgroup label="2025">
+                        <option value="2025-09">septembre 2025</option>
+                        <option value="2025-06">juin 2025</option>
+                        <option value="2025-05">mai 2025</option>
+                        <option value="2025-02">février 2025</option>
+                    </optgroup>
+                    <optgroup label="2024">
+                        <option value="2024-09">septembre 2024</option>
+                        <option value="2024-07">juillet 2024</option>
+                        <option value="2024-05">mai 2024</option>
+                        <option value="2024-03">mars 2024</option>
+                        <option value="2024-02">février 2024</option>
+                        <option value="2024-01">janvier 2024</option>
+                    </optgroup>
+                </select>
+            </form>
+
+        </div>
+        </div>
+
+        <!-- Grille des actualités -->
+        <div class="Actualite-info">
+            <!-- Actualité 1 -->
+            <div
+                    class="actu-card"
+                    title="Indicateur du coût de la rentrée étudiante 2025"
+            >
+                <img
+                        src="../assets/img/fageActuImg0.png"
+                        alt="Indicateur du coût de la rentrée étudiante 2025"
+                />
+                <div class="actu-content">
+                    <h4>Indicateur du coût de la rentrée étudiante 2025</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 2 -->
+            <div class="actu-card" title="Résultats des élections CNESER 2025">
+                <img
+                        src="../assets/img/fageActuImg1.png"
+                        alt="Résultats des élections CNESER 2025"
+                />
+                <div class="actu-content">
+                    <h4>Résultats des élections CNESER 2025</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 3 -->
+            <div class="actu-card" title="Etats Généraux">
+                <img
+                        src="../assets/img/fageActuImg2.png"
+                        alt="Etats Généraux engagement jeunes 2025"
+                />
+                <div class="actu-content">
+                    <h4>Etats Généraux engagement jeunes 2025</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 4 -->
+            <div class="actu-card" title="Baromètre de la précarité étudiante">
+                <img
+                        src="../assets/img/fageActuImg3.png"
+                        alt="Baromètre de la précarité étudiante"
+                />
+                <div class="actu-content">
+                    <h4>Baromètre de la précarité étudiante</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 5 -->
+            <div class="actu-card" title="Un arrondi en caisse">
+                <img
+                        src="../assets/img/fageActuImg4.png"
+                        alt="Un arrondi en caisse pour des milliers de repas"
+                />
+                <div class="actu-content">
+                    <h4>Un arrondi en caisse pour des milliers de repas</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 6 -->
+            <div
+                    class="actu-card"
+                    title="Indicateur du coût de la rentrée étudiante 2024"
+            >
+                <img
+                        src="../assets/img/fageActuImg5.png"
+                        alt="Indicateur du coût de la rentrée étudiante 2024"
+                />
+                <div class="actu-content">
+                    <h4>Indicateur du coût de la rentrée étudiante 2024</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 7 -->
+            <div class="actu-card" title="20 ans après le 21 avril">
+                <img
+                        src="../assets/img/fageActuImg6.png"
+                        alt="20 ans après le 21 avril, étudiants mobilisés"
+                />
+                <div class="actu-content">
+                    <h4>20 ans après le 21 avril, étudiants mobilisés</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 8 -->
+            <div class="actu-card" title="Dégel des frais universitaires">
+                <img
+                        src="../assets/img/fageActuImg7.png"
+                        alt="Dégel des frais universitaires un nouveau coup de masse"
+                />
+                <div class="actu-content">
+                    <h4>Dégel des frais universitaires un nouveau coup de masse</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 9 -->
+            <div class="actu-card" title="FEEL Festival - 2 juin 2024">
+                <img
+                        src="../assets/img/fageActuImg8.png"
+                        alt="FEEL Festival - 2 juin 2024"
+                />
+                <div class="actu-content">
+                    <h4>FEEL Festival - 2 juin 2024</h4>
+                </div>
+            </div>
+
+            <!-- Actualité 10 -->
+            <div class="actu-card" title="Repensons l'éducation">
+                <img
+                        src="../assets/img/fageActuImg9.png"
+                        alt="Repensons l'éducation à la citoyenneté"
+                />
+                <div class="actu-content">
+                    <h4>Repensons l'éducation à la citoyenneté</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ FAGE -->
+    <section class="py-5 faq-fage">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8 col-xl-7">
+                    <span class="text-muted">F.A.Q</span>
+                    <h2 class="display-5 fw-bold tint-text">Questions Fréquentes</h2>
+                    <p class="lead">Retrouvez les réponses aux questions les plus posées sur la FAGE et ses services</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="row g-4 g-md-5">
+                        <!-- Question 1 -->
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <div class="text-primary me-4">
+                                    <svg class="bi bi-question-circle-fill" fill="currentColor" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-2 mb-lg-4 fw-bold">Qu'est-ce que la FAGE ?</h5>
+                                    <p>La FAGE (Fédération des Associations Générales Étudiantes) est la première organisation étudiante de France. Elle représente et défend les droits des étudiants depuis plus de 30 ans.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <div class="text-primary me-4">
+                                    <svg class="bi bi-question-circle-fill" fill="currentColor" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-2 mb-lg-4 fw-bold">Comment adhérer à la FAGE ?</h5>
+                                    <p>L'adhésion se fait par l'intermédiaire d'une association membre. Renseignez-vous auprès de l'association étudiante de votre établissement ou contactez-nous directement.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <div class="text-primary me-4">
+                                    <svg class="bi bi-question-circle-fill" fill="currentColor" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-2 mb-lg-4 fw-bold">Qu'est-ce qu'une AGORAÉ ?</h5>
+                                    <p>Les AGORAÉ sont des épiceries solidaires étudiantes qui permettent aux étudiants en situation de précarité d'accéder à des produits alimentaires et d'hygiène à prix réduits.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 4 -->
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <div class="text-primary me-4">
+                                    <svg class="bi bi-question-circle-fill" fill="currentColor" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-2 mb-lg-4 fw-bold">Comment bénéficier des aides de la FAGE ?</h5>
+                                    <p>Les aides (AGORAÉ, formations, accompagnements) sont accessibles via nos associations membres. Contactez l'association FAGE de votre ville ou région pour plus d'informations.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 5 -->
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <div class="text-primary me-4">
+                                    <svg class="bi bi-question-circle-fill" fill="currentColor" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-2 mb-lg-4 fw-bold">La FAGE organise-t-elle des événements ?</h5>
+                                    <p>Oui ! Congrès National, Université d'été, FEEL Festival, séminaires et formations sont régulièrement organisés pour les étudiants engagés.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 6 -->
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <div class="text-primary me-4">
+                                    <svg class="bi bi-question-circle-fill" fill="currentColor" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-2 mb-lg-4 fw-bold">Comment créer une association étudiante ?</h5>
+                                    <p>Réunir au moins 2 personnes, rédiger des statuts, déclarer en préfecture et publier au Journal Officiel. La FAGE propose un accompagnement pour ces démarches.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 7 -->
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <div class="text-primary me-4">
+                                    <svg class="bi bi-question-circle-fill" fill="currentColor" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-2 mb-lg-4 fw-bold">Quels services propose la FAGE ?</h5>
+                                    <p>Formations associatives, accompagnement de projets, épiceries solidaires AGORAÉ, études sur la condition étudiante et représentation institutionnelle.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 8 -->
+                        <div class="col-lg-6">
+                            <div class="d-flex">
+                                <div class="text-primary me-4">
+                                    <svg class="bi bi-question-circle-fill" fill="currentColor" height="32" viewbox="0 0 16 16" width="32" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"></path></svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-2 mb-lg-4 fw-bold">Comment contacter la FAGE ?</h5>
+                                    <p>Email : contact@fage.org | Téléphone : 01 40 33 70 70 | Adresse : 167-177 Avenue de Paris, 94300 Vincennes | Réseaux sociaux : @FAGE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section contact -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8 text-center">
+                    <div class="faq-contact-card p-4 rounded-3">
+                        <h4 class="fw-bold mb-3">Vous ne trouvez pas votre réponse ?</h4>
+                        <p class="mb-4">Notre équipe est à votre disposition pour répondre à toutes vos questions</p>
+                        <a href="#contact" class="btn btn-primary btn-lg">Nous Contacter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bouton retour en haut-->
+    <a href="#top" class="scroll-to-top-nojs" aria-label="Remonter en haut de la page">
+        ↑
+    </a>
+</main>
+<!-- ⚫ FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Colonne 1 -->
+        <div class="footer-col">
+            <div class="footer-logo">
+                <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
+            </div>
+            <p>
+                FAGE – Fédération des Associations Générales Étudiantes<br />
+                79 rue Périer, 92120 Montrouge<br />
+                Tél : 01.40.33.70.70
+            </p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/fage.org/?locale=fr_FR"
+                 target="_blank" ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
+                /></a>
+                <a href="https://fr.linkedin.com/company/la-fage"
+                target="_blank"><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
+                /></a>
+                <a href="https://www.youtube.com/@associationfage"
+               target="_blank" ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
+                /></a>
+                <a href="https://www.instagram.com/la_fage/?hl=fr"
+                target="_blank"><img src="../assets/img/icon_instagram.svg" alt="Instagram"
+                /></a>
+            </div>
+        </div>
+
+        <!-- Colonne 2 -->
+        <div class="footer-col">
+            <h4>Mentions légales</h4>
+            <ul>
+                <li><a href="#">Mentions légales</a></li>
+                <li><a href="#">Politique de confidentialité</a></li>
+                <li><a href="#">Cookies</a></li>
+            </ul>
+        </div>
+
+        <!-- Colonne 3 -->
+        <div class="footer-col">
+            <h4>Liens utiles</h4>
+            <ul>
+                <li><a href="Asso_Projet.html">Assos & Projets</a></li>
+                <li>
+                    <a href="Actualité_Ressource.html">Actualité & Ressources</a>
+                </li>
+                <li><a href="Dons_Engagement.html">Don & Engagement</a></li>
+                <li><a href="A_propos.html">À propos</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+<!-- MODAL BLOG PRÉSIDENT -->
+<div class="blog-modal" id="blogModal">
+    <div class="modal-content">
+        <button class="modal-close" id="closeBlogModal">&times;</button>
+        <!-- Titre Blog Président -->
+        <div class="blog-header">
+            <h3>📝 Le Blog du Président de la FAGE</h3>
+            <p>Tribunes sur l'enseignement supérieur, la recherche, la jeunesse et la société</p>
+        </div>
+
+        <!-- Navigation simplifiée -->
+        <div class="blog-nav-simple">
+            <button class="nav-btn blog-prev" aria-label="Article précédent">‹ Article précédent</button>
+            <button class="nav-btn blog-next" aria-label="Article suivant">Article suivant ›</button>
+        </div>
+
+        <div class="blog-container">
+            <!-- Article 1 -->
+            <article class="blog-article active" data-article="1">
+                <div class="article-header">
+                    <!-- Description -->
+                    <div class="article-meta">
+                        <span class="article-date">21/10/2021</span>
+                        <span class="article-author">Paul Mayaux, président de la FAGE</span>
+                    </div>
+                    <h4 class="article-title">10 ans des AGORAé : un triste anniversaire à fêter</h4>
+                </div>
+                <!-- Image Article 1 -->
+                <div class="article-body">
+                    <div class="article-image">
+                        <img src="../assets/img/Agorae10ANS.png" alt="10 ans des AGORAé">
+                    </div>
+                    <!-- Texte Article 1 -->
+                    <div class="article-content">
+                        <div class="article-text">
+                            <p><strong>Le 19 octobre 2011, la FAGE inaugura la première épicerie sociale et solidaire à Lyon.</strong> Ce projet est l'expression de l'objectif premier de la FAGE et de son réseau : garantir l'égalité des chances et la réussite dans le système éducatif.</p>
+
+                            <p>Dix ans plus tard, les AGORAé au modèle ambivalent d'épicerie et de lieu de vie subsistent fatalement face à cette précarité grandissante que l'on a laissé s'installer au fil des années.</p>
+
+                            <p>Cette précarité finalement devenue misère pour une partie de la population estudiantine est bien souvent corrélée à un isolement social fort, et c'est en sa qualité de facilitatrice de liens sociaux que l'AGORAé se démarque du modèle d'aide alimentaire traditionnel.</p>
+
+                            <p><em>Nous sommes fier·e·s de notre organisation et du long chemin qu'elle a déjà parcouru, nourrit par un engagement décisif de milliers de bénévoles qui agissent au quotidien au sein des fédérations et associations de l'ensemble du territoire.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="blog-article" data-article="2">
+                <div class="article-header">
+                    <!-- Description -->
+                    <div class="article-meta">
+                        <span class="article-date">28/10/2020</span>
+                        <span class="article-author">Paul Mayaux, président de la FAGE</span>
+                    </div>
+                    <h4 class="article-title">Discours en hommage à Samuel Paty</h4>
+                </div>
+                <!-- Image Article 2 -->
+                <div class="article-body">
+                    <div class="article-image">
+                        <img src="../assets/img/SamuelPaty.jpeg" alt="Hommage à Samuel Paty">
+                    </div>
+                    <!-- Texte Article 2 -->
+                    <div class="article-content">
+                        <div class="article-text">
+                            <p><strong>Discours prononcé par Paul Mayaux le 18 octobre 2020, Place de la République à Paris</strong></p>
+
+                            <p>Il y a maintenant deux jours, Samuel Paty, professeur d'histoire géographie et d'enseignement moral et civique a été tué avec une grande violence par un terroriste islamiste.</p>
+
+                            <p>Lorsqu'un citoyen meurt en prônant la liberté d'expression, en défendant une de nos libertés les plus fondamentales, c'est la République tout entière qui est touchée en son cœur.</p>
+
+                            <p><em>Instruit aux prémices de notre Constitution : «La France est une République indivisible, laïque, démocratique et sociale».</em> Aujourd'hui plus que jamais, face à la montée de la haine, nous devons rester solidaires pour que l'obscurantisme et ses répercussions, ces poisons n'aient plus leurs places au sein de notre société.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="blog-article" data-article="3">
+                <div class="article-header">
+                    <!-- Description -->
+                    <div class="article-meta">
+                        <span class="article-date">08/01/2020</span>
+                        <span class="article-author">Paul Mayaux, président de la FAGE</span>
+                    </div>
+                    <h4 class="article-title">Nouvelle année, nouvelle décennie: l'heure est à l'ambition!</h4>
+                </div>
+                <!-- Image Article 3 -->
+                <div class="article-body">
+                    <div class="article-image">
+                        <img src="../assets/img/NouvelAnne.jpeg" alt="Nouvelle année, nouvelle décennie">
+                    </div>
+                    <!-- Texte Article 3 -->
+                    <div class="article-content">
+                        <div class="article-text">
+                            <p><strong>L'année 2020, le début de cette nouvelle décennie s'ouvre dans un contexte politique et social empreint d'une profonde méfiance.</strong> Pour cause, notre modèle génère toujours plus d'inégalités et d'injustices, tout en mettant en péril la vie sur terre.</p>
+
+                            <p>La réalité est la suivante : la France reste l'un des pays avec le système éducatif reflétant le plus les inégalités sociales. À ces inégalités, certain répondent par cette théorie du mérite, du «quand on veut, on peut».</p>
+
+                            <p>De fait, les chiffres de la dernière enquête de l'Observatoire de la Vie Etudiante sont parlants : <strong>20% des étudiants ont présenté des signes de détresse psychologique</strong>, et 37% ont montré un signe d'épisode dépressif.</p>
+
+                            <p>Les jeunes en études initiales ne sont pas logés à meilleure enseigne : le modèle d'aides sociales étudiants n'est plus le bon. Ce système de bourses qu'on a tenté de soigner depuis de nombreuses années n'est plus adapté. <em>L'ambition doit être au rendez-vous.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Indicateurs simples -->
+        <div class="blog-indicators-simple">
+            <button class="blog-indicator-simple active" data-article="1">1</button>
+            <button class="blog-indicator-simple" data-article="2">2</button>
+            <button class="blog-indicator-simple" data-article="3">3</button>
+        </div>
+
+        <!-- Informations et partage en bas -->
+        <div class="blog-footer">
+            <div class="blog-about">
+                <h5>À propos du blog présidentiel</h5>
+                <p>Régulièrement, le président de la FAGE publie des tribunes sur des sujets liés à l'enseignement supérieur, la recherche, la jeunesse et la société.</p>
+            </div>
+            <!-- Partager article -->
+            <div class="blog-share">
+                <h5>Partager cet article</h5>
+                <div class="share-buttons">
+                    <button class="share-btn twitter">Twitter</button>
+                    <button class="share-btn facebook">Facebook</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL POUR LES DETAILS DES ACTUALITES -->
+<div class="actu-modal" id="actuModal">
+    <div class="modal-content">
+        <!-- Bouton de fermeture du modal -->
+        <button class="modal-close" id="closeActuModal">&times;</button>
+        <!-- En-tête du modal -->
+        <div class="modal-header">
+            <h3 id="modal-title">Titre de l'actualité</h3>
+            <span id="modal-date" class="modal-date"></span>
+        </div>
+
+        <!-- Corps du modal -->
+        <div class="modal-body">
+            <div class="modal-image">
+                <img id="modal-image" src="" alt="">
+            </div>
+            <!-- Texte du modal -->
+            <div class="modal-text" id="modal-text">
+                <!-- contenu texte  -->
+            </div>
+        </div>
+        <!-- Pied de page du modal -->
+        <div class="modal-footer">
+            <button class="btn-close-modal" onclick="closeActuModal()">Fermer</button>
+        </div>
+    </div>
+</div>
+
+<!-- ========== MODAL DE CONTACT ========== -->
+<div class="contact-modal" id="contactModal">
+    <div class="modal-content">
+        <!-- Bouton de fermeture du modal -->
+        <button class="modal-close" id="closeContactModal">&times;</button>
+        <!-- Contact Presse FAGE -->
+        <div class="modal-header">
+            <h3>📞 Contact Presse FAGE</h3>
+        </div>
+
+        <div class="contact-person">
+            <!-- Photo de la personne de contact -->
+            <div class="contact-photo">
+                <img src="../assets/img/ElisaMangeolle.png" alt="Elisa Mangeolle - Vice-Présidente Communication">
+            </div>
+            <!-- Détails de la personne de contact -->
+            <div class="contact-details">
+                <h4>Elisa Mangeolle</h4>
+                <p class="contact-role">Vice-Présidente chargée de la Stratégie de Communication et des Relations presse</p>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email :</strong>
+                            <a href="mailto:presse@fage.org">presse@fage.org</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <strong>Téléphone :</strong>
+                            <a href="tel:+33675337930">06 75 33 79 30</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-icon">🏢</span>
+                        <div>
+                            <strong>Adresse FAGE :</strong>
+                            <span>167-177 Avenue de Paris, 94300 Vincennes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="contact-description">
+            <p><strong>N'hésitez pas à contacter les responsables presse & médias de la FAGE pour toute demande, dossier de presse ou information.</strong></p>
+        </div>
+
+        <!-- Partager article -->
+        <div class="partage-section">
+            <h4>📤 Partager cette page</h4>
+            <div class="partage-boutons">
+                <a href="https://x.com/Accueil" class="btn-partage twitter" target="_blank">
+                    <span>🐦 Partager sur X</span>
+                </a>
+                <a href="https://www.facebook.com/" class="btn-partage facebook" target="_blank">
+                    <span>📘 Partager sur Facebook</span>
+                </a>
+            </div>
+        </div>
+        <!-- Fin contact presse -->
+        <div class="modal-footer">
+            <p class="text-muted">Pour les autres demandes : <a href="mailto:contact@fage.org">contact@fage.org</a> | <a href="tel:+33140337070">01 40 33 70 70</a></p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

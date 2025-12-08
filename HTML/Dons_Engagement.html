@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Fage - Don</title>
+    <link rel="stylesheet" href="../assets/css/stylesheet.css" />
+    <link rel="icon" href="../assets/img/lgFage2.png" type="image/x-icon" />
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="Dossier%20php/index.php">
+                <img src="../assets/img/logo_navbar.png" height="40" width="auto" alt="Logo">
+            </a>
+
+            <!-- Bouton hamburger pour mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="Accueil.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="Assos_Projet.html">Asso & Projets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="Actualité_Ressources.html">Actualité & Ressources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="Dons_Engagement.html">Dons & Engagement</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-decoration-none tint-text" href="A_propos.html">À propos</a>
+                    </li>
+                </ul>
+
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<main>
+    <div class="container container-fluid">
+        <div class="box"></div>
+        <div class="col-11 col-md-5 offset-md-1">
+            <h2 class="tint-text">Dons et engagements</h2>
+            <p class="text-secondary">
+                Vos dons permettent à la FAGE de soutenir les initiatives étudiantes,
+                défendre leurs droits et favoriser l’égalité des chances.
+            </p>
+        </div>
+        <div class="halfbox"></div>
+        <div class="col-md-11 col-9 mx-auto bg-light-secondary shadow rounded rounded-2 p-5">
+            <div class="w-50">
+                <h2 class="tint-text">Chaque donation compte</h2>
+                <p>
+                    Comme toutes associations, nous arrivons à impacter l’avenir des
+                    étudiants grâce à votre générosité.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-9 bg-white rounded rounded-3 p-3 my-2">
+                    <form>
+                        <h4>Vos informations</h4>
+                        <label class="form-label" for="identite">Prenom et Nom</label>
+                        <input class="form-control mb-2" id="identite"/>
+                        <label class="form-label" for="paiement">Methode de paiement</label>
+                        <select class="form-control mb-2" id="paiement">
+                            <option value="1">Espèce - Livraison postale</option>
+                            <option value="2">Cheque - Livraison postale</option>
+                            <option value="3">Paiement Bancaire</option>
+                        </select>
+                        <input type="checkbox" id="engagement">
+                        <label class="form-label" for="engagement">Je m'engage à un paiement mensuel <a class="link-secondary">Termes et conditions</a></label>
+
+                    </form>
+                </div>
+                <div class="col-3 my-2 d-flex flex-column-reverse">
+                    <a class="btn btn-primary"> Je m'engage </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-md-12 col-6 mx-auto"></div>
+            <div class="col-md-12 col-6 mx-auto"></div>
+        </div>
+        <div class="col-11 col-md-5 offset-md-1">
+            <h2 class="tint-text">Nos partenaires d’engagement</h2>
+            <p class="text-secondary">
+                Parce que la solidarité fait partie intégrante de nos valeurs, nous nous engageons à maintenir
+                une presence partout en france au travers de nos partenaires locaux.
+            </p>
+        </div>
+        <div class="halfbox"></div>
+        <div class="row">
+            <div class="card col m-2">
+                <div class="card-img-assos">
+                    <img src="../assets/img/AFEP-Poitiers.png" alt="AFEP-Poitiers">
+                </div>
+                <h5 class="card-title">AFEP - Poitiers</h5>
+                <p class="card-text">Association Fédérative des Etudiants du Poitou-Charentes.</p>
+            </div>
+            <div class="card col m-2">
+                <div class="card-img-assos">
+                    <img src="../assets/img/AGEP.png" alt="AGEP">
+                </div>
+                <h5 class="card-title">AGEP</h5>
+                <p class="card-text">Association Générale des Étudiants de Paris</p>
+            </div>
+            <div class="card col m-2">
+                <div class="card-img-assos">
+                    <img src="../assets/img/AFGES.png" alt="AFGES-Alsace">
+                </div>
+                <h5 class="card-title">AFGES - Alsace</h5>
+                <p class="card-text">Association fédérative générale des étudiants de Strasbourg</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- ⚫ FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Colonne 1 -->
+        <div class="footer-col">
+            <div class="footer-logo">
+                <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
+            </div>
+            <p>
+                FAGE – Fédération des Associations Générales Étudiantes<br />
+                79 rue Périer, 92120 Montrouge<br />
+                Tél : 01.40.33.70.70
+            </p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/fage.org/?locale=fr_FR"
+                   target="_blank" ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
+                /></a>
+                <a href="https://fr.linkedin.com/company/la-fage"
+                   target="_blank"><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
+                /></a>
+                <a href="https://www.youtube.com/@associationfage"
+                   target="_blank" ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
+                /></a>
+                <a href="https://www.instagram.com/la_fage/?hl=fr"
+                   target="_blank"><img src="../assets/img/icon_instagram.svg" alt="Instagram"
+                /></a>
+            </div>
+        </div>
+
+        <!-- Colonne 2 -->
+        <div class="footer-col">
+            <h4>Mentions légales</h4>
+            <ul>
+                <li><a href="#">Mentions légales</a></li>
+                <li><a href="#">Politique de confidentialité</a></li>
+                <li><a href="#">Cookies</a></li>
+            </ul>
+        </div>
+
+        <!-- Colonne 3 -->
+        <div class="footer-col">
+            <h4>Liens utiles</h4>
+            <ul>
+                <li><a href="Asso_Projet.html">Assos & Projets</a></li>
+                <li>
+                    <a href="Actualité_Ressource.html">Actualité & Ressources</a>
+                </li>
+                <li><a href="Dons_Engagement.html">Don & Engagement</a></li>
+                <li><a href="A_propos.html">À propos</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
