@@ -68,7 +68,7 @@ h2 {
     position: relative;
     color: white;
 
-    background-image: url("../img/Image-etudiant-accueil.jpg"); /* ton image */
+    background-image: url("../img/Image-etudiant-accueil.png"); /* ton image */
     background-size: cover;      /* l'image couvre tout le conteneur */
     background-position: center; /* centrée */
     background-repeat: no-repeat; /* pas de répétition */
