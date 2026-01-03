@@ -110,11 +110,6 @@ h2 {
     background-color: #f0f0f0;
 }
 
-
-
-
-
-
 #afficher-banniere {
     position: fixed;
     padding: 10px 15px;
@@ -200,13 +195,6 @@ h2 {
     transform: translateY(0);
 }
 
-
-
-
-
-
-
-
 .Carte-mentale-Fage{ display: flex; /* Active le mode flexbox pour centrer plus facilement */
     height: 120vh;
     /* permet de prendre toute la hauteur de la feneter*/ margin: 0;
@@ -222,13 +210,6 @@ h2 {
     /* L’image couvre toute la zone sans se déformer */
     background-position: center;
     /* L’image est centrée dans le conteneur */ }
-
-
-
-
-
-
-
 
 .Chiffres {
     padding: 50px 5%;
@@ -1889,6 +1870,7 @@ p.subtitle {
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
+    
 }
 /* Titre principal  */
 .titre-principal {
@@ -2047,7 +2029,6 @@ p.subtitle {
 }
 
 /** SECTION ACTUALITÉ RESSOURCE 2 VIDÉO **/
-
 /** Section Vidéo avec changement **/
 .Actualite-Ressource-container2 {
     position: relative;
@@ -2279,113 +2260,6 @@ p.subtitle {
     }
 }
 
-/** SECTION ACTUALITÉ RESSOURCE 3 **/
-/* Section Actualité Ressource 3 */
-.Actualite-Ressource-container3 {
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-}
-/* Infos clés */
-.container3-infos-cle {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-/* div du Titre */
-.info-principale {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 2rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    margin-bottom: 1rem;
-}
-/* Titre Ce qui vous attend */
-.info-principale h4 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #333;
-    margin: 0;
-}
-/* Carte d'information */
-.info-carte {
-    background: white;
-    padding: 2.5rem 2rem;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    transition: all 0.3s ease;
-    border-left: 4px solid #0055a4;
-}
-/* Carte d'information hover */
-.info-carte:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-}
-/* Icône de la carte */
-.carte-icone {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-/* Titre de la carte */
-.info-carte h4 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 1rem;
-}
-/* Description de la carte */
-.info-carte p {
-    color: #666;
-    line-height: 1.6;
-    margin: 0;
-    font-size: 1rem;
-}
-/* Responsive 1*/
-@media (max-width: 968px) {
-    .container3-infos-cle {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .info-principale {
-        grid-column: 1;
-    }
-
-    .titre-section {
-        font-size: 2rem;
-    }
-
-    .info-principale h4 {
-        font-size: 1.75rem;
-    }
-}
-/* Responsive 2*/
-@media (max-width: 768px) {
-    .Actualite-Ressource-container3 {
-        padding: 3rem 1rem;
-    }
-
-    .titre-section {
-        font-size: 1.75rem;
-        margin-bottom: 2rem;
-    }
-
-    .info-carte {
-        padding: 2rem 1.5rem;
-    }
-
-    .carte-icone {
-        font-size: 2.5rem;
-    }
-
-    .info-carte h4 {
-        font-size: 1.25rem;
-    }
-}
 /** SECTION ACTUALITÉ RESSOURCE 4 **/
 /* Actualité Ressource 4 */
 .Actualite-Ressource-container4 {
