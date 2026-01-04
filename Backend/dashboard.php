@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
 ?>
 <!DOCTYPE html>
@@ -39,3 +43,36 @@
     </nav>
 
     <div class="container mt-5">
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                const params = new URLSearchParams(window.location.search);
+                const section = params.get("section");
+                const radios = document.querySelectorAll('input[name="section-toggle"]');
+                const sections = document.querySelectorAll('section');
+
+                if (section) {
+                    const radio = document.querySelector(`input[value="${section}"]`);
+                    if (radio) radio.checked = true;
+                }
+
+                function updateVisibleSection() {
+                    sections.forEach(section => section.classList.add('d-none'));
+                    const checked = document.querySelector('input[name="section-toggle"]:checked');
+                    if (checked) {
+                        const target = document.getElementById(checked.value);
+                        if (target) target.classList.remove('d-none');
+                    }
+                }
+
+                radios.forEach(radio => radio.addEventListener('change', updateVisibleSection));
+                updateVisibleSection();
+            });
+        </script>
+        <div class="col mx-auto p-4 btn-group" role="group">
+            <input type="radio" class="btn-check" id="radio-dashboard" name="section-toggle" value="Dashboard" checked>
+            <label class="btn btn-primary" for="radio-dashboard">Dashboard</label>
+
+        </div>
+        <section id="Dashboard"><?php require_once "./Sections/section_dashboard.php"?></section>
+    </div>

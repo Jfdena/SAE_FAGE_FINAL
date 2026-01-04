@@ -6,8 +6,7 @@ $dotenv->safeLoad();
 
 function connectToDatabase($mysqli, $username, $password)
 {
-    // First query to check password
-    $stmt = $mysqli->prepare("SELECT password, Ref_user, role FROM Users WHERE username = ?");
+    $stmt = $mysqli->prepare("SELECT password, id_user, role FROM Users WHERE username = ?");
     if (!$stmt) {
         return ['success' => false, 'error' => 'Database error'];
     }
@@ -21,7 +20,6 @@ function connectToDatabase($mysqli, $username, $password)
         $hashed_password_from_db = $row['password'];
 
         if (password_verify($password, $hashed_password_from_db)) {
-            // Password is correct - return user data
             return [
                 'success' => true,
                 'role' => $row['role'],

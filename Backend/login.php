@@ -4,9 +4,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 $docRoot = $_SERVER['DOCUMENT_ROOT'] ?? dirname(__DIR__, 2);
-require_once $docRoot . '/vendor/autoload.php';
-require_once $docRoot . '/Backend/database.php';
-require_once $docRoot . '/Backend/login_request.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+require_once __DIR__ . '/database.php';
+require_once __DIR__ . '/login_request.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->safeload();
@@ -27,7 +27,6 @@ if (isset($_POST["connectButton"])) {
     if ($result['success']) {
         $role = $result['role'];
         $ref_user = $result['ref_user'];
-        // Proceed with login
         if ($role == "admin") {
             $_SESSION['role'] = "admin";
             $_SESSION['loggedIn'] = true;
@@ -58,7 +57,7 @@ if (isset($_POST["connectButton"])) {
 </head>
 <body>
 <div class="container mt-5">
-    <h3 class="text-center">AB Legacy</h3>
+    <h3 class="text-center">FAGE</h3>
     <div class="row justify-content-center">
         <div class="col-6">
             <form method="post">
