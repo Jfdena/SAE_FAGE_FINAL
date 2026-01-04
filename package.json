@@ -1,0 +1,20 @@
+{
+  "name": "sae-web-refont",
+  "version": "1.0.0",
+  "description": "FAGE - Fédération des Associations Générales Étudiantes website refont",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "php",
+    "bootstrap",
+    "fage"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.7"
+  }
+}
