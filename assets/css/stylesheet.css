@@ -68,7 +68,7 @@ h2 {
     position: relative;
     color: white;
 
-    background-image: url("../img/Image-etudiant-accueil.png"); /* ton image */
+    background-image: url("../img/Image-etudiant-accueil.jpg"); /* ton image */
     background-size: cover;      /* l'image couvre tout le conteneur */
     background-position: center; /* centrée */
     background-repeat: no-repeat; /* pas de répétition */
@@ -1276,7 +1276,7 @@ body, html {
    🖼️ SECTION HERO (bandeau principal)
 ================================ */
 .hero {
-    background: url("../assets/img/assoc_projet_img_header.jpeg") center/cover no-repeat;
+    background: url("../img/assoc_projet_img_header.jpeg") center/cover no-repeat;
     height: 70vh;
     display: flex;
     flex-direction: column;

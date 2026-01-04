@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "ext-mysql": "^0.1.0"
   }
 }

@@ -5,9 +5,10 @@ error_reporting(E_ALL);
 session_start();
 $docRoot = $_SERVER['DOCUMENT_ROOT'] ?? dirname(__DIR__, 2);
 require_once $docRoot . '/vendor/autoload.php';
-require_once $docRoot . '/back/includes/login.php';
+require_once $docRoot . '/Backend/database.php';
+require_once $docRoot . '/Backend/login_request.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->safeload();
 
 $dbHost = $_ENV['DB_HOST'];
@@ -15,7 +16,8 @@ $dbName = $_ENV['DB_NAME'];
 $dbUser = $_ENV['DB_USER'];
 $dbPass = $_ENV['DB_PASS'];
 
-$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+$db = Database::getInstance();
+$mysqli = $db->getConnection();
 
 $loginError = "";
 if (isset($_POST["connectButton"])) {
