@@ -14,27 +14,6 @@
 .halfbox {
   height: 7.5vh;
 }
-
-/* Responsive spacing */
-@media (max-width: 768px) {
-  .box {
-    height: 10vh;
-  }
-
-  .halfbox {
-    height: 5vh;
-  }
-}
-
-@media (max-width: 576px) {
-  .box {
-    height: 7vh;
-  }
-
-  .halfbox {
-    height: 3.5vh;
-  }
-}
 /*NAVBAR*/
 
 /*----------------------------------------------------------------------------<-CSS ACCUEIL->------------------------------------------------------------------------------------------------------*/
@@ -1686,128 +1665,7 @@ html {
   background-color: #1d3a5c;
 }
 
-/* --- Styles pour la page Dons (formulaire) --- */
-.bg-light-secondary {
-  border-radius: 12px;
-}
-
-.bg-light-secondary > .w-50 {
-  margin-bottom: 20px;
-}
-
-.bg-light-secondary form {
-  background: white;
-}
-
-.bg-light-secondary h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-}
-
-.bg-light-secondary p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #555;
-}
-
-.btn-primary {
-  background-color: #0f223a;
-  border-color: #0f223a;
-  padding: 12px 24px;
-  font-weight: 600;
-  width: 100%;
-}
-
-.btn-primary:hover {
-  background-color: #1d3a5c;
-  border-color: #1d3a5c;
-}
-
-.form-control,
-.form-label {
-  font-size: 0.95rem;
-}
-
-.form-label {
-  font-weight: 500;
-  color: #183146;
-  margin-bottom: 8px;
-}
-
-.form-control {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 10px 12px;
-}
-
-.form-control:focus {
-  border-color: #0f223a;
-  box-shadow: 0 0 0 0.2rem rgba(15, 34, 58, 0.25);
-}
-
-/* --- Responsive pour formulaire donation --- */
-@media (max-width: 768px) {
-  .bg-light-secondary {
-    padding: 30px 20px !important;
-  }
-
-  .bg-light-secondary > .w-50 {
-    width: 100% !important;
-  }
-
-  .bg-light-secondary h2 {
-    font-size: 1.5rem;
-  }
-
-  .row > .col-9,
-  .row > .col-3 {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .btn-primary {
-    margin-top: 15px;
-  }
-}
-
-@media (max-width: 576px) {
-  .bg-light-secondary {
-    padding: 20px 15px !important;
-    margin: 15px auto !important;
-    width: 95% !important;
-  }
-
-  .bg-light-secondary h2 {
-    font-size: 1.3rem;
-  }
-
-  .bg-light-secondary p {
-    font-size: 0.9rem;
-  }
-
-  .form-control {
-    font-size: 1rem;
-    padding: 8px 10px;
-  }
-
-  .form-label {
-    font-size: 0.9rem;
-  }
-
-  .btn-primary {
-    padding: 10px 15px;
-    font-size: 0.95rem;
-    width: 100%;
-  }
-
-  input[type="checkbox"] {
-    margin-right: 8px;
-  }
-
-  label[for="engagement"] {
-    font-size: 0.9rem;
-  }
-}
+/*------------------------------------------------------------------<-CSS DON ET ENGAGEMENT-->------------------------------------------------------------------*/
 
 /* --- Cartes partenaires (page Don) --- */
 .card-img-assos {
@@ -1829,30 +1687,6 @@ html {
   display: block;
 }
 
-/* Styles pour les cartes partenaires */
-.card {
-  border: 1px solid #ddd;
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.card-title {
-  color: #183146;
-  font-weight: 600;
-  margin-top: 12px;
-  margin-bottom: 8px;
-}
-
-.card-text {
-  color: #666;
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .temoignages-grid {
@@ -1863,61 +1697,8 @@ html {
   .temoignage-card {
     max-width: 100%;
   }
-  
-  /* Cartes partenaires responsive */
-  .card {
-    margin: 12px 0 !important;
-    flex: 0 1 calc(100% - 20px) !important;
-  }
-  
-  .card-img-assos {
-    height: 140px;
-  }
 }
-
-/* Mobile petit - col-12 sur très petit écran */
-@media (max-width: 576px) {
-  .card {
-    margin: 12px auto !important;
-    flex: 0 1 calc(100% - 16px) !important;
-    max-width: 95%;
-  }
-  
-  .card-img-assos {
-    height: 120px;
-  }
-  
-  .card-title {
-    font-size: 1rem;
-  }
-  
-  .card-text {
-    font-size: 0.9rem;
-  }
-  
-  /* Formulaire de donation responsive */
-  .col-9 {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 12px !important;
-  }
-  
-  .col-3 {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 12px !important;
-  }
-  
-  .col-md-5 {
-    width: 95% !important;
-  }
-  
-  .col-md-11 {
-    width: 95% !important;
-  }
-}
-
-/* --- FOOTER --- */
+/*------------------------------------------------------------------<-FOOTER --------------------------------------------------------------------------->*/
 .footer {
   background-color: #ffffff;
   color: #183146;
@@ -2001,62 +1782,33 @@ html {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .footer {
-    padding: 40px 5%;
-  }
-
   .footer-container {
     flex-direction: column;
     text-align: center;
-    gap: 30px;
-  }
-
-  .footer-col {
-    min-width: 100%;
   }
 
   .footer-logo img {
     margin: 0 auto 10px auto;
-    width: 100px;
   }
 
   .footer-socials {
     justify-content: center;
   }
-
-  .footer-col h4 {
-    font-size: 1rem;
-  }
 }
 
-/* Mobile petit */
-@media (max-width: 576px) {
-  .footer {
-    padding: 30px 10px;
-  }
-
+/* Responsive */
+@media (max-width: 768px) {
   .footer-container {
-    gap: 20px;
-  }
-
-  .footer-col {
-    min-width: 100%;
+    flex-direction: column;
+    text-align: center;
   }
 
   .footer-logo img {
-    width: 80px;
+    margin: 0 auto 10px auto;
   }
 
-  .footer-col p {
-    font-size: 0.85rem;
-  }
-
-  .footer-col ul li {
-    margin-bottom: 6px;
-  }
-
-  .footer-socials a img {
-    width: 28px;
+  .footer-socials {
+    justify-content: center;
   }
 }
 
