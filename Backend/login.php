@@ -27,13 +27,10 @@ if (isset($_POST["connectButton"])) {
     if ($result['success']) {
         $role = $result['role'];
         $ref_user = $result['ref_user'];
-        if ($role == "admin") {
+        if ($role == "admin" || $role == "user") {
             $_SESSION['role'] = "admin";
             $_SESSION['loggedIn'] = true;
             header("Location: dashboard.php");
-        }
-        else if ($role == "user") {
-            header("Location: /front/dashboard/dashboard.php");
         }
         else {
             $loginError = "This account is not a human user.";

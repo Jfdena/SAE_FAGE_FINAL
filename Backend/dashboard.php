@@ -73,6 +73,9 @@ $dotenv->load();
             <input type="radio" class="btn-check" id="radio-dashboard" name="section-toggle" value="Dashboard" checked>
             <label class="btn btn-primary" for="radio-dashboard">Dashboard</label>
 
+            <input type="radio" class="btn-check" id="radio-evenement" name="section-toggle" value="Evenement">
+            <label class="btn btn-primary" for="radio-evenement">Evenement</label>
         </div>
         <section id="Dashboard"><?php require_once "./Sections/section_dashboard.php"?></section>
+        <section id="Evenement"><?php require_once "./Sections/section_evenement.php"?></section>
     </div>
