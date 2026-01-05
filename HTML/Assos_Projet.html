@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FAGE – Associations & Projets</title>
@@ -11,302 +11,350 @@
 
     <!-- Bootstrap -->
     <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-            crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
     />
     <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
     ></script>
-</head>
+  </head>
 
-<body>
-<!-- HEADER -->
-<header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Accueil.html">
-                <img src="../assets/img/logo_navbar.png" height="40" width="auto" alt="Logo">
-            </a>
+          <a class="navbar-brand" href="Accueil.html">
+            <img
+              src="../assets/img/logo_navbar.png"
+              height="40"
+              width="auto"
+              alt="Logo"
+            />
+          </a>
 
-            <!-- Bouton hamburger pour mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+          <!-- Bouton hamburger pour mobile -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-decoration-none tint-text" href="Accueil.html">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-decoration-none tint-text" aria-current="page" href="Assos_Projet.html">Asso & Projets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-decoration-none tint-text" href="Actualité_Ressources.html">Actualité & Ressources</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-decoration-none tint-text" href="Dons_Engagement.html">Dons & Engagement</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-decoration-none tint-text" href="A_propos.html">À propos</a>
-                    </li>
-                </ul>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul
+              class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0"
+            >
+              <li class="nav-item">
+                <a
+                  class="nav-link text-decoration-none tint-text"
+                  href="Accueil.html"
+                  >Accueil</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-decoration-none tint-text"
+                  aria-current="page"
+                  href="Assos_Projet.html"
+                  >Asso & Projets</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-decoration-none tint-text"
+                  href="Actualité_Ressources.html"
+                  >Actualité & Ressources</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-decoration-none tint-text"
+                  href="Dons_Engagement.html"
+                  >Dons & Engagement</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-decoration-none tint-text"
+                  href="A_propos.html"
+                  >À propos</a
+                >
+              </li>
+            </ul>
 
-                <div class="d-flex">
-                    <a href="../Backend/session_check.php" class="btn btn-outline-primary">Espace Membre</a>
-                </div>
+            <div class="d-flex">
+              <a
+                href="../Backend/session_check.php"
+                class="btn btn-outline-primary"
+                >Espace Membre</a
+              >
             </div>
+          </div>
         </div>
-    </nav>
-</header>
+      </nav>
+    </header>
 
-<!-- 🟩 SECTION HERO -->
-<section class="hero">
-    <div class="hero-text">
+    <!-- 🟩 SECTION HERO -->
+    <section class="hero">
+      <div class="hero-text">
         <h1>Associations & Projets</h1>
         <p>Rejoignez le mouvement étudiant et faites vivre vos projets.</p>
         <a href="#carte" class="btn-main">Inscris ton association !</a>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- 🗺️ Carte des associations -->
-<section class="asso-map">
-    <h2>Carte des associations</h2>
-    <p class="subtitle">
+    <!-- 🗺️ Carte des associations -->
+    <section class="asso-map">
+      <h2>Carte des associations</h2>
+      <p class="subtitle">
         Découvrez les fédérations étudiantes du réseau FAGE à travers la France.
-    </p>
+      </p>
 
-    <div class="asso-layout">
+      <div class="asso-layout">
         <!-- 🗺️ Carte -->
         <div class="asso-map-image">
-            <img
-                    src="../assets/img/carte_asso.png"
-                    alt="Carte des associations FAGE"
-            />
+          <img
+            src="../assets/img/carte_asso.png"
+            alt="Carte des associations FAGE"
+          />
         </div>
 
         <!-- 🧩 Fiches associations -->
         <div class="asso-infos">
-            <div class="asso-info">
-                <h3>FAGE Auvergne-Rhône-Alpes</h3>
-                <p>
-                    Représente les étudiants de la région Auvergne-Rhône-Alpes et
-                    soutient les initiatives associatives locales.
-                </p>
-                <a href="#" class="btn-dark">Voir plus</a>
-            </div>
-
-            <div class="asso-info">
-                <h3>FAGE Grand Est</h3>
-                <p>
-                    Regroupe les associations étudiantes d’Alsace et de Lorraine et
-                    soutient les projets étudiants régionaux.
-                </p>
-                <a href="#" class="btn-dark">Voir plus</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 🧱 Bas de la carte -->
-    <div class="asso-bottom">
-        <div class="asso-info">
-            <h3>FAGE Île-de-France</h3>
+          <div class="asso-info">
+            <h3>FAGE Auvergne-Rhône-Alpes</h3>
             <p>
-                Représente les étudiants franciliens et favorise la collaboration
-                entre les associations locales.
+              Représente les étudiants de la région Auvergne-Rhône-Alpes et
+              soutient les initiatives associatives locales.
             </p>
             <a href="#" class="btn-dark">Voir plus</a>
-        </div>
+          </div>
 
-        <div class="asso-info">
-            <h3>FAGE Occitanie</h3>
+          <div class="asso-info">
+            <h3>FAGE Grand Est</h3>
             <p>
-                Fédère les associations universitaires du sud et encourage les
-                initiatives en faveur de la vie étudiante.
+              Regroupe les associations étudiantes d’Alsace et de Lorraine et
+              soutient les projets étudiants régionaux.
             </p>
             <a href="#" class="btn-dark">Voir plus</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🧱 Bas de la carte -->
+      <div class="asso-bottom">
+        <div class="asso-info">
+          <h3>FAGE Île-de-France</h3>
+          <p>
+            Représente les étudiants franciliens et favorise la collaboration
+            entre les associations locales.
+          </p>
+          <a href="#" class="btn-dark">Voir plus</a>
         </div>
 
         <div class="asso-info">
-            <h3>Envie d’agir avec la FAGE ?</h3>
-            <p>
-                Rejoins une association étudiante près de chez toi ou propose ton
-                propre projet pour améliorer la vie des étudiants.
-            </p>
-            <div class="asso-actions">
-                <a href="#" class="btn-dark">Rejoindre une association</a>
-                <a href="#" class="btn-dark">Proposer un projet</a>
-            </div>
+          <h3>FAGE Occitanie</h3>
+          <p>
+            Fédère les associations universitaires du sud et encourage les
+            initiatives en faveur de la vie étudiante.
+          </p>
+          <a href="#" class="btn-dark">Voir plus</a>
         </div>
-    </div>
-</section>
 
-<!-- 💡 PROJETS & THEMES -->
-<section class="projets-section">
-    <h2>Projets & Thèmes</h2>
-    <p class="subtitle">
+        <div class="asso-info">
+          <h3>Envie d’agir avec la FAGE ?</h3>
+          <p>
+            Rejoins une association étudiante près de chez toi ou propose ton
+            propre projet pour améliorer la vie des étudiants.
+          </p>
+          <div class="asso-actions">
+            <a href="#" class="btn-dark">Rejoindre une association</a>
+            <a href="#" class="btn-dark">Proposer un projet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 💡 PROJETS & THEMES -->
+    <section class="projets-section">
+      <h2>Projets & Thèmes</h2>
+      <p class="subtitle">
         Découvrez les actions menées par la FAGE pour améliorer la vie
         étudiante.
-    </p>
+      </p>
 
-    <div class="projets-grid">
+      <div class="projets-grid">
         <div class="projet-card blue">
-            <img src="../assets/img/icon_bourse.svg" alt="Bourses & aides" />
-            <h3>Bourses & aides</h3>
-            <p>
-                Informations sur les dispositifs financiers pour soutenir la
-                réussite des étudiants.
-            </p>
+          <img src="../assets/img/icon_bourse.svg" alt="Bourses & aides" />
+          <h3>Bourses & aides</h3>
+          <p>
+            Informations sur les dispositifs financiers pour soutenir la
+            réussite des étudiants.
+          </p>
         </div>
 
         <div class="projet-card red">
-            <img src="../assets/img/icon_sante.svg" alt="Santé & bien-être" />
-            <h3>Santé & bien-être</h3>
-            <p>
-                Sensibilisation, mutuelles étudiantes et prévention santé sur les
-                campus.
-            </p>
+          <img src="../assets/img/icon_sante.svg" alt="Santé & bien-être" />
+          <h3>Santé & bien-être</h3>
+          <p>
+            Sensibilisation, mutuelles étudiantes et prévention santé sur les
+            campus.
+          </p>
         </div>
 
         <div class="projet-card yellow">
-            <img
-                    src="../assets/img/icon_culture.svg"
-                    alt="Vie associative & culture"
-            />
-            <h3>Vie associative & culture</h3>
-            <p>
-                Dynamiser la vie de campus à travers des événements et projets
-                culturels.
-            </p>
+          <img
+            src="../assets/img/icon_culture.svg"
+            alt="Vie associative & culture"
+          />
+          <h3>Vie associative & culture</h3>
+          <p>
+            Dynamiser la vie de campus à travers des événements et projets
+            culturels.
+          </p>
         </div>
 
         <div class="projet-card gray">
-            <img
-                    src="../assets/img/icon_access.svg"
-                    alt="Inclusion & accessibilité"
-            />
-            <h3>Inclusion & accessibilité</h3>
-            <p>
-                Accompagnement des étudiants en situation de handicap et promotion
-                de l’inclusivité.
-            </p>
+          <img
+            src="../assets/img/icon_access.svg"
+            alt="Inclusion & accessibilité"
+          />
+          <h3>Inclusion & accessibilité</h3>
+          <p>
+            Accompagnement des étudiants en situation de handicap et promotion
+            de l’inclusivité.
+          </p>
         </div>
 
         <div class="projet-card blue2">
-            <img src="../assets/img/icon_logement.svg" alt="Logement étudiant" />
-            <h3>Logement étudiant</h3>
-            <p>Aides au logement, colocations et accompagnement pour se loger.</p>
+          <img src="../assets/img/icon_logement.svg" alt="Logement étudiant" />
+          <h3>Logement étudiant</h3>
+          <p>Aides au logement, colocations et accompagnement pour se loger.</p>
         </div>
 
         <div class="projet-card green">
-            <img src="../assets/img/icon_env.svg" alt="Environnement durable" />
-            <h3>Environnement durable</h3>
-            <p>
-                Projets écologiques et initiatives vertes portées par les
-                associations étudiantes.
-            </p>
+          <img src="../assets/img/icon_env.svg" alt="Environnement durable" />
+          <h3>Environnement durable</h3>
+          <p>
+            Projets écologiques et initiatives vertes portées par les
+            associations étudiantes.
+          </p>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- 🧑‍🎓 TÉMOIGNAGES -->
-<section class="temoignages-section">
-    <h2>Témoignages étudiants</h2>
-    <p class="subtitle">
+    <!-- 🧑‍🎓 TÉMOIGNAGES -->
+    <section class="temoignages-section">
+      <h2>Témoignages étudiants</h2>
+      <p class="subtitle">
         Découvrez les parcours et projets menés par les étudiants engagés au
         sein du réseau FAGE.
-    </p>
+      </p>
 
-    <div class="temoignages-grid">
+      <div class="temoignages-grid">
         <div class="temoignage-card">
-            <img src="../assets/img/temoignage_mehdi.jpg" alt="Mehdi étudiant" />
-            <h3>Mehdi – Étudiant en santé (Toulouse)</h3>
-            <p>
-                “S’engager à la FAGE m’a permis d’agir concrètement pour le
-                bien-être des étudiants.”
-            </p>
+          <img src="../assets/img/temoignage_mehdi.jpg" alt="Mehdi étudiant" />
+          <h3>Mehdi – Étudiant en santé (Toulouse)</h3>
+          <p>
+            “S’engager à la FAGE m’a permis d’agir concrètement pour le
+            bien-être des étudiants.”
+          </p>
         </div>
 
         <div class="temoignage-card">
-            <img src="../assets/img/temoignage_clara.jpg" alt="Clara étudiante" />
-            <h3>Clara – Étudiante en droit (Lyon)</h3>
-            <p>
-                “Grâce à mon asso, j’ai pu lancer un projet d’aide au logement
-                étudiant dans ma ville.”
-            </p>
+          <img src="../assets/img/temoignage_clara.jpg" alt="Clara étudiante" />
+          <h3>Clara – Étudiante en droit (Lyon)</h3>
+          <p>
+            “Grâce à mon asso, j’ai pu lancer un projet d’aide au logement
+            étudiant dans ma ville.”
+          </p>
         </div>
 
         <div class="temoignage-card">
-            <img src="../assets/img/temoignage_leo.jpg" alt="Léo étudiant" />
-            <h3>Léo – Étudiant en économie (Paris)</h3>
-            <p>
-                “Les projets de la FAGE montrent qu’on peut changer les choses à
-                notre échelle.”
-            </p>
+          <img src="../assets/img/temoignage_leo.jpg" alt="Léo étudiant" />
+          <h3>Léo – Étudiant en économie (Paris)</h3>
+          <p>
+            “Les projets de la FAGE montrent qu’on peut changer les choses à
+            notre échelle.”
+          </p>
         </div>
-    </div>
+      </div>
 
-    <div class="don-button">
+      <div class="don-button">
         <a href="#" class="btn-don">Faire un Don</a>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- ⚫ FOOTER -->
-<footer class="footer">
-    <div class="footer-container">
+    <!-- ⚫ FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
         <!-- Colonne 1 -->
         <div class="footer-col">
-            <div class="footer-logo">
-                <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
-            </div>
-            <p>
-                FAGE – Fédération des Associations Générales Étudiantes<br />
-                79 rue Périer, 92120 Montrouge<br />
-                Tél : 01.40.33.70.70
-            </p>
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/fage.org/?locale=fr_FR"
-                   target="_blank" ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
-                /></a>
-                <a href="https://fr.linkedin.com/company/la-fage"
-                   target="_blank"><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
-                /></a>
-                <a href="https://www.youtube.com/@associationfage"
-                   target="_blank" ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
-                /></a>
-                <a href="https://www.instagram.com/la_fage/?hl=fr"
-                   target="_blank"><img src="../assets/img/icon_instagram.svg" alt="Instagram"
-                /></a>
-            </div>
+          <div class="footer-logo">
+            <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
+          </div>
+          <p>
+            FAGE – Fédération des Associations Générales Étudiantes<br />
+            79 rue Périer, 92120 Montrouge<br />
+            Tél : 01.40.33.70.70
+          </p>
+          <div class="footer-socials">
+            <a
+              href="https://www.facebook.com/fage.org/?locale=fr_FR"
+              target="_blank"
+              ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
+            /></a>
+            <a href="https://fr.linkedin.com/company/la-fage" target="_blank"
+              ><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
+            /></a>
+            <a href="https://www.youtube.com/@associationfage" target="_blank"
+              ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
+            /></a>
+            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"
+              ><img src="../assets/img/icon_instagram.svg" alt="Instagram"
+            /></a>
+          </div>
         </div>
 
         <!-- Colonne 2 -->
         <div class="footer-col">
-            <h4>Mentions légales</h4>
-            <ul>
-                <li><a href="#">Mentions légales</a></li>
-                <li><a href="#">Politique de confidentialité</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
+          <h4>Mentions légales</h4>
+          <ul>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
         </div>
 
         <!-- Colonne 3 -->
         <div class="footer-col">
-            <h4>Liens utiles</h4>
-            <ul>
-                <li><a href="Asso_Projet.html">Assos & Projets</a></li>
-                <li>
-                    <a href="Actualité_Ressource.html">Actualité & Ressources</a>
-                </li>
-                <li><a href="Dons_Engagement.html">Don & Engagement</a></li>
-                <li><a href="A_propos.html">À propos</a></li>
-            </ul>
+          <h4>Liens utiles</h4>
+          <ul>
+            <li><a href="Asso_Projet.html">Assos & Projets</a></li>
+            <li>
+              <a href="Actualité_Ressource.html">Actualité & Ressources</a>
+            </li>
+            <li><a href="Dons_Engagement.html">Don & Engagement</a></li>
+            <li><a href="A_propos.html">À propos</a></li>
+          </ul>
         </div>
-    </div>
-</footer>
-</body>
+      </div>
+    </footer>
+
+    <!-- Bouton retour en haut-->
+    <a
+      href="#top"
+      class="scroll-to-top-nojs"
+      aria-label="Remonter en haut de la page"
+    >
+      ↑
+    </a>
+  </body>
 </html>

@@ -1,147 +1,172 @@
 // Attendre que le DOM soit chargé avant d'exécuter tout le code
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
+  // --- Effet Sticky sur la navbar ---
+  const navbar = document.querySelector(".navbar");
 
-    // --- Apparition du titre et du sous-titre ---
-    const titre = document.getElementById('Titre-Principal'); // Récupère l'élément <h1> par son ID//
-    const soustitre = document.getElementById('Sous-Titre'); // Récupère l'élément <h2> par son ID
-
-    if (titre) titre.classList.add('visible'); // Si le titre existe, on lui ajoute la classe 'visible' -> déclenche la transition CSS
-
-    // Si le sous-titre existe, on lui ajoute la classe 'visible' avec un délai
-    // Cela crée un effet d'apparition décalée entre le titre et le sous-titre
-    if (soustitre) {
-        setTimeout(() => {
-            soustitre.classList.add('visible');
-        }, 800);
-    }
-
-    // --- Boutons d'inscription et de don ---
-    const btnInscription = document.getElementById('btn-inscription');//Bouton d'incription
-    const btnDon = document.getElementById('btn-don'); //Bouton de don
-
-    if (btnInscription) {
-        // Quand on clique sur le bouton "Inscription", on redirige vers la page d'inscription
-        btnInscription.addEventListener('click', function() {
-            window.location.href = 'mettre lien page inscription'; // Remplace par ton vrai lien que wallid te donne
-        });
-    }
-
-    if (btnDon) {
-        //Pareil mais pour don
-        btnDon.addEventListener('click', function() {
-            window.location.href = 'Dons_Engagement.html'; // Remplace par ton vrai lien
-        });
-    }
-
-    // --- Bandeau Cookies ---
-    const afficher = document.getElementById('afficher-banniere'); //bouton afficher la banniere
-    const banniere = document.getElementById('banniere-cookies'); //bloc de la banniere cookies
-    const accepter = document.getElementById('accepter'); //bouton accepter
-    const refus = document.getElementById('refus'); //bouton refuser
-
-    afficher.addEventListener('click', () => {
-        // bouton la visibilité
-        banniere.classList.toggle('hidden'); // Ajoute ou retire la classe 'hidden'
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
     });
 
-    // Si on clique sur "Accepter", on masque la bannière et le bouton
-    if (accepter) {
-        accepter.addEventListener('click', () => {
-            banniere.classList.add('hidden'); // Cache la bannière
-            afficher.style.display = 'none'; // Cache le bouton pour ne pas le revoir
-        });
-    }
-    // Si on clique sur "Refuser", même comportement que "Accepter" ici
-    if (refus) {
-        refus.addEventListener('click', () => {
-            banniere.classList.add('hidden');
-            afficher.style.display = 'none'; // On cache le bouton
-        });
+    // Fermer le menu mobile au clic sur un lien
+    const navLinks = document.querySelectorAll(".navbar-collapse .nav-link");
+    const navbarToggler = document.querySelector(".navbar-toggler");
 
-        const counters = document.querySelectorAll('.Nombre');
-        let started = false; // empêche que l'animation se rejoue
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navbarToggler.click(); // Ferme le menu
+      });
+    });
+  }
 
-        function animateCounters() {
-            if (!started && window.scrollY + window.innerHeight >= document.querySelector('#Chiffres').offsetTop) {
-                started = true;
+  // --- Apparition du titre et du sous-titre ---
+  const titre = document.getElementById("Titre-Principal"); // Récupère l'élément <h1> par son ID//
+  const soustitre = document.getElementById("Sous-Titre"); // Récupère l'élément <h2> par son ID
 
-                counters.forEach(counter => {
-                    const updateCount = () => {
-                        const target = +counter.getAttribute('data-target');
-                        const count = +counter.innerText;
-                        const speed = 200; // plus grand = plus lent
-                        const increment = target / speed;
+  if (titre) titre.classList.add("visible"); // Si le titre existe, on lui ajoute la classe 'visible' -> déclenche la transition CSS
 
-                        if (count < target) {
-                            counter.innerText = Math.ceil(count + increment);
-                            setTimeout(updateCount, 10);
-                        } else {
-                            counter.innerText = target.toLocaleString();
-                        }
-                    };
-                    updateCount();
-                });
+  // Si le sous-titre existe, on lui ajoute la classe 'visible' avec un délai
+  // Cela crée un effet d'apparition décalée entre le titre et le sous-titre
+  if (soustitre) {
+    setTimeout(() => {
+      soustitre.classList.add("visible");
+    }, 800);
+  }
+
+  // --- Boutons d'inscription et de don ---
+  const btnInscription = document.getElementById("btn-inscription"); //Bouton d'incription
+  const btnDon = document.getElementById("btn-don"); //Bouton de don
+
+  if (btnInscription) {
+    // Quand on clique sur le bouton "Inscription", on redirige vers la page d'inscription
+    btnInscription.addEventListener("click", function () {
+      window.location.href = "mettre lien page inscription"; // Remplace par ton vrai lien que wallid te donne
+    });
+  }
+
+  if (btnDon) {
+    //Pareil mais pour don
+    btnDon.addEventListener("click", function () {
+      window.location.href = "Dons_Engagement.html"; // Remplace par ton vrai lien
+    });
+  }
+
+  // --- Bandeau Cookies ---
+  const afficher = document.getElementById("afficher-banniere"); //bouton afficher la banniere
+  const banniere = document.getElementById("banniere-cookies"); //bloc de la banniere cookies
+  const accepter = document.getElementById("accepter"); //bouton accepter
+  const refus = document.getElementById("refus"); //bouton refuser
+
+  afficher.addEventListener("click", () => {
+    // bouton la visibilité
+    banniere.classList.toggle("hidden"); // Ajoute ou retire la classe 'hidden'
+  });
+
+  // Si on clique sur "Accepter", on masque la bannière et le bouton
+  if (accepter) {
+    accepter.addEventListener("click", () => {
+      banniere.classList.add("hidden"); // Cache la bannière
+      afficher.style.display = "none"; // Cache le bouton pour ne pas le revoir
+    });
+  }
+  // Si on clique sur "Refuser", même comportement que "Accepter" ici
+  if (refus) {
+    refus.addEventListener("click", () => {
+      banniere.classList.add("hidden");
+      afficher.style.display = "none"; // On cache le bouton
+    });
+
+    const counters = document.querySelectorAll(".Nombre");
+    let started = false; // empêche que l'animation se rejoue
+
+    function animateCounters() {
+      if (
+        !started &&
+        window.scrollY + window.innerHeight >=
+          document.querySelector("#Chiffres").offsetTop
+      ) {
+        started = true;
+
+        counters.forEach((counter) => {
+          const updateCount = () => {
+            const target = +counter.getAttribute("data-target");
+            const count = +counter.innerText;
+            const speed = 200; // plus grand = plus lent
+            const increment = target / speed;
+
+            if (count < target) {
+              counter.innerText = Math.ceil(count + increment);
+              setTimeout(updateCount, 10);
+            } else {
+              counter.innerText = target.toLocaleString();
             }
-        }
-
-        window.addEventListener('scroll', animateCounters);
-
-    }})
-
-document.addEventListener('DOMContentLoaded', function() {
-    let currentSlide = 0;
-
-    // Sélectionner TOUTES les cartes (y compris la première)
-    const premiereCarte = document.querySelector('.temoignage-carte_premiere');
-    const autresCartes = document.querySelectorAll('.temoignage-carte');
-
-    // Combiner toutes les cartes dans un seul tableau
-    const cards = [premiereCarte, ...autresCartes];
-
-    const indicators = document.querySelectorAll('.indicateur');
-    const totalSlides = cards.length;
-
-    function showSlide(n) {
-        if (n >= totalSlides) {
-            currentSlide = 0;
-        } else if (n < 0) {
-            currentSlide = totalSlides - 1;
-        } else {
-            currentSlide = n;
-        }
-
-        // Cacher toutes les cartes
-        cards.forEach(card => {
-            card.style.display = 'none';
-            card.classList.remove('active');
+          };
+          updateCount();
         });
-
-        // Désactiver tous les indicateurs
-        indicators.forEach(ind => ind.classList.remove('active'));
-
-        // Afficher la carte actuelle
-        cards[currentSlide].style.display = 'block';
-        cards[currentSlide].classList.add('active');
-
-        // Activer l'indicateur correspondant
-        indicators[currentSlide].classList.add('active');
+      }
     }
 
-    // Exposer les fonctions globalement pour les onclick
-    window.changementSlide = function(direction) {
-        currentSlide += direction;
-        showSlide(currentSlide);
-    }
-
-    window.goToSlide = function(n) {
-        currentSlide = n;
-        showSlide(currentSlide);
-    }
-
-    // Initialiser l'affichage
-    showSlide(0);
+    window.addEventListener("scroll", animateCounters);
+  }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  let currentSlide = 0;
+
+  // Sélectionner TOUTES les cartes (y compris la première)
+  const premiereCarte = document.querySelector(".temoignage-carte_premiere");
+  const autresCartes = document.querySelectorAll(".temoignage-carte");
+
+  // Combiner toutes les cartes dans un seul tableau
+  const cards = [premiereCarte, ...autresCartes];
+
+  const indicators = document.querySelectorAll(".indicateur");
+  const totalSlides = cards.length;
+
+  function showSlide(n) {
+    if (n >= totalSlides) {
+      currentSlide = 0;
+    } else if (n < 0) {
+      currentSlide = totalSlides - 1;
+    } else {
+      currentSlide = n;
+    }
+
+    // Cacher toutes les cartes
+    cards.forEach((card) => {
+      card.style.display = "none";
+      card.classList.remove("active");
+    });
+
+    // Désactiver tous les indicateurs
+    indicators.forEach((ind) => ind.classList.remove("active"));
+
+    // Afficher la carte actuelle
+    cards[currentSlide].style.display = "block";
+    cards[currentSlide].classList.add("active");
+
+    // Activer l'indicateur correspondant
+    indicators[currentSlide].classList.add("active");
+  }
+
+  // Exposer les fonctions globalement pour les onclick
+  window.changementSlide = function (direction) {
+    currentSlide += direction;
+    showSlide(currentSlide);
+  };
+
+  window.goToSlide = function (n) {
+    currentSlide = n;
+    showSlide(currentSlide);
+  };
+
+  // Initialiser l'affichage
+  showSlide(0);
+});
 
 // JS DE JF
 
@@ -281,12 +306,16 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentSlide = 0;
   const slideCount = slides.length;
   let visibleSlides = [...slides]; // Slides visibles après filtrage
-  let currentFilter = "all"; // Filtre actuel
 
   // Fonction pour mettre à jour le carrousel
   function updateCarousel() {
-    // Déplacer la piste
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    // Trouver l'index de la slide actuelle parmi les slides visibles
+    const visibleIndex = visibleSlides.indexOf(slides[currentSlide]);
+
+    // Déplacer la piste en fonction de l'index parmi les slides visibles
+    if (visibleIndex !== -1) {
+      track.style.transform = `translateX(-${visibleIndex * 100}%)`;
+    }
 
     // Mettre à jour les indicateurs
     indicators.forEach((indicator, index) => {
@@ -301,80 +330,99 @@ document.addEventListener("DOMContentLoaded", function () {
     slides.forEach((slide, index) => {
       slide.classList.toggle("active", index === currentSlide);
     });
+
+    // Désactiver/activer les boutons si nécessaire
+    if (prevBtn && nextBtn) {
+      if (visibleSlides.length <= 1) {
+        prevBtn.style.opacity = "0.5";
+        prevBtn.style.pointerEvents = "none";
+        nextBtn.style.opacity = "0.5";
+        nextBtn.style.pointerEvents = "none";
+      } else {
+        prevBtn.style.opacity = "1";
+        prevBtn.style.pointerEvents = "auto";
+        nextBtn.style.opacity = "1";
+        nextBtn.style.pointerEvents = "auto";
+      }
+    }
   }
 
-  // Fonction pour filtrer les slides
-  function filterSlides(category) {
-    currentFilter = category;
-    // Réinitialiser les slides visibles
-    if (category === "all") {
-      // Afficher toutes les slides
-      slides.forEach((slide) => {
-        slide.style.display = "flex";
-      });
-      visibleSlides = [...slides];
-    } else {
-      // Filtrer par catégorie
-      slides.forEach((slide) => {
-        const slideCategory = slide.dataset.category;
-        if (slideCategory === category) {
-          slide.style.display = "flex";
-        } else {
-          slide.style.display = "none";
-        }
-      });
+  // Fonction pour mettre à jour la catégorie active en fonction de la slide
+  function updateActiveCategory() {
+    // Récupérer la catégorie de la slide actuelle
+    const currentCategory = slides[currentSlide].dataset.category;
 
-      // Mettre à jour les slides visibles
-      visibleSlides = slides.filter(
-        (slide) => slide.dataset.category === category
-      );
-    }
+    // Sélectionner tous les boutons de filtre
+    const filtreBtns = document.querySelectorAll(".filtre-btn");
 
-    // Réinitialiser à la première slide visible
-    currentSlide = 0;
-    updateCarousel();
+    // Retirer la classe active de tous les boutons
+    filtreBtns.forEach((btn) => btn.classList.remove("active"));
+
+    // Ajouter la classe active au bouton correspondant à la catégorie
+    filtreBtns.forEach((btn) => {
+      if (btn.dataset.filtre === currentCategory) {
+        btn.classList.add("active");
+      }
+    });
   }
 
   // Navigation suivante
   function nextSlide() {
     // Vérifier s'il y a des slides visibles
     if (visibleSlides.length === 0) return;
-    // Avancer à la slide suivante
-    currentSlide = (currentSlide + 1) % slideCount;
 
-    // Si la slide actuelle n'est pas visible, trouver la suivante visible
-    if (!visibleSlides.includes(slides[currentSlide])) {
-      for (let i = 1; i < slideCount; i++) {
-        const nextIndex = (currentSlide + i) % slideCount;
-        if (visibleSlides.includes(slides[nextIndex])) {
-          currentSlide = nextIndex;
-          break;
-        }
-      }
+    // Si une seule slide visible, ne rien faire
+    if (visibleSlides.length === 1) return;
+
+    // Trouver l'index de la slide actuelle dans les slides visibles
+    let currentVisibleIndex = visibleSlides.indexOf(slides[currentSlide]);
+
+    // Si la slide actuelle n'est pas visible, commencer à la première
+    if (currentVisibleIndex === -1) {
+      currentVisibleIndex = 0;
     }
+
+    // Passer à la slide visible suivante
+    const nextVisibleIndex = (currentVisibleIndex + 1) % visibleSlides.length;
+
+    // Trouver l'index global de la prochaine slide visible
+    currentSlide = slides.indexOf(visibleSlides[nextVisibleIndex]);
+
     // Mettre à jour le carrousel
     updateCarousel();
+
+    // Mettre à jour la catégorie active
+    updateActiveCategory();
   }
 
   // Navigation précédente -$
   function prevSlide() {
     // Vérifier s'il y a des slides visibles
     if (visibleSlides.length === 0) return;
-    // Reculer à la slide précédente
-    currentSlide = (currentSlide - 1 + slideCount) % slideCount;
 
-    // Si la slide actuelle n'est pas visible, trouver la précédente visible
-    if (!visibleSlides.includes(slides[currentSlide])) {
-      for (let i = 1; i < slideCount; i++) {
-        const prevIndex = (currentSlide - i + slideCount) % slideCount;
-        if (visibleSlides.includes(slides[prevIndex])) {
-          currentSlide = prevIndex;
-          break;
-        }
-      }
+    // Si une seule slide visible, ne rien faire
+    if (visibleSlides.length === 1) return;
+
+    // Trouver l'index de la slide actuelle dans les slides visibles
+    let currentVisibleIndex = visibleSlides.indexOf(slides[currentSlide]);
+
+    // Si la slide actuelle n'est pas visible, commencer à la première
+    if (currentVisibleIndex === -1) {
+      currentVisibleIndex = 0;
     }
+
+    // Passer à la slide visible précédente
+    const prevVisibleIndex =
+      (currentVisibleIndex - 1 + visibleSlides.length) % visibleSlides.length;
+
+    // Trouver l'index global de la slide visible précédente
+    currentSlide = slides.indexOf(visibleSlides[prevVisibleIndex]);
+
     // Mettre à jour le carrousel
     updateCarousel();
+
+    // Mettre à jour la catégorie active
+    updateActiveCategory();
   }
 
   // Aller à une slide spécifique
@@ -442,31 +490,9 @@ document.addEventListener("DOMContentLoaded", function () {
   carouselContainer.addEventListener("mouseleave", startAutoPlay);
 
   // Gestion des filtres d'événements
-  const filtreBtns = document.querySelectorAll(".filtre-btn");
-  // Événements des boutons de filtre
-  filtreBtns.forEach((btn) => {
-    // Clic sur un bouton de filtre
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      // Retirer la classe active de tous les boutons
-      filtreBtns.forEach((b) => b.classList.remove("active"));
-
-      // Ajouter la classe active au bouton cliqué
-      this.classList.add("active");
-
-      const filtre = this.dataset.filtre;
-
-      // Redémarrer l'auto-play
-      stopAutoPlay();
-
-      // Appliquer le filtre
-      filterSlides(filtre);
-
-      // Redémarrer l'auto-play après un délai
-      setTimeout(startAutoPlay, 100);
-    });
-  });
+  // Les boutons de catégories sont maintenant juste visuels
+  // Ils se mettent à jour automatiquement via updateActiveCategory()
+  // lors de la navigation avec prev/next
 
   // Initialiser le carrousel
   updateCarousel();
@@ -1154,14 +1180,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-
-
-
-
-
-
-
-
-
-
