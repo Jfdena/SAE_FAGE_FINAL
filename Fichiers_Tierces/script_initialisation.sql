@@ -246,4 +246,6 @@ CREATE TABLE IF NOT EXISTS USERS (
                         id_benevole INT UNIQUE,
                         role ENUM('admin', 'user')
 ) ENGINE=InnoDB;
+
+
 INSERT INTO USERS (USERNAME, PASSWORD, ROLE) VALUES ("test", "$2y$12$CHfrtMqbd9tFui5YwkrsheNHVpioDzd9PaD7u0MHNm70AXfIrBTnC", "admin")
