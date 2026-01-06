@@ -1,1 +1,2 @@
 <?php
+# IMPORTANT - Calculs statistiques
