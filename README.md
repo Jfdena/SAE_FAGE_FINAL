@@ -54,4 +54,5 @@ Lorsque l'administrateur est connecté, la page par défaut est "section_dashboa
 
 <img width="417" height="535" alt="image" src="https://github.com/user-attachments/assets/a7dc0ab9-fe0a-415d-830c-4af667fe39cb" />
 
+
 <img width="412" height="570" alt="image" src="https://github.com/user-attachments/assets/c3798624-fe53-4117-9ea1-c22c31183ead" />
