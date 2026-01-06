@@ -52,6 +52,6 @@ Il inclus également une page de login, si un acteur essaie d'accéder au dashbo
 
 Lorsque l'administrateur est connecté, la page par défaut est "section_dashboard", permettant de voir simplement quelques informations globales.
 
-<img width="531" height="646" alt="Capture d&#39;écran 2026-01-05 230242" src="https://github.com/user-attachments/assets/ee8672d9-72bb-45d0-a8e2-8620b7efa7ac" />
+<img width="417" height="535" alt="image" src="https://github.com/user-attachments/assets/a7dc0ab9-fe0a-415d-830c-4af667fe39cb" />
 
-<img width="634" height="260" alt="Capture d&#39;écran 2026-01-05 230313" src="https://github.com/user-attachments/assets/335e9e8d-1716-4f2c-8f88-1186ec8b3adb" />
+<img width="412" height="570" alt="image" src="https://github.com/user-attachments/assets/c3798624-fe53-4117-9ea1-c22c31183ead" />
