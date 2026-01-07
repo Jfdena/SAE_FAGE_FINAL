@@ -1,2 +1,0 @@
-<?php
-# ⭐ PRIORITAIRE - Création

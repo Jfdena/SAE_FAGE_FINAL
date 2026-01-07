@@ -1,0 +1,27 @@
+<?php
+echo "<h3>Test du chemin pour deleteMissions.php</h3>";
+echo "<p>URL actuelle : " . $_SERVER['PHP_SELF'] . "</p>";
+echo "<p>Répertoire courant : " . __DIR__ . "</p>";
+
+// Testons différents chemins
+echo "<h4>Liens de test :</h4>";
+echo '<a href="deleteMissions.php?id=1">Test deleteMissions.php (chemin relatif)</a><br>';
+echo '<a href="deleteMissions.php?id=1">Test ./deleteMissions.php</a><br>';
+echo '<a href="/views/admin/missions/deleteMissions.php?id=1">Test chemin absolu</a><br>';
+
+// Vérifions si le fichier existe
+$files = [
+    'deleteMissions.php',
+    './deleteMissions.php',
+    __DIR__ . '/deleteMissions.php'
+];
+
+echo "<h4>Vérification des fichiers :</h4>";
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        echo "✓ Fichier existe : $file<br>";
+    } else {
+        echo "✗ Fichier NON trouvé : $file<br>";
+    }
+}
+?>

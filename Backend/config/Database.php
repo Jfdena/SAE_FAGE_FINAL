@@ -1,41 +1,38 @@
 <?php
 // Backend/config/Database.php
+
 class Database {
-    private $host = "localhost";
-    private $db_name = "fage";
-    private $username = "root";
-    private $password = "denadena";          // À adapter (ton mot de passe MySQL)
-    public $conn;
+    // Configuration - à adapter selon ton serveur
+    private static $host = "localhost";
+    private static $db_name = "FAGE";
+    private static $username = "root";
+    private static $password = "root";  // Laisse vide si pas de mot de passe
 
-    public function getConnection() {
-        $this->conn = null;
-        try {
-            $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8mb4",
-                $this->username,
-                $this->password
-            );
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        } catch(PDOException $exception) {
-            // Ne pas afficher l'erreur en production
-            error_log("Erreur de connexion BDD : " . $exception->getMessage());
-            throw new Exception("Erreur de connexion à la base de données");
-        }
-        return $this->conn;
-    }
+    private static $conn = null;
 
-    // Méthode pour exécuter des requêtes préparées
-    public function executeQuery($sql, $params = []) {
-        try {
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute($params);
-            return $stmt;
-        } catch(PDOException $e) {
-            error_log("Erreur requête SQL : " . $e->getMessage());
-            throw new Exception("Erreur lors de l'exécution de la requête");
+    public static function getConnection() {
+        // Si pas encore connecté, on se connecte
+        if (self::$conn === null) {
+            try {
+                // Créer la connexion PDO
+                self::$conn = new PDO(
+                    "mysql:host=" . self::$host . ";dbname=" . self::$db_name . ";charset=utf8",
+                    self::$username,
+                    self::$password
+                );
+
+                // Configurer PDO pour afficher les erreurs (utile en développement)
+                self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                echo "✅ Connexion BDD réussie<br>"; // À enlever après test
+
+            } catch(PDOException $e) {
+                // En cas d'erreur, afficher un message clair
+                die("❌ Erreur de connexion à la base de données : " . $e->getMessage());
+            }
         }
+
+        return self::$conn;
     }
 }
 ?>

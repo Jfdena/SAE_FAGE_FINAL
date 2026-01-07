@@ -1,2 +1,0 @@
-<?php
-# ⭐ PRIORITAIRE - Détails + missions
