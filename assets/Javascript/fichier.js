@@ -115,57 +115,53 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  let currentSlide = 0;
+    let currentSlide = 0;
+    const cards = document.querySelectorAll(
+        ".temoignage-carte_premiere, .temoignage-carte"
+    );
+    const indicators = document.querySelectorAll(".indicateur");
+    const totalSlides = cards.length;
 
-  // Sélectionner TOUTES les cartes (y compris la première)
-  const premiereCarte = document.querySelector(".temoignage-carte_premiere");
-  const autresCartes = document.querySelectorAll(".temoignage-carte");
+    function showSlide(n) {
+        if (n >= totalSlides) {
+            currentSlide = 0;
+        } else if (n < 0) {
+            currentSlide = totalSlides - 1;
+        } else {
+            currentSlide = n;
+        }
 
-  // Combiner toutes les cartes dans un seul tableau
-  const cards = [premiereCarte, ...autresCartes];
+        cards.forEach((card) => {
+            card.style.display = "none";
+            card.classList.remove("active");
+        });
 
-  const indicators = document.querySelectorAll(".indicateur");
-  const totalSlides = cards.length;
+        indicators.forEach((ind) => ind.classList.remove("active"));
 
-  function showSlide(n) {
-    if (n >= totalSlides) {
-      currentSlide = 0;
-    } else if (n < 0) {
-      currentSlide = totalSlides - 1;
-    } else {
-      currentSlide = n;
+        cards[currentSlide].style.display = "block";
+        cards[currentSlide].classList.add("active");
+        indicators[currentSlide].classList.add("active");
     }
 
-    // Cacher toutes les cartes
-    cards.forEach((card) => {
-      card.style.display = "none";
-      card.classList.remove("active");
+    // ✅ Event Listeners au lieu de onclick
+    document.querySelector('.fleche-gauche-tmng')?.addEventListener('click', () => {
+        currentSlide--;
+        showSlide(currentSlide);
     });
 
-    // Désactiver tous les indicateurs
-    indicators.forEach((ind) => ind.classList.remove("active"));
+    document.querySelector('.fleche-droite-tmng')?.addEventListener('click', () => {
+        currentSlide++;
+        showSlide(currentSlide);
+    });
 
-    // Afficher la carte actuelle
-    cards[currentSlide].style.display = "block";
-    cards[currentSlide].classList.add("active");
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
 
-    // Activer l'indicateur correspondant
-    indicators[currentSlide].classList.add("active");
-  }
-
-  // Exposer les fonctions globalement pour les onclick
-  window.changementSlide = function (direction) {
-    currentSlide += direction;
-    showSlide(currentSlide);
-  };
-
-  window.goToSlide = function (n) {
-    currentSlide = n;
-    showSlide(currentSlide);
-  };
-
-  // Initialiser l'affichage
-  showSlide(0);
+    showSlide(0);
 });
 
 // JS DE JF
