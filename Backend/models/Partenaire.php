@@ -1,2 +1,0 @@
-<?php
-//   # IMPORTANT - Partenaires/donateurs

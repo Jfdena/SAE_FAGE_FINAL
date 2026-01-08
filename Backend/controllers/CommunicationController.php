@@ -1,2 +1,0 @@
-<?php
-# SECOND AIRE - Actualités

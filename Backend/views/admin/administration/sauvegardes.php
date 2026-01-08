@@ -1,2 +1,0 @@
-<?php
-# OPTIONNEL - Backup (Sophie)
