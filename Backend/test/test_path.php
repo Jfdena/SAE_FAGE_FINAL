@@ -5,15 +5,15 @@ echo "<p>Répertoire courant : " . __DIR__ . "</p>";
 
 // Testons différents chemins
 echo "<h4>Liens de test :</h4>";
-echo '<a href="deleteMissions.php?id=1">Test deleteMissions.php (chemin relatif)</a><br>';
-echo '<a href="deleteMissions.php?id=1">Test ./deleteMissions.php</a><br>';
-echo '<a href="/views/admin/missions/deleteMissions.php?id=1">Test chemin absolu</a><br>';
+echo '<a href="../views/admin/missions/deleteMissions.php?id=1">Test deleteMissions.php (chemin relatif)</a><br>';
+echo '<a href="../views/admin/missions/deleteMissions.php?id=1">Test ./deleteMissions.php</a><br>';
+echo '<a href="../views/admin/missions/deleteMissions.php?id=1">Test chemin absolu</a><br>';
 
 // Vérifions si le fichier existe
 $files = [
-    'deleteMissions.php',
-    './deleteMissions.php',
-    __DIR__ . '/deleteMissions.php'
+    '../views/admin/missions/deleteMissions.php',
+    '../views/admin/missions/deleteMissions.php',
+    __DIR__ . '../views/admin/missions/deleteMissions.php'
 ];
 
 echo "<h4>Vérification des fichiers :</h4>";
@@ -24,4 +24,3 @@ foreach ($files as $file) {
         echo "✗ Fichier NON trouvé : $file<br>";
     }
 }
-?>

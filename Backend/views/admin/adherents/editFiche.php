@@ -16,6 +16,8 @@ $benevole_id = (int)$_GET['id'];
 require_once '../../../config/Database.php';
 $db = new Database();
 $conn = $db->getConnection();
+require_once '../../../config/Constraints.php';
+$constraints = new Constraints($conn);
 
 // Récupérer le bénévole existant
 $stmt = $conn->prepare("SELECT * FROM benevole WHERE id_benevole = ?");
@@ -34,58 +36,68 @@ $success = false;
 $formData = $benevole; // Pré-remplir avec les données existantes
 
 // Traitement du formulaire
+// Remplacer la validation par :
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer et nettoyer les données
-    $formData['nom'] = trim($_POST['nom'] ?? '');
-    $formData['prenom'] = trim($_POST['prenom'] ?? '');
-    $formData['email'] = trim($_POST['email'] ?? '');
-    $formData['telephone'] = trim($_POST['telephone'] ?? '');
-    $formData['date_naissance'] = $_POST['date_naissance'] ?? '';
-    $formData['statut'] = $_POST['statut'] ?? 'actif';
 
-    // Validation (identique à addFiche)
-    if (empty($formData['nom'])) {
-        $errors[] = "Le nom est obligatoire";
-    }
+    // Ajouter l'ID pour l'exclusion
+    $_POST['id'] = $benevole_id;
 
-    if (empty($formData['prenom'])) {
-        $errors[] = "Le prénom est obligatoire";
-    }
+    // Validation avec Constraints
+    $rules = [
+        'nom' => ['required' => true, 'name' => true, 'max' => 50],
+        'prenom' => ['required' => true, 'name' => true, 'max' => 50],
+        'email' => ['email' => true, 'unique' => ['benevole', 'email', 'id']],
+        'telephone' => ['phone' => true],
+        'date_naissance' => ['date' => true, 'birth_date' => true],
+        'date_inscription' => ['date' => true, 'not_future' => true]
+    ];
 
-    if (!empty($formData['email']) && !filter_var($formData['email'], FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "L'email n'est pas valide";
-    }
+    $errors = $constraints->validateFormData($_POST, $rules);
 
-    // Si pas d'erreurs, mettre à jour en BDD
+    // Si pas d'erreurs, nettoyer et mettre à jour
     if (empty($errors)) {
+        // Nettoyer et formater les données
+        $nom = $constraints->sanitize($_POST['nom']);
+        $prenom = $constraints->sanitize($_POST['prenom']);
+        $email = $constraints->sanitize($_POST['email']);
+        $telephone = $constraints->sanitize($_POST['telephone']);
+        $date_naissance = $constraints->formatDateForDB($_POST['date_naissance']);
+        $date_inscription = $constraints->formatDateForDB($_POST['date_inscription']);
+        $statut = $_POST['statut'] ?? 'actif';
+
         try {
-            // Préparer la requête de mise à jour
-            $sql = "UPDATE benevole 
-                    SET nom = ?, prenom = ?, email = ?, telephone = ?, 
-                        date_naissance = ?, statut = ?
+            $sql = "UPDATE Benevole SET 
+                    nom = ?, 
+                    prenom = ?, 
+                    email = ?, 
+                    telephone = ?, 
+                    date_naissance = ?, 
+                    date_inscription = ?, 
+                    statut = ?
                     WHERE id_benevole = ?";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute([
-                $formData['nom'],
-                $formData['prenom'],
-                $formData['email'] ?: null,
-                $formData['telephone'] ?: null,
-                $formData['date_naissance'] ?: null,
-                $formData['statut'],
+                $nom,
+                $prenom,
+                $email ?: null,
+                $telephone ?: null,
+                $date_naissance ?: null,
+                $date_inscription ?: null,
+                $statut,
                 $benevole_id
             ]);
 
             $success = true;
 
-            // Recharger les données depuis la BDD
-            $stmt = $conn->prepare("SELECT * FROM benevole WHERE id_benevole = ?");
+            // Recharger les données
+            $stmt = $conn->prepare("SELECT * FROM Benevole WHERE id_benevole = ?");
             $stmt->execute([$benevole_id]);
             $benevole = $stmt->fetch(PDO::FETCH_ASSOC);
-            $formData = $benevole;
 
         } catch (Exception $e) {
-            $errors[] = "Erreur lors de la mise à jour : " . $e->getMessage();
+            $errors[] = "Erreur lors de la modification : " . $e->getMessage();
+            error_log("Erreur SQL: " . $e->getMessage());
         }
     }
 }
@@ -369,7 +381,7 @@ $date_naissance_form = !empty($formData['date_naissance'])
         const dateInput = document.getElementById('date_naissance');
         if (dateInput.value) {
             const birthDate = new Date(dateInput.value);
-            const age = today.getFullYear() - birthDate.getFullYear();
+            let age = today.getFullYear() - birthDate.getFullYear();
             const m = today.getMonth() - birthDate.getMonth();
             if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
                 age--;
@@ -408,11 +420,7 @@ $date_naissance_form = !empty($formData['date_naissance'])
 
             if (!hasChanges) {
                 e.preventDefault();
-                if (confirm("Aucune modification détectée. Souhaitez-vous quand même continuer ?")) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return confirm("Aucune modification détectée. Souhaitez-vous quand même continuer ?");
             }
 
             // Validation de base
@@ -428,12 +436,7 @@ $date_naissance_form = !empty($formData['date_naissance'])
 
     // Réinitialisation intelligente
     document.querySelector('button[type="reset"]').addEventListener('click', function() {
-        if (confirm("Réinitialiser tous les champs aux valeurs originales ?")) {
-            // Les valeurs originales sont déjà les valeurs par défaut du formulaire
-            return true;
-        } else {
-            return false;
-        }
+        return confirm("Réinitialiser tous les champs aux valeurs originales ?");
     });
 </script>
 </body>

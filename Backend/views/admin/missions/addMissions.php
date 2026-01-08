@@ -8,7 +8,11 @@ require_once '../../../test/session_check.php';
 // Connexion BDD
 require_once '../../../config/Database.php';
 $db = new Database();
-$conn = $db->getConnection();
+try {
+    $conn = $db->getConnection();
+} catch (Exception $e) {
+
+}
 
 // Variables
 $errors = [];

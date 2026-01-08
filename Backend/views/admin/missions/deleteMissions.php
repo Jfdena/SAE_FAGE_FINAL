@@ -15,7 +15,11 @@ $event_id = (int)$_GET['id'];
 // Connexion BDD
 require_once '../../../config/Database.php';
 $db = new Database();
-$conn = $db->getConnection();
+try {
+    $conn = $db->getConnection();
+} catch (Exception $e) {
+
+}
 
 // Récupérer l'événement pour afficher ses infos
 $stmt = $conn->prepare("SELECT * FROM Evenement WHERE id_evenement = ?");

@@ -8,7 +8,12 @@ require_once '../../../test/session_check.php';
 // Connexion BDD
 require_once '../../../config/Database.php';
 $db = new Database();
-$conn = $db->getConnection();
+try {
+    $conn = $db->getConnection();
+} catch (Exception $e) {
+
+}
+
 
 // Variables pour le formulaire
 $errors = [];
@@ -326,7 +331,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         dateInput.addEventListener('change', function() {
             if (this.value) {
                 const birthDate = new Date(this.value);
-                const age = today.getFullYear() - birthDate.getFullYear();
+                let age = today.getFullYear() - birthDate.getFullYear();
                 const m = today.getMonth() - birthDate.getMonth();
                 if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
                     age--;

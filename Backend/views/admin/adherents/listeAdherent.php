@@ -8,7 +8,34 @@ require_once '../../../test/session_check.php';
 require_once '../../../config/Database.php';
 $db = new Database();
 $conn = $db->getConnection();
+// Messages de retour après suppression
+if (isset($_GET['status'])) {
+    $message_type = '';
+    $message_text = '';
 
+    switch ($_GET['status']) {
+        case 'disabled':
+            $message_type = 'success';
+            $message_text = 'Le bénévole ' . ($_GET['nom'] ?? '') . ' a été désactivé avec succès.';
+            break;
+        case 'deleted':
+            $message_type = 'warning';
+            $message_text = 'Le bénévole ' . ($_GET['nom'] ?? '') . ' a été définitivement supprimé.';
+            break;
+        case 'cancelled':
+            $message_type = 'info';
+            $message_text = 'Suppression annulée.';
+            break;
+    }
+
+    if ($message_text) {
+        echo '<div class="alert alert-' . $message_type . ' alert-dismissible fade show">';
+        echo '<i class="bi ' . ($message_type == 'success' ? 'bi-check-circle' : 'bi-info-circle') . '"></i> ';
+        echo htmlspecialchars($message_text);
+        echo '<button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+        echo '</div>';
+    }
+}
 // Récupérer les bénévoles
 $search = $_GET['search'] ?? '';
 $statut = $_GET['statut'] ?? '';

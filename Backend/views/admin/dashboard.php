@@ -2,6 +2,7 @@
 // Backend/views/admin/dashboard.php
 
 // 1. VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
+
 require_once '../../test/session_check.php';
 
 //TEST
@@ -21,7 +22,11 @@ $user_email = $_SESSION['user_email'] ?? '';
 
 // 4. CONNEXION BDD POUR LES STATS
 $db = new Database();
-$conn = $db->getConnection();
+try {
+    $conn = $db->getConnection();
+} catch (Exception $e) {
+
+}
 
 // 5. RÉCUPÉRER QUELQUES STATISTIQUES SIMPLES
 $stats = [
@@ -167,9 +172,6 @@ try {
 
                     <hr class="my-2">
 
-                    <a class="nav-link" href="statistiques/index.php">
-                        <i class="bi bi-bar-chart me-2"></i> Statistiques
-                    </a>
 
                     <a class="nav-link" href="../auth/logout.php">
                         <i class="bi bi-box-arrow-right me-2"></i> Déconnexion
@@ -273,7 +275,55 @@ try {
             </div>
 
             <!-- Actions rapides -->
-            <div class="card">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-people" style="font-size: 2rem; color: #0d6efd;"></i>
+                            <h5>Bénévoles</h5>
+                            <a href="adherents/listeAdherent.php" class="btn btn-outline-primary btn-sm">
+                                Gérer les bénévoles
+                            </a>
+                            <a href="adherents/CotisationsAdherent.php" class="btn btn-outline-success btn-sm mt-2">
+                                Cotisations
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-calendar-event" style="font-size: 2rem; color: #198754;"></i>
+                            <h5>Événements</h5>
+                            <a href="missions/calendrier.php" class="btn btn-outline-success btn-sm">
+                                Calendrier
+                            </a>
+                            <a href="missions/addMissions.php" class="btn btn-outline-warning btn-sm mt-2">
+                                Nouvel événement
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-handshake" style="font-size: 2rem; color: #fd7e14;"></i>
+                            <h5>Partenaires</h5>
+                            <a href="partenaires/listePartenaires.php" class="btn btn-outline-warning btn-sm">
+                                Liste partenaires
+                            </a>
+                            <a href="partenaires/HistoContribution.php" class="btn btn-outline-info btn-sm mt-2">
+                                Contributions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions rapides (garder l'ancien aussi si vous voulez) -->
+            <div class="card mt-4">
                 <div class="card-header bg-white">
                     <h6 class="mb-0"><i class="bi bi-lightning"></i> Actions rapides</h6>
                 </div>

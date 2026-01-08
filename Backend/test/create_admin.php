@@ -1,5 +1,6 @@
 <?php
 // Backend/create_admin.php
+
 require_once '../config/Database.php';
 
 echo "<h1>👑 Création d'un compte administrateur</h1>";
@@ -137,7 +138,7 @@ try {
 
 <p><strong>⚠️ IMPORTANT :</strong></p>
 <ol>
-    <li>Ce compte servira <strong>UNIQUEMENT pour les tests</strong></li>
+    <li>Ce compte servira <strong>UNIQUEMENT pour les tests.</strong></li>
     <li>Tu pourras te connecter avec ces identifiants</li>
     <li>Après test, tu pourras créer de vrais comptes</li>
     <li>Ne pas utiliser en production !</li>

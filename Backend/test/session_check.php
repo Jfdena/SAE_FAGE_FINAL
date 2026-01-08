@@ -1,7 +1,7 @@
 <?php
 // Backend/session_check.php
 
-// 1. Démarrer la session si pas déjà fait
+// 1. Démarrer la session si pas déjà faite
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -10,6 +10,8 @@ if (session_status() === PHP_SESSION_NONE) {
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_email'])) {
     // Si pas connecté, rediriger vers login
     header('Location: ../views/auth/login.php');
+
+
     exit();
 }
 
@@ -24,7 +26,7 @@ if (!in_array($_SESSION['user_role'], $allowed_roles)) {
 }
 */
 
-// 4. Vérifier l'expiration de session (optionnel - sécurité avancée)
+// 4. Vérifier l'expiration de session (optionnel sécurité avancée)
 $session_timeout = 3600; // 1 heure en secondes
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_timeout)) {
     // Session expirée
@@ -38,11 +40,13 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 $_SESSION['last_activity'] = time();
 
 // 6. Fonctions utiles pour les pages qui incluent ce fichier
-function isAdmin() {
+function isAdmin(): bool
+{
     return isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
 }
 
-function getUserFullName() {
+function getUserFullName(): string
+{
     $prenom = $_SESSION['user_prenom'] ?? '';
     $nom = $_SESSION['user_nom'] ?? '';
     return trim("$prenom $nom");
@@ -51,4 +55,3 @@ function getUserFullName() {
 function getUserRole() {
     return $_SESSION['user_role'] ?? 'invité';
 }
-?>

@@ -16,7 +16,11 @@ $benevole_id = (int)$_GET['id'];
 // Connexion BDD
 require_once '../../../config/Database.php';
 $db = new Database();
-$conn = $db->getConnection();
+try {
+    $conn = $db->getConnection();
+} catch (Exception $e) {
+
+}
 
 // Récupérer le bénévole
 $stmt = $conn->prepare("SELECT * FROM benevole WHERE id_benevole = ?");
@@ -28,25 +32,37 @@ if (!$benevole) {
     header('Location: listeAdherent.php?error=not_found');
     exit();
 }
-
 // Récupérer les éventuelles participations aux événements
-// (À adapter selon tes tables)
 $participations = [];
-/*
 try {
     $stmt = $conn->prepare("
         SELECT e.nom, e.date_debut, p.role, p.date_participation
-        FROM PARTICIPATION p
-        JOIN EVENEMENT e ON p.id_evenement = e.id_evenement
+        FROM participation p
+        JOIN evenement e ON p.id_evenement = e.id_evenement
         WHERE p.id_benevole = ?
         ORDER BY e.date_debut DESC
     ");
     $stmt->execute([$benevole_id]);
     $participations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
-    // Table non existante ou autre erreur
+    // Table non existante ou autre erreur.
+    // Vous pouvez loguer l'erreur si besoin
+    // error_log("Erreur participations: ".$e->getMessage());
 }
-*/
+
+// Récupérer aussi les cotisations du bénévole
+$cotisations = [];
+try {
+    $stmt = $conn->prepare("
+        SELECT * FROM cotisation 
+        WHERE id_benevole = ?
+        ORDER BY annee DESC, date_paiement DESC
+    ");
+    $stmt->execute([$benevole_id]);
+    $cotisations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    // Table non existante
+}
 
 // Calculer l'âge si date de naissance
 $age = null;
@@ -58,11 +74,11 @@ if (!empty($benevole['date_naissance'])) {
 
 // Formater les dates
 $date_naissance = !empty($benevole['date_naissance'])
-    ? (new DateTime($benevole['date_naissance']))->format('d/m/Y')
+    ? new DateTime($benevole['date_naissance'])->format('d/m/Y')
     : 'Non renseignée';
 
 $date_inscription = !empty($benevole['date_inscription'])
-    ? (new DateTime($benevole['date_inscription']))->format('d/m/Y')
+    ? new DateTime($benevole['date_inscription'])->format('d/m/Y')
     : 'Inconnue';
 ?>
 <!DOCTYPE html>
@@ -250,7 +266,7 @@ $date_inscription = !empty($benevole['date_inscription'])
                         </div>
                     </div>
 
-                    <!-- Colonne 2 : Contact -->
+                    <!-- Colonne 2: Contact -->
                     <div class="col-lg-6">
                         <h5 class="border-bottom pb-2 mb-3">
                             <i class="bi bi-telephone"></i> Coordonnées
@@ -392,9 +408,10 @@ $date_inscription = !empty($benevole['date_inscription'])
 
             <?php
             // Chercher le prochain ID
-            $stmt = $conn->prepare("SELECT id_benevole FROM benevole WHERE id_benevole > ? ORDER BY id_benevole ASC LIMIT 1");
+            $stmt = $conn->prepare("SELECT id_benevole FROM benevole WHERE id_benevole > ? ORDER BY id_benevole LIMIT 1");
             $stmt->execute([$benevole_id]);
             $next = $stmt->fetchColumn();
+
             ?>
 
             <?php if ($next): ?>

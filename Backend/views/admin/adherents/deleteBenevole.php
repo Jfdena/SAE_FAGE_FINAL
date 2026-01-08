@@ -1,5 +1,5 @@
 <?php
-// Backend/views/admin/adherents/deleteMissions.php
+// Backend/views/admin/adherents/deleteBenevole.php
 
 // Protection
 require_once '../../../test/session_check.php';
@@ -15,12 +15,23 @@ $benevole_id = (int)$_GET['id'];
 // Connexion BDD
 require_once '../../../config/Database.php';
 $db = new Database();
-$conn = $db->getConnection();
+try {
+    $conn = $db->getConnection();
+} catch (Exception $e) {
+    // Si erreur de connexion, rediriger avec message
+    header('Location: listeAdherent.php?error=db_error');
+    exit();
+}
 
 // Récupérer le bénévole pour afficher ses infos
-$stmt = $conn->prepare("SELECT * FROM benevole WHERE id_benevole = ?");
-$stmt->execute([$benevole_id]);
-$benevole = $stmt->fetch(PDO::FETCH_ASSOC);
+try {
+    $stmt = $conn->prepare("SELECT * FROM benevole WHERE id_benevole = ?");
+    $stmt->execute([$benevole_id]);
+    $benevole = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    header('Location: listeAdherent.php?error=db_query');
+    exit();
+}
 
 // Vérifier si le bénévole existe
 if (!$benevole) {
@@ -29,33 +40,27 @@ if (!$benevole) {
 }
 
 // Variables
-$deleted = false;
 $error = '';
-$redirect_url = 'listeAdherent.php';
 
 // Traitement de la suppression
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier la confirmation
-    if (isset($_POST['confirm']) && $_POST['confirm'] === 'oui') {
+    if (isset($_POST['confirm']) && strtoupper(trim($_POST['confirm'])) === 'OUI') {
         try {
             // OPTION 1 : Suppression logique (recommandé) - juste changer le statut
             if (isset($_POST['soft_delete']) && $_POST['soft_delete'] === 'true') {
                 $sql = "UPDATE benevole SET statut = 'inactif' WHERE id_benevole = ?";
-                $message = "Le bénévole a été désactivé (statut mis à 'inactif').";
-                $redirect_url = 'listeAdherent.php?status=disabled';
+                $redirect_url = 'listeAdherent.php?status=disabled&id=' . $benevole_id . '&nom=' . urlencode($benevole['prenom'] . ' ' . $benevole['nom']);
             }
             // OPTION 2 : Suppression physique (définitif)
             else {
                 $sql = "DELETE FROM benevole WHERE id_benevole = ?";
-                $message = "Le bénévole a été définitivement supprimé.";
-                $redirect_url = 'listeAdherent.php?status=deleted';
+                $redirect_url = 'listeAdherent.php?status=deleted&id=' . $benevole_id . '&nom=' . urlencode($benevole['prenom'] . ' ' . $benevole['nom']);
             }
 
             // Exécuter la suppression
             $stmt = $conn->prepare($sql);
             $stmt->execute([$benevole_id]);
-
-            $deleted = true;
 
             // Redirection après succès
             header('Location: ' . $redirect_url);
@@ -65,13 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Erreur lors de la suppression : " . $e->getMessage();
         }
     } else {
-        // Annulation
-        header('Location: voirDetails.php?id=' . $benevole_id);
+        // Annulation - retour à la fiche
+        header('Location: voirDetails.php?id=' . $benevole_id . '&error=cancelled');
         exit();
     }
 }
-
-// Si on arrive ici, c'est qu'on affiche le formulaire de confirmation
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -88,12 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .warning-card {
             border: 3px solid #dc3545;
             border-left: 10px solid #dc3545;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
         }
         .benevole-info {
             background-color: #f8f9fa;
@@ -103,6 +100,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .danger-zone {
             background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
             border-radius: 10px;
+        }
+        .required-field::after {
+            content: " *";
+            color: #dc3545;
         }
     </style>
 </head>
@@ -122,6 +123,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <!-- Message d'erreur global -->
+            <?php if (!empty($error)): ?>
+                <div class="alert alert-danger alert-dismissible fade show mb-4">
+                    <h5><i class="bi bi-x-circle"></i> Erreur</h5>
+                    <p class="mb-0"><?php echo htmlspecialchars($error); ?></p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            <?php endif; ?>
+
             <!-- Carte d'avertissement -->
             <div class="card warning-card shadow-lg">
                 <div class="card-header bg-danger text-white">
@@ -132,14 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="card-body">
-                    <!-- Message d'erreur -->
-                    <?php if (!empty($error)): ?>
-                        <div class="alert alert-danger">
-                            <h5><i class="bi bi-x-circle"></i> Erreur</h5>
-                            <p class="mb-0"><?php echo htmlspecialchars($error); ?></p>
-                        </div>
-                    <?php endif; ?>
-
                     <!-- Information du bénévole -->
                     <div class="benevole-info mb-4">
                         <h5 class="text-danger">
@@ -161,8 +163,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6">
                                 <strong>Statut actuel :</strong>
                                 <span class="badge bg-<?php echo $benevole['statut'] == 'actif' ? 'success' : 'secondary'; ?>">
-                                        <?php echo ucfirst($benevole['statut']); ?>
-                                    </span>
+                                    <?php echo ucfirst($benevole['statut']); ?>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -177,22 +179,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <h6><i class="bi bi-exclamation-octagon"></i> Cette action est irréversible !</h6>
                             <ul class="mb-0">
                                 <li>Les données pourront être perdues définitivement</li>
-                                <li>Les participations aux événements seront affectées</li>
+                                <li>Les cotisations associées seront supprimées</li>
                                 <li>Cette action ne peut pas être annulée</li>
                             </ul>
                         </div>
 
                         <!-- Options de suppression -->
                         <div class="mb-4">
-                            <div class="form-check mb-2">
+                            <div class="form-check mb-3">
                                 <input class="form-check-input" type="radio" name="delete_type"
                                        id="soft_delete" value="soft" checked>
                                 <label class="form-check-label" for="soft_delete">
                                     <strong class="text-warning">Désactivation (recommandé)</strong>
                                 </label>
                                 <div class="form-text small">
-                                    Le bénévole sera marqué comme "inactif" mais conservé dans la base.
-                                    Vous pourrez le réactiver ultérieurement.
+                                    <i class="bi bi-info-circle"></i> Le bénévole sera marqué comme "inactif" mais conservé dans la base.
+                                    Vous pourrez le réactiver en modifiant sa fiche.
                                 </div>
                             </div>
 
@@ -203,8 +205,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <strong class="text-danger">Suppression définitive</strong>
                                 </label>
                                 <div class="form-text small text-danger">
-                                    Le bénévole sera complètement supprimé de la base de données.
-                                    Cette action est définitive et irréversible.
+                                    <i class="bi bi-exclamation-triangle"></i> Le bénévole sera complètement supprimé de la base de données
+                                    ainsi que toutes ses cotisations. Cette action est définitive et irréversible.
                                 </div>
                             </div>
                         </div>
@@ -215,9 +217,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input type="hidden" name="soft_delete" id="soft_delete_input" value="true">
 
                             <div class="mb-4">
-                                <label for="confirm" class="form-label fw-bold">
+                                <label for="confirm" class="form-label fw-bold required-field">
                                     <i class="bi bi-question-circle"></i>
-                                    Tapez "OUI" pour confirmer la suppression :
+                                    Tapez "OUI" (en majuscules) pour confirmer :
                                 </label>
                                 <input type="text"
                                        id="confirm"
@@ -225,74 +227,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                        class="form-control form-control-lg text-center"
                                        placeholder="OUI"
                                        required
-                                       autocomplete="off">
-                                <div class="form-text text-center">
+                                       autocomplete="off"
+                                       style="font-size: 1.5rem; letter-spacing: 2px;">
+                                <div class="form-text text-center mt-2">
                                     Cette mesure de sécurité empêche les suppressions accidentelles.
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between mt-4">
                                 <div>
                                     <a href="voirDetails.php?id=<?php echo $benevole_id; ?>"
                                        class="btn btn-success">
-                                        <i class="bi bi-arrow-left"></i> Annuler, retour à la fiche
+                                        <i class="bi bi-arrow-left"></i> Annuler et retourner
+                                    </a>
+                                    <a href="listeAdherent.php" class="btn btn-outline-secondary ms-2">
+                                        <i class="bi bi-list"></i> Liste complète
                                     </a>
                                 </div>
 
                                 <div>
                                     <button type="submit"
-                                            class="btn btn-danger btn-lg"
+                                            class="btn btn-danger btn-lg px-4"
                                             id="confirmBtn">
-                                        <i class="bi bi-trash-fill"></i> CONFIRMER LA SUPPRESSION
+                                        <i class="bi bi-trash-fill"></i> CONFIRMER
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-
-                    <!-- Statistiques de sécurité -->
-                    <div class="alert alert-info">
-                        <h6><i class="bi bi-shield-check"></i> Mesures de sécurité</h6>
-                        <div class="row small">
-                            <div class="col-md-4 text-center">
-                                <div class="mb-1">
-                                    <i class="bi bi-card-checklist" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div>Confirmation écrite</div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <div class="mb-1">
-                                    <i class="bi bi-clock-history" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div>Désactivation recommandée</div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <div class="mb-1">
-                                    <i class="bi bi-exclamation-octagon" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div>Avertissements multiples</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Pied de carte -->
                 <div class="card-footer bg-light">
-                    <div class="text-center">
-                        <small class="text-muted">
-                            <i class="bi bi-info-circle"></i>
-                            Cette action est enregistrée dans les logs système.
-                            En cas de doute, choisissez la désactivation plutôt que la suppression.
-                        </small>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <small class="text-muted">
+                                <i class="bi bi-info-circle"></i>
+                                Pour plus de sécurité, la désactivation est recommandée.
+                            </small>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <small class="text-muted">
+                                ID: #<?php echo $benevole_id; ?>
+                            </small>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Lien de secours -->
-            <div class="text-center mt-4">
-                <a href="listeAdherent.php" class="btn btn-outline-secondary">
-                    <i class="bi bi-list"></i> Retour à la liste des bénévoles
-                </a>
             </div>
         </div>
     </div>
@@ -310,16 +290,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const softDeleteRadio = document.getElementById('soft_delete');
         const hardDeleteRadio = document.getElementById('hard_delete');
         const softDeleteInput = document.getElementById('soft_delete_input');
+        const confirmBtn = document.getElementById('confirmBtn');
 
         function updateDeleteType() {
             if (hardDeleteRadio.checked) {
                 softDeleteInput.value = 'false';
-                document.getElementById('confirmBtn').innerHTML =
-                    '<i class="bi bi-trash-fill"></i> SUPPRIMER DÉFINITIVEMENT';
+                confirmBtn.innerHTML = '<i class="bi bi-trash-fill"></i> SUPPRIMER DÉFINITIVEMENT';
+                confirmBtn.classList.remove('btn-danger');
+                confirmBtn.classList.add('btn-dark');
             } else {
                 softDeleteInput.value = 'true';
-                document.getElementById('confirmBtn').innerHTML =
-                    '<i class="bi bi-trash-fill"></i> DÉSACTIVER LE BÉNÉVOLE';
+                confirmBtn.innerHTML = '<i class="bi bi-trash-fill"></i> DÉSACTIVER LE BÉNÉVOLE';
+                confirmBtn.classList.remove('btn-dark');
+                confirmBtn.classList.add('btn-danger');
             }
         }
 
@@ -329,23 +312,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Validation du formulaire
         document.getElementById('deleteForm').addEventListener('submit', function(e) {
             const confirmInput = document.getElementById('confirm');
-            const deleteType = hardDeleteRadio.checked ? 'DÉFINITIVE' : 'DÉSACTIVATION';
+            const isHardDelete = hardDeleteRadio.checked;
 
-            if (confirmInput.value.toUpperCase() !== 'OUI') {
+            // Vérification "OUI"
+            if (confirmInput.value.trim().toUpperCase() !== 'OUI') {
                 e.preventDefault();
-                alert('Vous devez taper "OUI" pour confirmer la suppression.');
+                alert('❌ Vous devez taper "OUI" (en majuscules) pour confirmer.');
                 confirmInput.focus();
+                confirmInput.select();
                 return false;
             }
 
             // Dernière confirmation
-            let message = '';
-            if (hardDeleteRadio.checked) {
-                message = `Êtes-vous ABSOLUMENT CERTAIN de vouloir SUPPRIMER DÉFINITIVEMENT ce bénévole ?\n\n` +
-                    `Cette action est IRRÉVERSIBLE et les données seront PERDUES.`;
+            const nomBenevole = "<?php echo addslashes($benevole['prenom'] . ' ' . $benevole['nom']); ?>";
+            let message;
+
+            if (isHardDelete) {
+                message = `⚠️ CONFIRMATION FINALE\n\n` +
+                    `Êtes-vous ABSOLUMENT CERTAIN de vouloir SUPPRIMER DÉFINITIVEMENT :\n` +
+                    `"${nomBenevole}" ?\n\n` +
+                    `✅ Cette action supprimera :\n` +
+                    `• Le bénévole et toutes ses informations\n` +
+                    `• Toutes ses cotisations associées\n\n` +
+                    `❌ Cette action est IRRÉVERSIBLE !`;
             } else {
-                message = `Confirmez-vous la désactivation de ce bénévole ?\n\n` +
-                    `Il sera marqué comme "inactif" mais pourra être réactivé ultérieurement.`;
+                message = `⚠️ CONFIRMATION FINALE\n\n` +
+                    `Confirmez-vous la DÉSACTIVATION de :\n` +
+                    `"${nomBenevole}" ?\n\n` +
+                    `✅ Cette action :\n` +
+                    `• Marquera le bénévole comme "inactif"\n` +
+                    `• Conservera toutes ses données\n` +
+                    `• Pourra être annulée en modifiant sa fiche`;
             }
 
             if (!confirm(message)) {
@@ -353,44 +350,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 return false;
             }
 
+            // Petit délai pour montrer le traitement
+            confirmBtn.disabled = true;
+            confirmBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> TRAITEMENT EN COURS...';
+
             return true;
-        });
-
-        // Protection contre les pressions accidentelles
-        let submitCount = 0;
-        const confirmBtn = document.getElementById('confirmBtn');
-
-        confirmBtn.addEventListener('click', function(e) {
-            submitCount++;
-
-            // Si c'est le premier clic, on empêche la soumission directe
-            if (submitCount === 1) {
-                e.preventDefault();
-
-                // Changer le bouton pour indiquer qu'un second clic est nécessaire
-                const originalText = confirmBtn.innerHTML;
-                confirmBtn.innerHTML = '<i class="bi bi-exclamation-triangle"></i> CLIQUEZ À NOUVEAU POUR CONFIRMER';
-                confirmBtn.classList.remove('btn-danger');
-                confirmBtn.classList.add('btn-warning');
-
-                // Réinitialiser après 3 secondes
-                setTimeout(function() {
-                    confirmBtn.innerHTML = originalText;
-                    confirmBtn.classList.remove('btn-warning');
-                    confirmBtn.classList.add('btn-danger');
-                    submitCount = 0;
-                }, 3000);
-
-                return false;
-            }
         });
 
         // Touche Échap pour annuler
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                if (confirm('Annuler l\'opération et retourner à la fiche du bénévole ?')) {
-                    window.location.href = 'voirDetails.php?id=<?php echo $benevole_id; ?>';
-                }
+                window.location.href = 'voirDetails.php?id=<?php echo $benevole_id; ?>';
             }
         });
     });

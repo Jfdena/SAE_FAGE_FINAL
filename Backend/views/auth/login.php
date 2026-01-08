@@ -1,5 +1,7 @@
 <?php
 // Backend/views/auth/login.php
+require_once __DIR__ . '/../../config/Database.php';
+
 session_start();
 
 // Si déjà connecté, rediriger vers le dashboard
@@ -25,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $db = new Database();
             $conn = $db->getConnection();
 
-            // Chercher l'utilisateur (NOTE: table en minuscules 'membrebureau')
+            // Chercher l'utilisateur (NOTE : table en minuscules 'membre bureau')
             $stmt = $conn->prepare("SELECT * FROM membrebureau WHERE email = ?");
             $stmt->execute([$email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);

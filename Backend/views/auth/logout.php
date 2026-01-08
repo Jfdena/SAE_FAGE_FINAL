@@ -4,7 +4,7 @@
 // 1. Démarrer la session
 session_start();
 
-// 2. Enregistrer un log de déconnexion (optionnel mais utile)
+// 2. Enregistrer un log de déconnexion (optionnel, mais utile)
 if (isset($_SESSION['user_email'])) {
     $log_message = "Déconnexion de " . $_SESSION['user_email'] . " - " . date('d/m/Y H:i:s');
     // Tu pourrais écrire dans un fichier log plus tard
@@ -26,4 +26,3 @@ if (ini_get("session.use_cookies")) {
 // 5. Rediriger vers la page de login avec un message
 header('Location: login.php?message=deconnected');
 exit();
-?>
