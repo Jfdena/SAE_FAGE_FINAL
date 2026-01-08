@@ -26,84 +26,81 @@
         <div class="container-fluid">
           <a class="navbar-brand" href="Accueil.html">
             <img
-              src="../assets/img/logo_navbar.png"
-              height="40"
-              width="auto"
-              alt="Logo"
+                    src="../assets/img/logo_navbar.png"
+                    height="40"
+                    width="auto"
+                    alt="Logo"
             />
           </a>
 
           <!-- Bouton hamburger pour mobile -->
           <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarContent"
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarContent"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarContent">
             <ul
-              class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0"
+                    class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0"
             >
               <li class="nav-item">
                 <a
-                  class="nav-link text-decoration-none tint-text"
-                  href="Accueil.html"
-                  >Accueil</a
+                        class="nav-link text-decoration-none tint-text"
+                        aria-current="page"
+                        href="Accueil.html"
+                >Accueil</a
                 >
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link text-decoration-none tint-text"
-                  href="Assos_Projet.html"
-                  >Asso & Projets</a
+                        class="nav-link text-decoration-none tint-text"
+                        href="Assos_Projet.html"
+                >Asso & Projets</a
                 >
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link text-decoration-none tint-text"
-                  href="Actualité_Ressources.html"
-                  >Actualité & Ressources</a
+                        class="nav-link text-decoration-none tint-text"
+                        href="Actualité_Ressources.html"
+                >Actualité & Ressources</a
                 >
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link text-decoration-none tint-text"
-                  href="Dons_Engagement.html"
-                  >Dons & Engagement</a
+                        class="nav-link text-decoration-none tint-text"
+                        href="Dons_Engagement.html"
+                >Dons & Engagement</a
                 >
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link text-decoration-none tint-text"
-                  href="A_propos.html"
-                  >À propos</a
+                        class="nav-link text-decoration-none tint-text"
+                        href="A_propos.html"
+                >À propos</a
                 >
               </li>
             </ul>
 
-            <form class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Rechercher..."
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Rechercher
-              </button>
-            </form>
+            <div class="d-flex">
+              <a
+                      href="../Backend/session_check.php"
+                      class="btn btn-outline-primary"
+              >Espace Membre</a
+              >
+            </div>
           </div>
         </div>
-          <li class="nav-item">
-              <a class="nav-link text-decoration-none tint-text"
-                 href="../Backend/views/auth/login.php"
-                 target="_blank">
-                  <strong>🔐 Backoffice</strong>
-              </a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link text-decoration-none tint-text"
+             href="../Backend/views/auth/login.php"
+             target="_blank">
+            <strong>🔐 Backoffice</strong>
+          </a>
+        </li>
       </nav>
     </header>
 
