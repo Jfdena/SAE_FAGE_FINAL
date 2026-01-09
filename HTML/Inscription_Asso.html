@@ -1,25 +1,143 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAGE – Inscription Association</title>
-
+    <title>FAGE - Inscription Association</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="../assets/css/stylesheet.css" />
     <link rel="icon" href="../assets/img/lgFage1C.png" type="image/x-icon" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="../assets/css/stylesheet.css" rel="stylesheet"/>
-  </head>
+    <style>
+        :root {
+            --fage-blue: #183146;
+            --fage-light-blue: #0d6efd;
+            --fage-bg: #f8f9fa;
+        }
 
-  <body>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--fage-bg);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- SECTION FORMULAIRE --- */
+        .registration-section {
+            background-color: #f4f7f6;
+            min-height: 85vh; /* Prend presque toute la hauteur */
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+        }
+
+        /* La carte blanche du formulaire */
+        .form-container {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            padding: 40px;
+            border: 1px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Titres */
+        .page-title {
+            color: var(--fage-blue);
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .page-subtitle {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Champs du formulaire */
+        .form-label {
+            font-weight: 600;
+            color: var(--fage-blue);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .input-group-text {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-right: none;
+            color: var(--fage-blue);
+        }
+
+        .form-control, .form-select {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-left: none;
+            padding: 12px;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #fff;
+            box-shadow: none;
+            border-color: var(--fage-blue);
+            border-left: 1px solid var(--fage-blue);
+        }
+
+        /* Bouton FAGE */
+        .btn-fage {
+            background-color: var(--fage-blue);
+            color: white;
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-fage:hover {
+            background-color: var(--fage-light-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.2);
+            color: white;
+        }
+
+        /* Message de succès */
+        .success-box {
+            text-align: center;
+            padding: 40px 20px;
+            display: none; /* Caché par défaut */
+        }
+        .success-icon {
+            font-size: 5rem;
+            color: #198754;
+            margin-bottom: 20px;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Footer ajustement */
+        .footer { margin-top: auto; }
+    </style>
+</head>
+
+<body>
+
     <header>
       <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
         <div class="container-fluid">
@@ -33,15 +151,15 @@
 
           <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link text-decoration-none tint-text" href="Accueil.html">Accueil</a></li>
-              <li class="nav-item"><a class="nav-link text-decoration-none tint-text" href="Assos_Projet.html">Asso & Projets</a></li>
-              <li class="nav-item"><a class="nav-link text-decoration-none tint-text" href="Actualité_Ressources.html">Actu & Ressources</a></li>
-              <li class="nav-item"><a class="nav-link text-decoration-none tint-text" href="Dons_Engagement.html">Dons</a></li>
-              <li class="nav-item"><a class="nav-link text-decoration-none tint-text" href="A_propos.html">À propos</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Accueil.html">Accueil</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Assos_Projet.html">Asso & Projets</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Actualité_Ressources.html">Actu & Ressources</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Dons_Engagement.html">Dons</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="A_propos.html">À propos</a></li>
             </ul>
 
             <div class="d-flex">
-              <a href="../Backend/session_check.php" class="btn btn-outline-primary btn-sm px-3">Espace Membre</a>
+              <a href="../Backend/session_check.php" class="btn btn-outline-primary btn-sm px-3 rounded">Espace Membre</a>
             </div>
           </div>
         </div>
@@ -57,25 +175,23 @@
               
               <div id="successMessage" class="success-box">
                 <i class="fas fa-check-circle success-icon"></i>
-                <h2 class="mb-3">Demande enregistrée !</h2>
+                <h2 class="mb-3 fw-bold">Demande enregistrée !</h2>
                 <p class="text-muted mb-4">
                   Merci de votre intérêt pour la FAGE.<br>
                   Votre dossier a été transmis au pôle associatif. Vous recevrez une réponse sous 48h ouvrées.
                 </p>
-                <a href="Assos_Projet.html" class="btn btn-outline-dark">Retourner aux projets</a>
+                <a href="Assos_Projet.html" class="btn btn-outline-dark rounded-pill px-4">Retourner aux projets</a>
               </div>
 
               <div id="formWrapper">
-                <div class="text-center">
-                  <h1 class="page-title">Affilier une association</h1>
-                  <p class="page-subtitle">Remplissez ce formulaire pour rejoindre le réseau national.</p>
-                </div>
+                <h1 class="page-title">Affilier une association</h1>
+                <p class="page-subtitle">Remplissez ce formulaire pour rejoindre le réseau national.</p>
 
                 <form id="registrationForm" onsubmit="handleRegistration(event)">
                   
                   <div class="row g-3">
                     <div class="col-md-6">
-                      <label for="assoName" class="form-label fw-bold small text-secondary">Nom de la structure</label>
+                      <label for="assoName" class="form-label">Nom de la structure</label>
                       <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-users"></i></span>
                         <input type="text" class="form-control" id="assoName" placeholder="Ex: BDE Sciences..." required>
@@ -83,7 +199,7 @@
                     </div>
 
                     <div class="col-md-6">
-                      <label for="assoCity" class="form-label fw-bold small text-secondary">Ville / Campus</label>
+                      <label for="assoCity" class="form-label">Ville / Campus</label>
                       <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                         <input type="text" class="form-control" id="assoCity" placeholder="Ex: Lyon, Campus La Doua" required>
@@ -91,7 +207,7 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="assoEmail" class="form-label fw-bold small text-secondary">Email de contact</label>
+                      <label for="assoEmail" class="form-label">Email de contact</label>
                       <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         <input type="email" class="form-control" id="assoEmail" placeholder="contact@asso.fr" required>
@@ -99,7 +215,7 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="assoType" class="form-label fw-bold small text-secondary">Type d'association</label>
+                      <label for="assoType" class="form-label">Type d'association</label>
                       <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-sitemap"></i></span>
                         <select class="form-select" id="assoType" required>
@@ -115,7 +231,7 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="assoMessage" class="form-label fw-bold small text-secondary">Présentation rapide</label>
+                      <label for="assoMessage" class="form-label">Présentation rapide</label>
                       <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-pen"></i></span>
                         <textarea class="form-control" id="assoMessage" rows="4" placeholder="Décrivez vos missions et objectifs..." required></textarea>
@@ -123,7 +239,7 @@
                     </div>
 
                     <div class="col-12 mt-4">
-                      <button type="submit" class="btn btn-fage w-100" id="submitBtn">
+                      <button type="submit" class="btn-fage" id="submitBtn">
                         <span id="btnLabel">Envoyer la demande</span>
                         <span id="btnLoader" class="spinner-border spinner-border-sm ms-2" style="display:none" role="status"></span>
                       </button>
@@ -131,7 +247,7 @@
                   </div>
                 </form>
                 
-                <div class="text-center mt-3">
+                <div class="text-center mt-4">
                   <a href="Assos_Projet.html" class="text-decoration-none text-secondary small">
                     <i class="fas fa-arrow-left me-1"></i> Annuler
                   </a>
@@ -157,27 +273,19 @@
             Tél : 01.40.33.70.70
           </p>
           <div class="footer-socials">
-            <a href="https://www.facebook.com/fage.org/?locale=fr_FR" target="_blank">
-              <img src="../assets/img/icon_facebook.svg" alt="Facebook"/>
-            </a>
-            <a href="https://fr.linkedin.com/company/la-fage" target="_blank">
-              <img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"/>
-            </a>
-            <a href="https://www.youtube.com/@associationfage" target="_blank">
-              <img src="../assets/img/icon_youtube.svg" alt="YouTube"/>
-            </a>
-            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank">
-              <img src="../assets/img/icon_instagram.svg" alt="Instagram"/>
-            </a>
+            <a href="https://www.facebook.com/fage.org/?locale=fr_FR" target="_blank"><img src="../assets/img/icon_facebook.svg" alt="Facebook"/></a>
+            <a href="https://fr.linkedin.com/company/la-fage" target="_blank"><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"/></a>
+            <a href="https://www.youtube.com/@associationfage" target="_blank"><img src="../assets/img/icon_youtube.svg" alt="YouTube"/></a>
+            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"><img src="../assets/img/icon_instagram.svg" alt="Instagram"/></a>
           </div>
         </div>
 
         <div class="footer-col">
           <h4>Mentions légales</h4>
           <ul>
-            <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Politique de confidentialité</a></li>
-            <li><a href="#">Cookies</a></li>
+            <li><a href="Mentions Legales.html">Mentions légales</a></li>
+            <li><a href="Politique_confidentialité.html">Politique de confidentialité</a></li>
+            <li><a href="Cookies.html">Cookies</a></li>
           </ul>
         </div>
 
@@ -185,16 +293,38 @@
           <h4>Liens utiles</h4>
           <ul>
             <li><a href="Assos_Projet.html">Assos & Projets</a></li>
-            <li><a href="Actualité_Ressource.html">Actualité & Ressources</a></li>
-            <li><a href="Dons_Engagement.html">Don & Engagement</a></li>
+            <li><a href="Actualité_Ressources.html">Actu & Ressources</a></li>
+            <li><a href="Dons_Engagement.html">Dons</a></li>
             <li><a href="A_propos.html">À propos</a></li>
           </ul>
         </div>
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function handleRegistration(event) {
+        event.preventDefault(); // Empêche le rechargement
 
-    <script src="../assets/Javascript/inscription_Asso.js" type="module"></script>
-  </body>
+        // Récupération des éléments
+        const formWrapper = document.getElementById('formWrapper');
+        const successMessage = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnLabel = document.getElementById('btnLabel');
+        const btnLoader = document.getElementById('btnLoader');
+
+        // Animation chargement
+        submitBtn.disabled = true;
+        btnLabel.textContent = "Traitement en cours...";
+        btnLoader.style.display = "inline-block";
+
+        // Simulation d'envoi (1.5 secondes)
+        setTimeout(() => {
+          formWrapper.style.display = 'none'; // Cache le form
+          successMessage.style.display = 'block'; // Affiche le succès
+          window.scrollTo({ top: 0, behavior: 'smooth' }); // Remonte en haut
+        }, 1500); 
+      }
+    </script>
+</body>
 </html>

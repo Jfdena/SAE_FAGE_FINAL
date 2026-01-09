@@ -3,472 +3,595 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>FAGE - Accueil</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="../assets/css/stylesheet.css" />
     <link rel="icon" href="../assets/img/lgFage1C.png" type="image/x-icon" />
-    <link
-            rel="shortcut icon"
-            href="../assets/img/logo.ico"
-            type="image/x-icon"
-    />
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-            crossorigin="anonymous"
-    />
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
-    ></script>
-    <script src="../assets/Javascript/fichier.js"></script>
+
+    <style>
+        :root {
+            --fage-blue: #183146;
+            --fage-light-blue: #0d6efd;
+            --fage-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--fage-bg);
+            color: #333;
+        }
+
+        /* --- HERO SECTION --- */
+        .Image-de-fond-accueil {
+            background-image: linear-gradient(rgba(24, 49, 70, 0.7), rgba(24, 49, 70, 0.5)), url("../assets/img/Image-etudiant-accueil.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        #Titre-Principal {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        #Sous-Titre {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .btn-accueil {
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-size: 1.1rem;
+        }
+
+        #btn-inscription {
+            background-color: white;
+            color: var(--fage-blue);
+        }
+        #btn-inscription:hover {
+            background-color: var(--fage-light-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        #btn-don {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        #btn-don:hover {
+            background-color: white;
+            color: var(--fage-blue);
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTIONS GÉNÉRALES --- */
+        .section-padding { padding: 60px 0; }
+        
+        .titre-accueil {
+            text-align: center;
+            color: var(--fage-blue);
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            display: block;
+        }
+
+        /* --- GRILLE "QUI SOMMES NOUS" --- */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 5%;
+            margin-bottom: 60px;
+        }
+
+        .carte-fage {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-bottom: 4px solid var(--fage-blue);
+        }
+
+        .carte-fage:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .carte-icon { font-size: 2.5rem; margin-bottom: 15px; text-align: center; }
+        .carte-fage h4 { color: var(--fage-blue); font-weight: 700; text-align: center; margin-bottom: 20px; }
+        .carte-fage ul { padding-left: 20px; color: #555; }
+        .carte-fage li { margin-bottom: 8px; }
+
+        /* --- CHIFFRES --- */
+        .Chiffres {
+            background-color: var(--fage-blue);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .Chiffres h4 { color: white; margin-bottom: 50px; }
+        .Chiffres-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .Chiffre {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            flex: 1;
+            min-width: 250px;
+            backdrop-filter: blur(5px);
+        }
+        .Nombre { font-size: 3rem; font-weight: 800; display: block; margin-bottom: 10px; }
+        .btn-decouvrir {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: white;
+            color: var(--fage-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .btn-decouvrir:hover { background: var(--fage-light-blue); color: white; }
+
+        /* --- NOS ACTIONS --- */
+        .Carte-nos-action {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 5% 60px;
+        }
+        .Carte {
+            background: white;
+            width: 320px;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .Carte:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .Carte p:first-child {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--fage-blue);
+            margin-bottom: 15px;
+        }
+        .image-carres-action { height: 80px; margin-bottom: 20px; object-fit: contain; }
+        .small { font-size: 0.9rem; color: #666; line-height: 1.6; }
+        .fleche { margin-top: 15px; font-weight: 800; color: var(--fage-light-blue); font-size: 1.5rem; }
+
+        /* --- TÉMOIGNAGES (Carousel) --- */
+        .temoignage-section { background-color: white; padding: 60px 0; }
+        .temoignage-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            padding: 20px 60px; /* Espace pour les flèches */
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Les cartes de témoignage - cachées par défaut sauf la active */
+        .temoignage-slide {
+            display: none;
+            animation: fadeIn 0.5s;
+            width: 100%;
+        }
+        .temoignage-slide.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--fage-light-blue);
+            margin-bottom: 20px;
+        }
+        .nom { font-size: 1.5rem; font-weight: 700; color: var(--fage-blue); margin-bottom: 10px; }
+        .temoignage-text { font-style: italic; font-size: 1.1rem; color: #555; line-height: 1.8; }
+
+        .fleche-tmng {
+            background: rgba(24, 49, 70, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            color: var(--fage-blue);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .fleche-tmng:hover { background: var(--fage-blue); color: white; }
+        .fleche-gauche-tmng { left: 10px; }
+        .fleche-droite-tmng { right: 10px; }
+
+        /* --- NEWSLETTER --- */
+        .newsletter {
+            background-color: var(--fage-blue);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+            margin: 40px 5%;
+            border-radius: 20px;
+        }
+        .titres-newsletter { font-size: 1.5rem; font-weight: 700; margin-bottom: 30px; }
+        .newsletter-form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .newsletter-form input { padding: 12px 20px; border-radius: 50px; border: none; width: 300px; max-width: 100%; }
+        .newsletter-form button { padding: 12px 30px; border-radius: 50px; border: none; background-color: var(--fage-light-blue); color: white; font-weight: 700; cursor: pointer; }
+
+        /* COOKIES */
+        .hidden { display: none !important; }
+        #banniere-cookies {
+            position: fixed; bottom: 20px; left: 20px;
+            background: white; padding: 20px;
+            border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 9999; width: 300px; border: 2px solid var(--fage-blue);
+        }
+    </style>
 </head>
+
 <body>
-<header>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="Accueil.html">
+            <img src="../assets/img/logo_navbar.png" height="40" width="auto" alt="Logo FAGE" />
+          </a>
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="Accueil.html">
-                    <img
-                            src="../assets/img/logo_navbar.png"
-                            height="40"
-                            width="auto"
-                            alt="Logo"
-                    />
-                </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-                <!-- Bouton hamburger pour mobile -->
-                <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarContent"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link tint-text fw-bold text-primary" href="Accueil.html" aria-current="page">Accueil</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Assos_Projet.html">Asso & Projets</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Actualité_Ressources.html">Actualité & Ressources</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Dons_Engagement.html">Dons</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="A_propos.html">À propos</a></li>
+            </ul>
 
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul
-                            class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0"
-                    >
-                        <li class="nav-item">
-                            <a
-                                    class="nav-link text-decoration-none tint-text"
-                                    aria-current="page"
-                                    href="Accueil.html"
-                            >Accueil</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                    class="nav-link text-decoration-none tint-text"
-                                    href="Assos_Projet.html"
-                            >Asso & Projets</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                    class="nav-link text-decoration-none tint-text"
-                                    href="Actualité_Ressources.html"
-                            >Actualité & Ressources</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                    class="nav-link text-decoration-none tint-text"
-                                    href="Dons_Engagement.html"
-                            >Dons & Engagement</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                    class="nav-link text-decoration-none tint-text"
-                                    href="A_propos.html"
-                            >À propos</a
-                            >
-                        </li>
-                    </ul>
-
-                    <div class="d-flex">
-                        <a
-                                href="../Backend/session_check.php"
-                                class="btn btn-outline-primary"
-                        >Espace Membre</a
-                        >
-                    </div>
-                </div>
+            <div class="d-flex align-items-center gap-3">
+              <a href="../Backend/session_check.php" class="btn btn-outline-primary btn-sm px-3 rounded">
+                  Espace Membre
+              </a>
             </div>
-            <li class="nav-item">
-                <a class="nav-link text-decoration-none tint-text"
-                   href="../Backend/views/auth/login.php"
-                   target="_blank">
-                    <strong>🔐 Backoffice</strong>
-                </a>
-            </li>
-        </nav>
+          </div>
+        </div>
+      </nav>
     </header>
 
-<section class="Image-de-fond-accueil">
-    <h1 id="Titre-Principal">Bienvenue Chez La FAGE</h1>
-    <h2 id="Sous-Titre">Étudiants Ensemble et Solidaires</h2>
+    <section class="Image-de-fond-accueil">
+      <h1 id="Titre-Principal">Bienvenue Chez La FAGE</h1>
+      <h2 id="Sous-Titre">Étudiants Ensemble et Solidaires</h2>
 
-    <div class="boutons-accueil">
-        <button class="btn-accueil" id="btn-inscription">
-            Inscrire ton Asso !
+      <div class="boutons-accueil">
+        <button class="btn-accueil" id="btn-inscription" onclick="window.location.href='Inscription_Asso.html'">
+          Inscrire ton Asso !
         </button>
-        <button class="btn-accueil secondaire" id="btn-don">
-            Faire un don
+        <button class="btn-accueil secondaire" id="btn-don" onclick="window.location.href='Dons_Engagement.html'">
+          Faire un don
         </button>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section>
-    <button id="afficher-banniere" aria-label="Afficher ou masquer la bannière de cookies">
-        <strong>Afficher/Masquer les Cookies <span role="img" aria-label="Cookie">🍪</span></strong>
+    <button id="afficher-banniere" class="btn btn-dark btn-sm position-fixed bottom-0 start-0 m-3 rounded-pill" style="z-index:1000">
+        🍪 Cookies
     </button>
+    
     <div id="banniere-cookies" class="hidden">
-        <div class="en-tete-cookies">
-            <p>
-                <strong>Salut c’est nous...<br />les Cookies ! 🍪</strong>
-            </p>
-            <img
-                    src="../assets/img/logo_navbar.png"
-                    alt="Logo"
-                    class="cookie-logo"
-            />
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <strong>Salut c’est nous...<br />les Cookies ! 🍪</strong>
+            <img src="../assets/img/logo_navbar.png" alt="Logo" width="50" />
         </div>
-
-        <p>
-            Ce site utilise des cookies pour assurer son bon fonctionnement,
-            mesurer l’audience et améliorer votre expérience utilisateur.
-        </p>
-        <p>
-            En cliquant sur « Accepter », vous consentez à l’utilisation des
-            cookies.
-        </p>
-        <p>Vous pouvez refuser.</p>
-
-        <div class="bouttons-cookies">
-            <button id="refus" aria-label="Refuser les cookies">Non merci ❌</button>
-            <button id="accepter" aria-label="Accepter les cookies">OK pour moi ✅</button>
+        <p class="small">Ce site utilise des cookies pour améliorer votre expérience.</p>
+        <div class="d-flex gap-2">
+            <button id="refus" class="btn btn-sm btn-outline-secondary w-50">Refuser</button>
+            <button id="accepter" class="btn btn-sm btn-success w-50">Accepter</button>
         </div>
     </div>
-</section>
 
-<h3 class="titre-accueil">Qui Sommes Nous ?</h3>
-<div class="carte-fage">
-    <div class="carte-icon">📅</div>
-    <h4>Notre Histoire</h4>
-    <ul>
-        <li>Fédération des associations générales étudiantes</li>
-        <li>Fondée en 1989</li>
-        <li>Première organisation étudiante représentative en France</li>
-        <li>Indépendante</li>
-        <li>Valeurs : Humanistes, républicaines et européennes</li>
-    </ul>
-</div>
+    <section class="section-padding">
+        <h3 class="titre-accueil">Qui Sommes Nous ?</h3>
+        
+        <div class="cards-container">
+            <div class="carte-fage">
+                <div class="carte-icon">📅</div>
+                <h4>Notre Histoire</h4>
+                <ul>
+                    <li>Fédération des associations générales étudiantes</li>
+                    <li>Fondée en 1989</li>
+                    <li>Première organisation étudiante représentative</li>
+                    <li>Indépendante, humaniste et européenne</li>
+                </ul>
+            </div>
 
+            <div class="carte-fage">
+                <div class="carte-icon">🌍</div>
+                <h4>Internationale</h4>
+                <ul>
+                    <li>Partenariats avec l'European Student's Union</li>
+                    <li>Défense de la mobilité étudiante (Erasmus)</li>
+                    <li>Rayonnement international</li>
+                </ul>
+            </div>
 
-<div class="carte-fage">
-    <div class="carte-icon">🤝</div>
-    <h4>Internationale</h4>
-    <ul>
-        <li>Partenariats avec organisations étudiantes européennes(European Student's Union</li>
-        <li>Défense de la mobilité étudiante (Erasmus & Stage à l'étranger)</li>
-    </ul>
-</div>
+            <div class="carte-fage">
+                <div class="carte-icon">🤝</div>
+                <h4>Missions & Buts</h4>
+                <ul>
+                    <li>Défendre les droits des étudiants</li>
+                    <li>Promouvoir l'accès à l'enseignement</li>
+                    <li>Améliorer la vie étudiante</li>
+                    <li>Encourager l'engagement</li>
+                </ul>
+            </div>
 
-<div class="carte-fage">
-    <div class="carte-icon">🤝</div>
-    <h4>Nos Missions & Buts</h4>
-    <ul>
-        <li>Défendre les droits des étudiants</li>
-        <li>Promouvoir l'accès à l'enseignement supérieur</li>
-        <li>Améliorer la vie étudiante</li>
-        <li>Encourager l'engagement associatif</li>
-    </ul>
-</div>
+            <div class="carte-fage">
+                <div class="carte-icon">💡</div>
+                <h4>Projets Phares</h4>
+                <ul>
+                    <li>AGORAÉ : Épiceries solidaires</li>
+                    <li>Campagne "Prix de la vie étudiante"</li>
+                    <li>Semaine de l'engagement étudiant</li>
+                </ul>
+            </div>
 
-<div class="carte-fage">
-    <div class="carte-icon">💡</div>
-    <h4>Nos Projets Phares</h4>
-    <ul>
-        <li>AGORAÉ: Épiceries solidaire pour les étudiants</li>
-        <li>Campagne "Prix de la vie étudiante" : pour évaluer le cout réel de la vie étudiante</li>
-        <li>Semaine de l'engagement étudiant : valorisation du bénévolat</li>
-    </ul>
-</div>
+            <div class="carte-fage">
+                <div class="carte-icon">📢</div>
+                <h4>Nos Revendications</h4>
+                <ul>
+                    <li>Financement de l'enseignement supérieur</li>
+                    <li>Baisse des frais de scolarité</li>
+                    <li>Amélioration du logement et santé</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-<div class="carte-fage">
-    <div class="carte-icon">📢</div>
-    <h4>Nos revendications</h4>
-    <ul>
-        <li>L'augmentation des financements pour l'enseignement supérieur</li>
-        <li>La baisse des frais de scolarité</li>
-        <li>Amélioration générale du logement étudiant</li>
-        <li>Accès à la santé plus simple pour les étudiants</li>
-    </ul>
-</div>
-</section>
-
-
-
-
-<section class="Chiffres" id="Chiffres">
-    <h4 class="titre-accueil">La FAGE en quelques chiffres</h4>
-    <div class="Chiffres-container">
+    <section class="Chiffres" id="Chiffres">
+      <h4 class="h2 font-weight-bold">La FAGE en quelques chiffres</h4>
+      <div class="Chiffres-container">
         <div class="Chiffre">
-            <span class="Nombre" data-target="50">0</span>
-            <p>Presence dans les villes en France</p>
+          <span class="Nombre" data-target="50">50+</span>
+          <p>Villes en France</p>
         </div>
 
         <div class="Chiffre">
-            <span class="Nombre" data-target="2000">0</span>
-            <p>Association membres</p>
+          <span class="Nombre" data-target="2000">2000</span>
+          <p>Associations membres</p>
         </div>
 
         <div class="Chiffre">
-            <span class="Nombre" data-target="1000000">0</span>
-            <p>Etudiants representés directement ou indirectement</p>
+          <span class="Nombre" data-target="1000000">1M</span>
+          <p>Étudiants représentés</p>
         </div>
-    </div>
+      </div>
 
-    <div class="btn-decouvrir-container">
-        <a href="Assos_Projet.html" class="btn-decouvrir"
-        >Découvrez nos projets !</a
-        >
-    </div>
-</section>
+      <a href="Assos_Projet.html" class="btn-decouvrir">Découvrez nos projets !</a>
+    </section>
 
-<section>
-    <h5 class="titre-accueil">Nos Actions ☎️</h5>
-    <div class="Carte-nos-action">
+    <section class="section-padding">
+      <h5 class="titre-accueil">Nos Actions ☎️</h5>
+      <div class="Carte-nos-action">
         <a class="Carte" href="#">
-            <p>Tes Droits</p>
-            <img
-                    src="../assets/img/image-tes%20droits.jpg"
-                    alt="Image pour illustrer les droits d'une personne"
-                    class="image-carres-action"
-            />
-            <p class="small">
-                Parcoursup, Master, bourses, logement, santé... Nous avons des
-                droits, défendons-les ! Toute l'année, la FAGE t'accompagne et
-                répond à tes questions
-            </p>
-
-            <div class="fleche">→</div>
-
+          <p>Tes Droits</p>
+          <img
+            src="../assets/img/image-tes%20droits.jpg"
+            alt="Illustration droits"
+            class="image-carres-action"
+          />
+          <p class="small">Parcoursup, Master, bourses, logement... Nous avons des droits, défendons-les ! La FAGE t'accompagne.</p>
+          <div class="fleche">→</div>
         </a>
 
         <a class="Carte" href="#">
-            <p>Sos - Parcousup</p>
-            <img
-                    src="../assets/img/image-parcoursup-2025.jpg"
-                    alt="Logo Parcoursup"
-                    class="image-carres-action"
-            />
-            <p class="small">
-                Afin que tu puisses avoir toutes les cartes en main pour choisir ton
-                affectation et connaître tes droits, nous avons créé la plateforme
-                SOS-Parcoursup !
-            </p>
-            <div class="fleche">→</div>
+          <p>SOS - Parcoursup</p>
+          <img
+            src="../assets/img/image-parcoursup-2025.jpg"
+            alt="Logo Parcoursup"
+            class="image-carres-action"
+          />
+          <p class="small">Afin que tu puisses avoir toutes les cartes en main pour choisir ton affectation et connaître tes droits.</p>
+          <div class="fleche">→</div>
         </a>
 
         <a class="Carte" href="#">
-            <p>Sos - Mon Master</p>
-            <img
-                    src="../assets/img/image-monmaster.png"
-                    alt="Logo Mon master"
-                    class="image-carres-action"
-            />
-            <p class="small">
-                Afin que tu puisses avoir toutes les informations pour choisir ton
-                master et connaître tes droits, nous avons créé la plateforme
-                SOS-MonMaster !
-            </p>
-            <div class="fleche">→</div>
+          <p>SOS - Mon Master</p>
+          <img
+            src="../assets/img/image-monmaster.png"
+            alt="Logo Mon master"
+            class="image-carres-action"
+          />
+          <p class="small">Toutes les informations pour choisir ton master et connaître tes droits sur la plateforme dédiée.</p>
+          <div class="fleche">→</div>
         </a>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section class="temoignage-section">
-    <h6 class="titre-accueil">Témoignages</h6>
-    <div class="temoignage-container">
-        <button class="fleche-tmng fleche-gauche-tmng" aria-label="Témoignage précédent">
-            &lt;
-            <
+    <section class="temoignage-section">
+      <h6 class="titre-accueil">Témoignages</h6>
+      <div class="temoignage-container">
+        
+        <button class="fleche-tmng fleche-gauche-tmng" onclick="plusSlides(-1)">
+            <i class="fas fa-chevron-left"></i>
         </button>
 
-
-        <div class="temoignage-carte_premiere">
-            <img
-                    src="../assets/img/image-laurent.png"
-                    alt="Photo illustrative laurent"
-                    class="profile-img"
-            />
+        <div class="temoignage-slide active">
+            <img src="../assets/img/image-laurent.png" alt="Profil" class="profile-img" />
             <div class="nom">Laurent</div>
-            <p class="temoignage-text">
-                "De beaux bureaux, bénévoles agréables et très fort pour la
-                représentation étudiante ! (Btw les géographes ont une belle fédé)"
-            </p>
+            <p class="temoignage-text">"De beaux bureaux, bénévoles agréables et très fort pour la représentation étudiante !"</p>
             <div class="etoiles">⭐⭐⭐⭐⭐</div>
         </div>
 
-        <div class="temoignage-carte">
-            <img
-                    src="../assets/img/image-doriane.png"
-                    alt="Photo illustrative Doriane"
-                    class="profile-img"
-            />
+        <div class="temoignage-slide">
+            <img src="../assets/img/image-doriane.png" alt="Profil" class="profile-img" />
             <div class="nom">Dorian</div>
-            <p class="temoignage-text">
-                "Des associatifs et des elus engagés, de beaux projets de prévention
-                mais aussi d'innovation sociale et surtout une grande force de
-                représentation pour les jeunes !"
-            </p>
+            <p class="temoignage-text">"Des associatifs et des élus engagés, de beaux projets de prévention !"</p>
             <div class="etoiles">⭐⭐⭐⭐⭐</div>
         </div>
 
-        <div class="temoignage-carte">
-            <img
-                    src="../assets/img/image-bastien.jpg"
-                    alt="Photo illustrative Bastien"
-                    class="profile-img"
-            />
+        <div class="temoignage-slide">
+            <img src="../assets/img/image-bastien.jpg" alt="Profil" class="profile-img" />
             <div class="nom">Bastien</div>
-            <p class="temoignage-text">
-                "Accueil génial, fédération très dynamique et porteuse de position
-                en faveur des étudiant, je recommande +++"
-            </p>
+            <p class="temoignage-text">"Accueil génial, fédération très dynamique, je recommande +++"</p>
             <div class="etoiles">⭐⭐⭐⭐⭐</div>
         </div>
 
-        <div class="temoignage-carte">
-            <img
-                    src="../assets/img/image-quentin.jpg"
-                    alt="Photo Illustrative Quentin"
-                    class="profile-img"
-            />
-            <div class="nom">Quentin</div>
-            <p class="temoignage-text">
-                "Une organisation de jeunesse progressiste et humaniste qui défend
-                les droits des étudiant.e.s avec brio !"
-            </p>
-            <div class="etoiles">⭐⭐⭐⭐⭐</div>
-        </div>
-
-        <div class="temoignage-carte">
-            <img
-                    src="../assets/img/image-guillaume.jpg"
-                    alt="Photo illustrative Guillaume"
-                    class="profile-img"
-            />
-            <div class="nom">Guillaume</div>
-            <p class="temoignage-text">
-                "Un travail acharné année après année au service des étudiants et de
-                l'ESR !"
-            </p>
-            <div class="etoiles">⭐⭐⭐⭐⭐</div>
-        </div>
-
-        <button class="fleche-tmng fleche-droite-tmng" aria-label="Témoignage suivant">
-            &gt;
-            >
+        <button class="fleche-tmng fleche-droite-tmng" onclick="plusSlides(1)">
+            <i class="fas fa-chevron-right"></i>
         </button>
 
+      </div>
+    </section>
 
-    </div>
-
-    <div class="indicateurs">
-        <div class="indicateur active" onclick="goToSlide(0)"></div>
-        <div class="indicateur" onclick="goToSlide(1)"></div>
-        <div class="indicateur" onclick="goToSlide(2)"></div>
-        <div class="indicateur" onclick="goToSlide(3)"></div>
-        <div class="indicateur" onclick="goToSlide(4)"></div>
-    </div>
-</section>
-
-<section class="newsletter">
-    <div class="newsletter-content">
+    <section class="newsletter">
+      <div class="newsletter-content">
         <p class="titres-newsletter">
-            Voulez-vous rester informés des dernières actualités ?<br />Inscrivez
-            vous a notre newsletter !</p
-        >
+          Voulez-vous rester informés des dernières actualités ?<br />
+          Inscrivez-vous à notre newsletter !
+        </p>
         <form class="newsletter-form" id="newsletter-form">
-            <input
-                    type="email"
-                    id="newsletter-email"
-                    placeholder="Entrer votre email"
-                    required
-                    aria-label="Adresse email"
-            />
-            <button type="submit">S'Inscrire</button>
+          <input type="email" id="newsletter-email" placeholder="Entrer votre email" required aria-label="Adresse email" />
+          <button type="submit">S'Inscrire</button>
         </form>
-    </div>
-</section>
+      </div>
+    </section>
 
-
-<!-- ⚫ FOOTER -->
-<footer class="footer">
-    <div class="footer-container">
-        <!-- Colonne 1 -->
+    <footer class="footer">
+      <div class="footer-container">
         <div class="footer-col">
-            <div class="footer-logo">
-                <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
-            </div>
-            <p>
-                FAGE – Fédération des Associations Générales Étudiantes<br />
-                79 rue Périer, 92120 Montrouge<br />
-                Tél : 01.40.33.70.70
-            </p>
-            <div class="footer-socials">
-                <a
-                        href="https://www.facebook.com/fage.org/?locale=fr_FR"
-                        target="_blank"
-                ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
-                /></a>
-                <a href="https://fr.linkedin.com/company/la-fage" target="_blank"
-                ><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
-                /></a>
-                <a href="https://www.youtube.com/@associationfage" target="_blank"
-                ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
-                /></a>
-                <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"
-                ><img src="../assets/img/icon_instagram.svg" alt="Instagram"
-                /></a>
-            </div>
+          <div class="footer-logo">
+            <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
+          </div>
+          <p>
+            FAGE – Fédération des Associations Générales Étudiantes<br />
+            79 rue Périer, 92120 Montrouge<br />
+            Tél : 01.40.33.70.70
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/fage.org/?locale=fr_FR" target="_blank"><img src="../assets/img/icon_facebook.svg" alt="Facebook"/></a>
+            <a href="https://fr.linkedin.com/company/la-fage" target="_blank"><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"/></a>
+            <a href="https://www.youtube.com/@associationfage" target="_blank"><img src="../assets/img/icon_youtube.svg" alt="YouTube"/></a>
+            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"><img src="../assets/img/icon_instagram.svg" alt="Instagram"/></a>
+          </div>
         </div>
 
-        <!-- Colonne 2 -->
         <div class="footer-col">
-            <h4>Mentions légales</h4>
-            <ul>
-                <li><a target="_blank" href="Mentions%20Legales.html">Mentions légales </a></li>
-                <li><a target="_blank" href="Politique_confidentialité.html">Politique de confidentialité</a></li>
-                <li><a target="_blank" href="Cookies.html">Cookies</a></li>
-            </ul>
+          <h4>Mentions légales</h4>
+          <ul>
+            <li><a href="Mentions Legales.html">Mentions légales</a></li>
+            <li><a href="Politique_confidentialité.html">Politique de confidentialité</a></li>
+            <li><a href="Cookies.html">Cookies</a></li>
+          </ul>
         </div>
 
-        <!-- Colonne 3 -->
         <div class="footer-col">
-            <h4>Liens utiles</h4>
-            <ul>
-                <li><a target="_blank" href="Assos_Projet.html">Assos & Projets</a></li>
-                <li>
-                    <a target="_blank" href="Actualité_Ressources.html">Actualité & Ressources</a>
-                </li>
-                <li><a target="_blank" href="Dons_Engagement.html">Don & Engagement</a></li>
-                <li><a target="_blank" href="A_propos.html">À propos</a></li>
-            </ul>
+          <h4>Liens utiles</h4>
+          <ul>
+            <li><a href="Assos_Projet.html">Assos & Projets</a></li>
+            <li><a href="Actualité_Ressources.html">Actu & Ressources</a></li>
+            <li><a href="Dons_Engagement.html">Dons</a></li>
+            <li><a href="A_propos.html">À propos</a></li>
+          </ul>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
+
+    <a href="#top" class="scroll-to-top-nojs" aria-label="Remonter en haut de la page">↑</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/Javascript/fichier.js"></script>
+    
+    <script>
+        // --- GESTION COOKIES ---
+        const cookieBanner = document.getElementById('banniere-cookies');
+        const btnAfficher = document.getElementById('afficher-banniere');
+        const btnRefus = document.getElementById('refus');
+        const btnAccepter = document.getElementById('accepter');
+
+        btnAfficher.addEventListener('click', () => {
+            cookieBanner.classList.toggle('hidden');
+        });
+
+        const hideBanner = () => { cookieBanner.classList.add('hidden'); };
+        if(btnRefus) btnRefus.addEventListener('click', hideBanner);
+        if(btnAccepter) btnAccepter.addEventListener('click', hideBanner);
+
+        // --- GESTION CAROUSEL TÉMOIGNAGES ---
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("temoignage-slide");
+            
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+                slides[i].classList.remove("active");
+            }
+            
+            slides[slideIndex-1].style.display = "block";  
+            slides[slideIndex-1].classList.add("active");
+        }
+    </script>
 </body>
-
-<!-- Bouton retour en haut-->
-<a href="#top" class="scroll-to-top-nojs" aria-label="Remonter en haut de la page">
-    ↑
-</a>
+</html>

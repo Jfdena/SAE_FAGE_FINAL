@@ -3,325 +3,419 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>FAGE - Politique Confidentialite</title>
+    <title>FAGE - Politique de Confidentialité</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="../assets/css/stylesheet.css" />
     <link rel="icon" href="../assets/img/lgFage1C.png" type="image/x-icon" />
-    <link
-            rel="shortcut icon"
-            href="../assets/img/logo.ico"
-            type="image/x-icon"
-    />
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-            crossorigin="anonymous"
-    />
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"
-    ></script>
-    <script src="../assets/Javascript/fichier.js"></script>
+
+    <style>
+        :root {
+            --fage-blue: #183146;
+            --fage-light-blue: #0d6efd;
+            --fage-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--fage-bg);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER DE PAGE --- */
+        .page-header-banner {
+            background-color: var(--fage-blue);
+            color: var(--fage-blue);
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header-banner h1 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- CONTENU PRINCIPAL --- */
+        .policy-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Style des sections "Cartes" */
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Titres H2 avec icônes */
+        .section-card h2 {
+            color: var(--fage-blue);
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-card h2 i {
+            color: var(--fage-light-blue);
+            font-size: 1.4rem;
+        }
+
+        .section-card h3 {
+            color: var(--fage-blue);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* Listes */
+        .section-card ul {
+            padding-left: 20px;
+        }
+        .section-card li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Boîtes d'info mises en avant */
+        .info-box {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid var(--fage-blue);
+            margin: 20px 0;
+        }
+        
+        .info-box.highlight {
+             background-color: #eef6fc;
+             border-left-color: var(--fage-light-blue);
+        }
+
+        .info-box a.link {
+            color: var(--fage-light-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .info-box a.link:hover { text-decoration: underline; }
+
+        /* --- GRILLE DES DROITS (Responsive) --- */
+        .rights-grid {
+            display: grid;
+            /* Crée des colonnes qui s'adaptent : minimum 280px de large, sinon ça passe à la ligne */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .right-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .right-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: var(--fage-light-blue);
+        }
+
+        .right-item h3 {
+            color: var(--fage-blue);
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Footer ajustement */
+        .footer { margin-top: auto; }
+    </style>
 </head>
+
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+    <header>
+      <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Accueil.html">
-                <img
-                        src="../assets/img/logo_navbar.png"
-                        height="40"
-                        width="auto"
-                        alt="Logo"
-                />
-            </a>
+          <a class="navbar-brand" href="Accueil.html">
+            <img src="../assets/img/logo_navbar.png" height="40" width="auto" alt="Logo FAGE" />
+          </a>
 
-            <!-- Bouton hamburger pour mobile -->
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarContent"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul
-                        class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0"
-                >
-                    <li class="nav-item">
-                        <a
-                                class="nav-link text-decoration-none tint-text"
-                                aria-current="page"
-                                href="Accueil.html"
-                        >Accueil</a
-                        >
-                    </li>
-                    <li class="nav-item">
-                        <a
-                                class="nav-link text-decoration-none tint-text"
-                                href="Assos_Projet.html"
-                        >Asso & Projets</a
-                        >
-                    </li>
-                    <li class="nav-item">
-                        <a
-                                class="nav-link text-decoration-none tint-text"
-                                href="Actualité_Ressources.html"
-                        >Actualité & Ressources</a
-                        >
-                    </li>
-                    <li class="nav-item">
-                        <a
-                                class="nav-link text-decoration-none tint-text"
-                                href="Dons_Engagement.html"
-                        >Dons & Engagement</a
-                        >
-                    </li>
-                    <li class="nav-item">
-                        <a
-                                class="nav-link text-decoration-none tint-text"
-                                href="A_propos.html"
-                        >À propos</a
-                        >
-                    </li>
-                </ul>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link tint-text" href="Accueil.html">Accueil</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Assos_Projet.html">Asso & Projets</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Actualité_Ressources.html">Actu & Ressources</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="Dons_Engagement.html">Dons</a></li>
+              <li class="nav-item"><a class="nav-link tint-text" href="A_propos.html">À propos</a></li>
+            </ul>
 
-                <div class="d-flex">
-                    <a
-                            href="../Backend/session_check.php"
-                            class="btn btn-outline-primary"
-                    >Espace Membre</a
-                    >
+            <div class="d-flex">
+              <a href="../Backend/session_check.php" class="btn btn-outline-primary btn-sm px-3 rounded">Espace Membre</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="page-header-banner">
+        <div class="container">
+            <h1>Politique de Confidentialité</h1>
+            <p>Protection de vos données personnelles</p>
+        </div>
+    </div>
+
+    <div class="policy-container mb-5">
+        
+        <div class="section-card intro-section text-center">
+            <p><strong>Dernière mise à jour : Janvier 2026</strong></p>
+            <p class="mb-0">La FAGE (Fédération des Associations Générales Étudiantes) s'engage à protéger la vie privée et les données personnelles de ses utilisateurs. Cette politique explique en toute transparence comment nous collectons, utilisons et protégeons vos informations.</p>
+        </div>
+
+        <div class="section-card">
+            <h2><i class="fas fa-building"></i> 1. Responsable du traitement</h2>
+            <div class="info-box">
+                <strong>FAGE - Fédération des Associations Générales Étudiantes</strong><br>
+                79, rue Périer, 92120 Montrouge<br><br>
+                <i class="fas fa-phone me-2"></i> 01 40 33 70 70<br>
+                <i class="fas fa-envelope me-2"></i> <a href="mailto:contact@fage.org" class="link">contact@fage.org</a>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2><i class="fas fa-database"></i> 2. Données collectées</h2>
+            <p>Dans le cadre de nos activités et de nos interactions, nous sommes amenés à collecter les données suivantes :</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Données d'identification</h3>
+                    <ul>
+                        <li>Nom et prénom</li>
+                        <li>Adresse email</li>
+                        <li>Numéro de téléphone</li>
+                        <li>Adresse postale</li>
+                    </ul>
+                    <h3>Données de navigation</h3>
+                    <ul>
+                        <li>Adresse IP, type de navigateur</li>
+                        <li>Cookies (voir notre <a href="Cookies.html">politique de cookies</a>)</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>Données liées au parcours étudiant</h3>
+                    <ul>
+                        <li>Établissement d'enseignement</li>
+                        <li>Niveau d'études</li>
+                        <li>Filière ou domaine d'études</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </nav>
-</header>
-<body>
-<div class="container">
-    <header>
-        <h1>Politique de confidentialité</h1>
-    </header>
 
-    <div class="content">
-        <div class="intro-section">
-            <p><strong>Dernière mise à jour : Janvier 2026</strong></p>
-            <p>La FAGE (Fédération des Associations Générales Étudiantes) s'engage à protéger la vie privée et les données personnelles de ses utilisateurs. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles.</p>
-        </div>
-
-        <div class="section">
-            <h2>1. Responsable du traitement des données</h2>
-            <div class="info-box">
-                <p><strong>FAGE - Fédération des Associations Générales Étudiantes</strong><br>
-                    79, rue Périer<br>
-                    92120 Montrouge<br>
-                    Tél : 01 40 33 70 70<br>
-                    Email : <a href="mailto:contact@fage.org" class="link">contact@fage.org</a></p>
+        <div class="row">
+            <div class="col-lg-6">
+                 <div class="section-card h-100">
+                    <h2><i class="fas fa-bullseye"></i> 3. Finalités du traitement</h2>
+                    <ul>
+                        <li><strong>Gestion des adhésions</strong> : inscriptions, contact membres.</li>
+                        <li><strong>Communication</strong> : newsletters, informations sur nos actions.</li>
+                        <li><strong>Événements</strong> : gestion des inscriptions et logistique.</li>
+                        <li><strong>Amélioration des services</strong> : analyse de l'utilisation du site.</li>
+                        <li><strong>Défense des droits</strong> : traitement des demandes d'aide.</li>
+                        <li><strong>Obligations légales</strong> : comptabilité et fiscalité.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                 <div class="section-card h-100">
+                    <h2><i class="fas fa-gavel"></i> 4. Base légale</h2>
+                    <ul>
+                        <li><strong>Consentement</strong> : pour les newsletters.</li>
+                        <li><strong>Exécution d'un contrat</strong> : pour l'adhésion.</li>
+                        <li><strong>Intérêt légitime</strong> : pour améliorer nos services et défendre les étudiants.</li>
+                        <li><strong>Obligation légale</strong> : pour la comptabilité.</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div class="section">
-            <h2>2. Données collectées</h2>
-            <p>Dans le cadre de nos activités et de nos interactions avec les étudiants, bénévoles et partenaires, nous sommes amenés à collecter les types de données suivants :</p>
-
-            <h3>Données d'identification</h3>
-            <ul>
-                <li>Nom et prénom</li>
-                <li>Adresse email</li>
-                <li>Numéro de téléphone</li>
-                <li>Adresse postale</li>
-            </ul>
-
-            <h3>Données liées à votre parcours étudiant</h3>
-            <ul>
-                <li>Établissement d'enseignement</li>
-                <li>Niveau d'études</li>
-                <li>Filière ou domaine d'études</li>
-            </ul>
-
-            <h3>Données de navigation</h3>
-            <ul>
-                <li>Adresse IP</li>
-                <li>Type de navigateur</li>
-                <li>Pages visitées sur notre site</li>
-                <li>Cookies (voir notre politique de cookies)</li>
-            </ul>
+        <div class="section-card mt-4">
+             <div class="row">
+                 <div class="col-md-6 border-end">
+                    <h2><i class="fas fa-user-friends"></i> 5. Destinataires</h2>
+                    <p>Vos données peuvent être partagées avec :</p>
+                    <ul>
+                        <li>Les associations membres de la FAGE.</li>
+                        <li>Nos prestataires techniques (hébergement, mailing).</li>
+                        <li>Les autorités compétentes si la loi l'exige.</li>
+                    </ul>
+                    <p class="fw-bold text-primary mt-3"><i class="fas fa-shield-alt"></i> Nous ne vendons ni ne louons vos données à des tiers.</p>
+                 </div>
+                 <div class="col-md-6 ps-md-4 pt-4 pt-md-0">
+                    <h2><i class="fas fa-hourglass-half"></i> 6. Conservation</h2>
+                    <ul>
+                        <li><strong>Membres actifs</strong> : durée de l'adhésion + 3 ans.</li>
+                        <li><strong>Données comptables</strong> : 10 ans (obligation légale).</li>
+                        <li><strong>Cookies</strong> : 13 mois maximum.</li>
+                        <li><strong>Prospection</strong> : 3 ans après le dernier contact.</li>
+                    </ul>
+                 </div>
+             </div>
         </div>
 
-        <div class="section">
-            <h2>3. Finalités du traitement</h2>
-            <p>Nous utilisons vos données personnelles pour les finalités suivantes :</p>
-            <ul>
-                <li><strong>Gestion des adhésions et des membres</strong> : traitement des inscriptions, renouvellements et communication avec nos membres</li>
-                <li><strong>Information et communication</strong> : envoi de newsletters, informations sur nos actions et événements</li>
-                <li><strong>Organisation d'événements</strong> : gestion des inscriptions et de la logistique</li>
-                <li><strong>Amélioration de nos services</strong> : analyse de l'utilisation de notre site web et de nos services</li>
-                <li><strong>Défense des droits étudiants</strong> : traitement des demandes d'aide et de soutien</li>
-                <li><strong>Obligations légales</strong> : respect de nos obligations comptables et fiscales</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>4. Base légale du traitement</h2>
-            <p>Le traitement de vos données repose sur les bases légales suivantes :</p>
-            <ul>
-                <li><strong>Consentement</strong> : pour l'envoi de communications marketing et newsletters</li>
-                <li><strong>Exécution d'un contrat</strong> : pour la gestion de votre adhésion</li>
-                <li><strong>Intérêt légitime</strong> : pour l'amélioration de nos services et la défense des intérêts étudiants</li>
-                <li><strong>Obligation légale</strong> : pour le respect de nos obligations comptables et fiscales</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>5. Destinataires des données</h2>
-            <p>Vos données personnelles peuvent être communiquées aux catégories de destinataires suivantes :</p>
-            <ul>
-                <li>Les associations membres de la FAGE dans le cadre de nos activités fédérales</li>
-                <li>Nos prestataires de services (hébergement web, envoi d'emails, gestion événementielle)</li>
-                <li>Les autorités compétentes dans le cadre d'obligations légales</li>
-            </ul>
-            <p><strong>Nous ne vendons ni ne louons vos données personnelles à des tiers.</strong></p>
-        </div>
-
-        <div class="section">
-            <h2>6. Durée de conservation</h2>
-            <p>Nous conservons vos données personnelles pendant les durées suivantes :</p>
-            <ul>
-                <li><strong>Données des membres actifs</strong> : pendant la durée de l'adhésion + 3 ans</li>
-                <li><strong>Données comptables</strong> : 10 ans conformément aux obligations légales</li>
-                <li><strong>Cookies</strong> : 13 mois maximum</li>
-                <li><strong>Données de prospection</strong> : 3 ans à compter du dernier contact</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>7. Vos droits</h2>
-            <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+        <div class="section-card">
+            <h2><i class="fas fa-balance-scale"></i> 7. Vos droits (RGPD)</h2>
+            <p>Vous disposez de droits étendus sur vos données personnelles :</p>
 
             <div class="rights-grid">
                 <div class="right-item">
+                    <i class="fas fa-eye fa-2x text-primary"></i>
                     <h3>Droit d'accès</h3>
-                    <p>Vous pouvez obtenir une copie de vos données personnelles</p>
+                    <p>Obtenir une copie de vos données.</p>
                 </div>
                 <div class="right-item">
-                    <h3>Droit de rectification</h3>
-                    <p>Vous pouvez demander la correction de données inexactes</p>
+                    <i class="fas fa-edit fa-2x text-primary"></i>
+                    <h3>Rectification</h3>
+                    <p>Corriger des données inexactes.</p>
                 </div>
                 <div class="right-item">
-                    <h3>Droit à l'effacement</h3>
-                    <p>Vous pouvez demander la suppression de vos données</p>
+                    <i class="fas fa-trash-alt fa-2x text-primary"></i>
+                    <h3>Effacement</h3>
+                    <p>Demander la suppression ("droit à l'oubli").</p>
                 </div>
                 <div class="right-item">
-                    <h3>Droit à la limitation</h3>
-                    <p>Vous pouvez limiter le traitement de vos données</p>
+                    <i class="fas fa-ban fa-2x text-primary"></i>
+                    <h3>Limitation</h3>
+                    <p>Geler temporairement l'utilisation des données.</p>
                 </div>
                 <div class="right-item">
-                    <h3>Droit à la portabilité</h3>
-                    <p>Vous pouvez recevoir vos données dans un format structuré</p>
+                    <i class="fas fa-file-export fa-2x text-primary"></i>
+                    <h3>Portabilité</h3>
+                    <p>Récupérer vos données pour un autre service.</p>
                 </div>
                 <div class="right-item">
-                    <h3>Droit d'opposition</h3>
-                    <p>Vous pouvez vous opposer au traitement de vos données</p>
+                    <i class="fas fa-hand-paper fa-2x text-primary"></i>
+                    <h3>Opposition</h3>
+                    <p>Refuser un traitement spécifique.</p>
                 </div>
             </div>
 
-            <div class="info-box highlight">
-                <p><strong>Pour exercer vos droits</strong>, contactez-nous par email à <a href="mailto:dpo@fage.org" class="link">dpo@fage.org</a> ou par courrier à l'adresse mentionnée ci-dessus.</p>
-                <p>Vous disposez également du droit d'introduire une réclamation auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés) : <a href="https://www.cnil.fr" target="_blank" class="link">www.cnil.fr</a></p>
+            <div class="info-box highlight mt-4">
+                <p><strong>Pour exercer vos droits</strong>, contactez notre Délégué à la Protection des Données (DPO) : <a href="mailto:dpo@fage.org" class="link"><i class="fas fa-envelope"></i> dpo@fage.org</a></p>
+                <p class="mb-0 small">Vous pouvez également introduire une réclamation auprès de la CNIL : <a href="https://www.cnil.fr" target="_blank" class="link">www.cnil.fr</a></p>
             </div>
         </div>
 
-        <div class="section">
-            <h2>8. Sécurité des données</h2>
-            <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre :</p>
-            <ul>
-                <li>L'accès non autorisé</li>
-                <li>La perte accidentelle</li>
-                <li>La destruction ou les dommages</li>
-                <li>L'utilisation frauduleuse</li>
-            </ul>
-            <p>Ces mesures incluent notamment le chiffrement des données sensibles, des contrôles d'accès stricts et une sensibilisation régulière de nos équipes à la protection des données.</p>
-        </div>
-
-        <div class="section">
-            <h2>9. Transferts de données hors UE</h2>
-            <p>Vos données personnelles sont hébergées et traitées au sein de l'Union Européenne. Dans le cas où certaines données seraient transférées hors de l'UE, nous nous assurons que des garanties appropriées sont mises en place conformément au RGPD.</p>
-        </div>
-
-        <div class="section">
-            <h2>10. Modifications de la politique</h2>
-            <p>Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page avec une date de mise à jour. Nous vous encourageons à consulter régulièrement cette page pour rester informé de nos pratiques en matière de protection des données.</p>
-        </div>
-
-        <div class="section">
-            <h2>11. Contact</h2>
-            <p>Pour toute question concernant cette politique de confidentialité ou le traitement de vos données personnelles, vous pouvez nous contacter :</p>
-            <div class="info-box">
-                <p><strong>Par email :</strong> <a href="mailto:dpo@fage.org" class="link">dpo@fage.org</a><br>
-                    <strong>Par téléphone :</strong> 01 40 33 70 70<br>
-                    <strong>Par courrier :</strong> FAGE - 79, rue Périer - 92120 Montrouge</p>
+        <div class="row mt-4">
+            <div class="col-lg-6">
+                 <div class="section-card h-100">
+                    <h2><i class="fas fa-lock"></i> 8. Sécurité</h2>
+                    <p>Nous mettons en œuvre des mesures techniques (chiffrement, contrôles d'accès) pour protéger vos données contre l'accès non autorisé, la perte ou la destruction.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                 <div class="section-card h-100">
+                    <h2><i class="fas fa-globe-europe"></i> 9. Transferts hors UE</h2>
+                    <p>Vos données sont hébergées au sein de l'Union Européenne. Si un transfert hors UE était nécessaire, nous garantirions sa conformité au RGPD.</p>
+                </div>
             </div>
         </div>
+
+        <div class="section-card mt-4">
+            <h2><i class="fas fa-sync-alt"></i> 10. Modifications</h2>
+            <p>Nous nous réservons le droit de modifier cette politique. Toute mise à jour sera publiée sur cette page.</p>
+
+            <h2 class="mt-5"><i class="fas fa-paper-plane"></i> 11. Contactez-nous</h2>
+             <div class="info-box mb-0">
+                <div class="row text-center text-md-start">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <i class="fas fa-envelope text-primary mb-2"></i><br>
+                        <a href="mailto:dpo@fage.org" class="link fw-bold">dpo@fage.org</a>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <i class="fas fa-phone text-primary mb-2"></i><br>
+                        <strong>01 40 33 70 70</strong>
+                    </div>
+                    <div class="col-md-4">
+                         <i class="fas fa-map-marker-alt text-primary mb-2"></i><br>
+                        FAGE - 79, rue Périer<br>92120 Montrouge
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
+          </div>
+          <p>
+            FAGE – Fédération des Associations Générales Étudiantes<br />
+            79 rue Périer, 92120 Montrouge<br />
+            Tél : 01.40.33.70.70
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/fage.org/?locale=fr_FR" target="_blank"><img src="../assets/img/icon_facebook.svg" alt="Facebook"/></a>
+            <a href="https://fr.linkedin.com/company/la-fage" target="_blank"><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"/></a>
+            <a href="https://www.youtube.com/@associationfage" target="_blank"><img src="../assets/img/icon_youtube.svg" alt="YouTube"/></a>
+            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"><img src="../assets/img/icon_instagram.svg" alt="Instagram"/></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Mentions légales</h4>
+          <ul>
+            <li><a href="Mentions Legales.html">Mentions légales</a></li>
+            <li><a href="Politique_confidentialité.html">Politique de confidentialité</a></li>
+            <li><a href="Cookies.html">Cookies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Liens utiles</h4>
+          <ul>
+            <li><a href="Assos_Projet.html">Assos & Projets</a></li>
+            <li><a href="Actualité_Ressources.html">Actu & Ressources</a></li>
+            <li><a href="Dons_Engagement.html">Dons</a></li>
+            <li><a href="A_propos.html">À propos</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<!-- ⚫ FOOTER -->
-<footer class="footer">
-    <div class="footer-container">
-        <!-- Colonne 1 -->
-        <div class="footer-col">
-            <div class="footer-logo">
-                <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
-            </div>
-            <p>
-                FAGE – Fédération des Associations Générales Étudiantes<br />
-                79 rue Périer, 92120 Montrouge<br />
-                Tél : 01.40.33.70.70
-            </p>
-            <div class="footer-socials">
-                <a
-                        href="https://www.facebook.com/fage.org/?locale=fr_FR"
-                        target="_blank"
-                ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
-                /></a>
-                <a href="https://fr.linkedin.com/company/la-fage" target="_blank"
-                ><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
-                /></a>
-                <a href="https://www.youtube.com/@associationfage" target="_blank"
-                ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
-                /></a>
-                <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"
-                ><img src="../assets/img/icon_instagram.svg" alt="Instagram"
-                /></a>
-            </div>
-        </div>
-
-        <!-- Colonne 2 -->
-        <div class="footer-col">
-            <h4>Mentions légales</h4>
-            <ul>
-                <li><a target="_blank" href="Mentions%20Legales.html">Mentions légales </a></li>
-                <li><a target="_blank" href="Politique_confidentialité.html">Politique de confidentialité</a></li>
-                <li><a target="_blank" href="Cookies.html">Cookies</a></li>
-            </ul>
-        </div>
-
-        <!-- Colonne 3 -->
-        <div class="footer-col">
-            <h4>Liens utiles</h4>
-            <ul>
-                <li><a target="_blank" href="Assos_Projet.html">Assos & Projets</a></li>
-                <li>
-                    <a target="_blank" href="Actualité_Ressources.html">Actualité & Ressources</a>
-                </li>
-                <li><a target="_blank" href="Dons_Engagement.html">Don & Engagement</a></li>
-                <li><a target="_blank" href="A_propos.html">À propos</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
 </html>
