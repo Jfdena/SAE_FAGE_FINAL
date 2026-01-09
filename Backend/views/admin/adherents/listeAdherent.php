@@ -2,7 +2,7 @@
 // Backend/views/admin/adherents/listeAdherent.php
 
 // Protection de la page
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Connexion BDD
 require_once '../../../config/Database.php';
@@ -60,7 +60,8 @@ $sql .= " ORDER BY date_inscription DESC";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute($params);
-$benevoles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$result = $stmt->get_result();
+$benevoles = $result->fetch_all(MYSQLI_ASSOC);
 
 // Compter le total
 $total = count($benevoles);

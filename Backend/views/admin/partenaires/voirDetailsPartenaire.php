@@ -2,7 +2,7 @@
 // Backend/views/admin/partenaires/voirDetailsPartenaire.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Vérifier l'ID
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -20,7 +20,7 @@ $conn = $db->getConnection();
 // Récupérer le partenaire
 $stmt = $conn->prepare("SELECT * FROM Partenaire WHERE id_partenaire = ?");
 $stmt->execute([$partenaire_id]);
-$partenaire = $stmt->fetch(PDO::FETCH_ASSOC);
+$partenaire = $stmt->fetch();
 
 // Vérifier si le partenaire existe
 if (!$partenaire) {

@@ -2,7 +2,7 @@
 // Backend/views/admin/adherents/deleteBenevole.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Vérifier l'ID
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -25,9 +25,11 @@ try {
 
 // Récupérer le bénévole pour afficher ses infos
 try {
-    $stmt = $conn->prepare("SELECT * FROM benevole WHERE id_benevole = ?");
-    $stmt->execute([$benevole_id]);
-    $benevole = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $conn->prepare("SELECT * FROM Benevole WHERE id_benevole = ?");
+    $stmt->bind_param("i", $benevole_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $benevole = $result->fetch_assoc();
 } catch (Exception $e) {
     header('Location: listeAdherent.php?error=db_query');
     exit();

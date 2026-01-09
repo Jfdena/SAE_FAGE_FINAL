@@ -2,7 +2,7 @@
     // Backend/views/admin/partenaires/listePartenaires.php
 
     // Protection
-    require_once '../../../test/session_check.php';
+    require_once '../../../session_check.php';
 
     // Connexion BDD
     require_once '../../../config/Database.php';
@@ -54,7 +54,8 @@
     try {
         $stmt = $conn->prepare($sql);
         $stmt->execute($params);
-        $partenaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->get_result();
+        $partenaires = $result->fetch_all(MYSQLI_ASSOC);
     } catch (Exception $e) {
         $partenaires = [];
         error_log("Erreur lors de la récupération des partenaires: " . $e->getMessage());

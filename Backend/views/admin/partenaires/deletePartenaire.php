@@ -2,7 +2,7 @@
 // Backend/views/admin/partenaires/deletePartenaire.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Vérifier l'ID
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {

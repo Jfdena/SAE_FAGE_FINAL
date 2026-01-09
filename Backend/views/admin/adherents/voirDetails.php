@@ -3,7 +3,7 @@
 // Backend/views/admin/adherents/voirDetails.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Vérifier l'ID
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -25,7 +25,7 @@ try {
 // Récupérer le bénévole
 $stmt = $conn->prepare("SELECT * FROM benevole WHERE id_benevole = ?");
 $stmt->execute([$benevole_id]);
-$benevole = $stmt->fetch(PDO::FETCH_ASSOC);
+$benevole = $stmt->fetch();
 
 // Vérifier si le bénévole existe
 if (!$benevole) {
@@ -59,7 +59,7 @@ try {
         ORDER BY annee DESC, date_paiement DESC
     ");
     $stmt->execute([$benevole_id]);
-    $cotisations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $cotisations = $stmt->fetch();
 } catch (Exception $e) {
     // Table non existante
 }

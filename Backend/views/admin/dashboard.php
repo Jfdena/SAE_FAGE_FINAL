@@ -3,13 +3,7 @@
 
 // 1. VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
 
-require_once '../../test/session_check.php';
-
-//TEST
-// Après require_once '../session_check.php';
-echo "<p>Bonjour " . getUserFullName() . "!</p>";
-echo "<p>Rôle : " . getUserRole() . "</p>";
-echo "<p>Admin ? " . (isAdmin() ? 'OUI' : 'NON') . "</p>";
+require_once '../../session_check.php';
 
 // 2. INCLURE LA CONNEXION BDD
 require_once '../../config/Database.php';
@@ -38,15 +32,15 @@ $stats = [
 try {
     // Compter les bénévoles actifs
     $stmt = $conn->query("SELECT COUNT(*) FROM benevole WHERE statut = 'actif'");
-    $stats['benevoles'] = $stmt->fetchColumn();
+    $stats['benevoles'] = $stmt->fetch_column();
 
     // Compter les missions/événements
     $stmt = $conn->query("SELECT COUNT(*) FROM evenement");
-    $stats['missions'] = $stmt->fetchColumn();
+    $stats['missions'] = $stmt->fetch_column();
 
     // Compter les partenaires
     $stmt = $conn->query("SELECT COUNT(*) FROM partenaire");
-    $stats['partenaires'] = $stmt->fetchColumn();
+    $stats['partenaires'] = $stmt->fetch_column();
 
 } catch(Exception $e) {
     // En cas d'erreur, on garde les stats à vide

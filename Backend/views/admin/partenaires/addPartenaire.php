@@ -2,7 +2,7 @@
 // Backend/views/admin/partenaires/addPartenaire.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Connexion BDD
 require_once '../../../config/Database.php';

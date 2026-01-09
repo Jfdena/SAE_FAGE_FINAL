@@ -2,7 +2,7 @@
 // Backend/views/admin/partenaires/HistoContribution.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Connexion BDD
 require_once '../../../config/Database.php';
@@ -19,7 +19,7 @@ $mois = $_GET['mois'] ?? '';
 $partenaires = [];
 try {
     $stmt = $conn->query("SELECT id_partenaire, nom FROM Partenaire ORDER BY nom");
-    $partenaires = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $partenaires = $stmt->fetch_all(MYSQLI_ASSOC);
 } catch (Exception $e) {
     error_log("Erreur récupération partenaires: " . $e->getMessage());
 }
@@ -64,7 +64,8 @@ $sql .= " ORDER BY p.date_contribution DESC";
 try {
     $stmt = $conn->prepare($sql);
     $stmt->execute($params);
-    $contributions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $resultset = $stmt->get_result();
+    $contributions = $resultset->fetch_all(MYSQLI_ASSOC);
 } catch (Exception $e) {
     $contributions = [];
     error_log("Erreur récupération contributions: " . $e->getMessage());

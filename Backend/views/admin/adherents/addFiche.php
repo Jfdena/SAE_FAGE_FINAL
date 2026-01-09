@@ -3,7 +3,7 @@
 // Backend/views/admin/adherents/addFiche.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Connexion BDD
 require_once '../../../config/Database.php';
@@ -51,26 +51,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($formData['email']) && !filter_var($formData['email'], FILTER_VALIDATE_EMAIL)) {
         $errors[] = "L'email n'est pas valide";
     }
-
     // Si pas d'erreurs, insérer en BDD
     if (empty($errors)) {
         try {
             // Préparer la requête d'insertion
             $sql = "INSERT INTO benevole (nom, prenom, email, telephone, date_naissance, date_inscription, statut) 
-                    VALUES (?, ?, ?, ?, ?, CURDATE(), ?)";
+                        VALUES (?, ?, ?, ?, ?, CURDATE(), ?)";
 
             $stmt = $conn->prepare($sql);
-            $stmt->execute([
-                $formData['nom'],
-                $formData['prenom'],
-                $formData['email'] ?: null,
-                $formData['telephone'] ?: null,
-                $formData['date_naissance'] ?: null,
-                $formData['statut']
-            ]);
 
-            // Récupérer l'ID du nouveau bénévole
-            $newId = $conn->lastInsertId();
+            // Préparation des variables pour bind_param (null si vide)
+            $v_email = $formData['email'] ?: null;
+            $v_tel = $formData['telephone'] ?: null;
+            $v_naiss = $formData['date_naissance'] ?: null;
+
+            // Liaison des paramètres : 6 chaînes (s)
+            $stmt->bind_param("sssssss",
+                    $formData['nom'],
+                    $formData['prenom'],
+                    $v_email,
+                    $v_tel,
+                    $v_naiss,
+                    $formData['statut']
+            );
+
+            $stmt->execute();
+
+            // Récupérer l'ID du nouveau bénévole (mysqli version)
+            $newId = $conn->insert_id;
             $success = true;
 
             // Réinitialiser le formulaire après succès

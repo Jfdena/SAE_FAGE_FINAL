@@ -3,7 +3,7 @@
 // Backend/views/admin/adherents/CotisationsAdherent.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Connexion BDD
 require_once '../../../config/Database.php';
@@ -11,16 +11,17 @@ $db = new Database();
 $conn = $db->getConnection();
 require_once '../../../config/Constraints.php';
 $constraints = new Constraints($conn);
-// Récupérer tous les bénévoles avec leurs cotisations
-$stmt = $conn->query("
-    SELECT b.*, 
-           (SELECT MAX(date_paiement) FROM cotisation WHERE id_benevole = b.id_benevole) as derniere_cotisation,
-           (SELECT COUNT(*) FROM cotisation WHERE id_benevole = b.id_benevole) as nb_cotisations
-    FROM benevole b
-    WHERE b.statut = 'actif'
-    ORDER BY b.nom, b.prenom
-");
-$benevoles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Récupérer tous les bénévoles avec leurs cotisations (Correction mysqli directe)
+$result = $conn->query("
+        SELECT b.*, 
+               (SELECT MAX(date_paiement) FROM cotisation WHERE id_benevole = b.id_benevole) as derniere_cotisation,
+               (SELECT COUNT(*) FROM cotisation WHERE id_benevole = b.id_benevole) as nb_cotisations
+        FROM benevole b
+        WHERE b.statut = 'actif'
+        ORDER BY b.nom, b.prenom
+    ");
+$benevoles = $result->fetch_all(MYSQLI_ASSOC);
 
 // Traitement ajout cotisation
 // Dans le traitement du formulaire d'ajout de cotisation :

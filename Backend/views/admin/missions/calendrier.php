@@ -2,7 +2,7 @@
 // Backend/views/admin/missions/calendrier.php
 
 // Protection
-require_once '../../../test/session_check.php';
+require_once '../../../session_check.php';
 
 // Connexion BDD
 require_once '../../../config/Database.php';
@@ -45,7 +45,8 @@ try {
         ORDER BY date_debut
     ");
     $stmt->execute([$start_date, $end_date, $start_date, $end_date, $start_date, $end_date]);
-    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result = $stmt->get_result();
+    $events = $result->fetch_all(MYSQLI_ASSOC);
 } catch (Exception $e) {
     // Si la table n'existe pas encore
     $events = [];

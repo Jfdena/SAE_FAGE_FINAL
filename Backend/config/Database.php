@@ -12,38 +12,54 @@ class Database
 {
     public $conn;
 
-    public function getConnection(): PDO
+    /**
+     * @return mysqli
+     * @throws Exception
+     */
+    public function getConnection(): mysqli
     {
         $this->conn = null;
         try {
-            $this->conn = new PDO(
-                "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'] . ";charset=utf8mb4",
+            // Utilisation de mysqli (connexion standard)
+            $this->conn = new mysqli(
+                $_ENV['DB_HOST'],
                 $_ENV['DB_USER'],
-                $_ENV['DB_PASS']
+                $_ENV['DB_PASS'],
+                $_ENV['DB_NAME']
             );
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        } catch (PDOException $exception) {
-            // Ne pas afficher l'erreur en production
-            error_log("Erreur de connexion BDD : " . $exception->getMessage());
-            throw new Exception("Erreur de connexion à la base de données");
+
+            if ($this->conn->connect_error) {
+                throw new Exception("Connection failed: " . $this->conn->connect_error);
+            }
+
+            $this->conn->set_charset("utf8mb4");
+
+        } catch (Exception $exception) {
+            error_log("Erreur de connexion BDD (mysqli) : " . $exception->getMessage());
+            throw new Exception("Erreur technique : Impossible de se connecter à la base de données");
         }
         return $this->conn;
     }
+
     public function getDbName(): string
     {
-        return $this->db_name;
+        return $_ENV['DB_NAME'] ?? '';
     }
 
-    // Méthode pour exécuter des requêtes préparées
+    /**
+     * Méthode pour exécuter des requêtes préparées avec mysqli
+     */
     public function executeQuery($sql, $params = [])
     {
         try {
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute($params);
+            if ($params) {
+                $types = str_repeat('s', count($params)); // On considère tout comme string par défaut
+                $stmt->bind_param($types, ...$params);
+            }
+            $stmt->execute();
             return $stmt;
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             error_log("Erreur requête SQL : " . $e->getMessage());
             throw new Exception("Erreur lors de l'exécution de la requête");
         }
