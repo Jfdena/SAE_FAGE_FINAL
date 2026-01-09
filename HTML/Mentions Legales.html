@@ -30,23 +30,30 @@
         }
 
         /* --- HEADER DE PAGE --- */
-        .page-header {
+        .page-header-banner {
             background-color: var(--fage-blue);
-            color: var(--fage-blue);
+            color: white;
             padding: 60px 0;
             text-align: center;
             margin-bottom: 40px;
         }
 
-        .page-header h1 {
+        .page-header-banner h1 {
             font-weight: 800;
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
 
-        .page-header p {
+        .page-header-banner p {
             opacity: 0.8;
             font-size: 1.1rem;
+        }
+
+        /* --- CONTENU --- */
+        .legal-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* --- CARTES D'INFORMATION --- */
@@ -58,6 +65,7 @@
             margin-bottom: 30px;
             border: 1px solid #eee;
             transition: transform 0.3s ease;
+            height: 100%;
         }
 
         .legal-card:hover {
@@ -151,18 +159,18 @@
       </nav>
     </header>
 
-    <div class="page-header">
+    <div class="page-header-banner">
         <div class="container">
             <h1>Mentions Légales</h1>
             <p>Informations juridiques relatives au site de la FAGE</p>
         </div>
     </div>
 
-    <div class="container mb-5">
+    <div class="legal-container mb-5">
         <div class="row g-4">
             
             <div class="col-lg-6">
-                <div class="legal-card h-100">
+                <div class="legal-card">
                     <h2><i class="fas fa-building"></i> Propriété & Éditeur</h2>
                     
                     <p>Ce site est la propriété exclusive de la <strong>FAGE</strong>.</p>
@@ -188,7 +196,7 @@
             </div>
 
             <div class="col-lg-6">
-                <div class="legal-card h-100">
+                <div class="legal-card">
                     <h2><i class="fas fa-user-shield"></i> Responsables</h2>
                     
                     <div class="info-group border-bottom pb-3">
@@ -214,9 +222,10 @@
                     <h2><i class="fas fa-question-circle"></i> Contact & Droits</h2>
                     <p>Pour toute annonce à faire passer, demande d'autorisation de reproduction de contenu ou pour toute question relative au fonctionnement de la FAGE et de ce site, n'hésitez pas à nous contacter.</p>
                     
-                    <div class="d-flex gap-3 mt-3">
-                        <a href="Contact.html" class="btn btn-outline-primary rounded-pill px-4">Accéder au formulaire de contact</a>
-                        <a href="Politique_confidentialité.html" class="btn btn-link">Voir la politique de confidentialité</a>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="A_propos.html" class="btn btn-outline-primary rounded-pill px-4">Accéder au formulaire de contact</a>
+                        
+                        <a href="Politique_confidentialité.html" class="btn btn-link text-decoration-none">Voir la politique de confidentialité</a>
                     </div>
                 </div>
             </div>
