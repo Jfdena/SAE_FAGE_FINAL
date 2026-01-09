@@ -1,12 +1,15 @@
 <?php
 // Backend/config/Database.php
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+
 class Database
 {
-    private $host = "localhost";
-    private $db_name = "fage";
-    private $username = "root";
-    private $password = "root";          // À adapter (ton mot de passe MySQL)
     public $conn;
 
     public function getConnection(): PDO
@@ -14,9 +17,9 @@ class Database
         $this->conn = null;
         try {
             $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8mb4",
-                $this->username,
-                $this->password
+                "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'] . ";charset=utf8mb4",
+                $_ENV['DB_USER'],
+                $_ENV['DB_PASS']
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

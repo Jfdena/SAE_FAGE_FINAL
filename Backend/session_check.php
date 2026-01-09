@@ -6,12 +6,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 2. Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_email'])) {
-    // Si pas connecté, rediriger vers login
-    header('Location: ../views/auth/login.php');
+// 2. Vérifier si l'utilisateur est connecté (more robust check)
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id']) || $_SESSION['user_id'] <= 0 || !isset($_SESSION['user_email'])) {
+    // Clear any partial session data
+    session_unset();
+    session_destroy();
 
-
+    // Redirect to login
+    header('Location: /auth/login.php');
     exit();
 }
 
@@ -32,7 +34,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     // Session expirée
     session_unset();
     session_destroy();
-    header('Location: ../views/auth/login.php?error=session_expired');
+    header('Location: ../auth/login.php?error=session_expired');
     exit();
 }
 

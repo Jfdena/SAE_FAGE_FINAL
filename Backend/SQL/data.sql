@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS Partenaire (
                                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     -- Contraintes
-                                          UNIQUE KEY unique_nom_type (nom, type(50)),
+                                          UNIQUE KEY unique_nom_type (nom, type),
                                           CHECK (date_contribution IS NULL OR date_contribution < '2100-01-01'),
 
     -- Index

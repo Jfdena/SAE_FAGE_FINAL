@@ -1,11 +1,15 @@
 <?php
 // Backend/views/auth/login.php
 require_once __DIR__ . '/../../config/Database.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
+
+use Dotenv\Dotenv;
 
 session_start();
 
 // Si déjà connecté, rediriger vers le dashboard
-if (isset($_SESSION['user_id'])) {
+// Check for valid user_id (must exist, be set, and be a positive number)
+if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id']) && $_SESSION['user_id'] > 0 && isset($_SESSION['user_email'])) {
     header('Location: ../admin/dashboard.php');
     exit();
 }
