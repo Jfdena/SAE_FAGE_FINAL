@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/css/stylesheet.css" />
     <link rel="icon" href="../assets/img/lgFage1C.png" type="image/x-icon" />
 
+      <!-- Bootstrap 5.3 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,94 +19,69 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+
+      <!-- Icons -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+      <!-- Font Awesome pour icônes supplémentaires -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <script src="../assets/Javascript/fichier.js" defer></script>
+      <script src="../assets/Javascript/dons.js" defer></script>
   </head>
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="Accueil.html">
-            <img
-                    src="../assets/img/logo_navbar.png"
-                    height="40"
-                    width="auto"
-                    alt="Logo"
-            />
-          </a>
+  <header>
+      <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="Accueil.html">
+                  <img src="../assets/img/logo_navbar.png" height="40" width="auto" alt="Logo FAGE" />
+              </a>
 
-          <!-- Bouton hamburger pour mobile -->
-          <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarContent"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+              <!-- Bouton hamburger pour mobile -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
 
-          <div class="collapse navbar-collapse" id="navbarContent">
-            <ul
-                    class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0"
-            >
-              <li class="nav-item">
-                <a
-                        class="nav-link text-decoration-none tint-text"
-                        aria-current="page"
-                        href="Accueil.html"
-                >Accueil</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                        class="nav-link text-decoration-none tint-text"
-                        href="Assos_Projet.html"
-                >Asso & Projets</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                        class="nav-link text-decoration-none tint-text"
-                        href="Actualité_Ressources.html"
-                >Actualité & Ressources</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                        class="nav-link text-decoration-none tint-text"
-                        href="Dons_Engagement.html"
-                >Dons & Engagement</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                        class="nav-link text-decoration-none tint-text"
-                        href="A_propos.html"
-                >À propos</a
-                >
-              </li>
-            </ul>
+              <!-- Contenu principal de la navbar -->
+              <div class="collapse navbar-collapse" id="navbarMain">
+                  <!-- Liens de navigation -->
+                  <ul class="navbar-nav me-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="Accueil.html">Accueil</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Assos_Projet.html">Asso & Projets</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Actualité_Ressources.html">Actualité & Ressources</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Dons_Engagement.html">Dons & Engagement</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="A_propos.html">À propos</a>
+                      </li>
 
-            <div class="d-flex">
-              <a
-                      href="../Backend/session_check.php"
-                      class="btn btn-outline-primary"
-              >Espace Membre</a
-              >
-            </div>
+                      <!-- Version mobile dans le menu déroulant -->
+                      <li class="nav-item d-lg-none">
+                          <a class="nav-link nav-link-admin" href="../Backend/views/auth/login.php">
+                              <i class="bi bi-shield-lock"></i>
+                              <span>Admin</span>
+                          </a>
+                      </li>
+                  </ul>
+                  <!-- Version desktop à droite -->
+                  <a class="nav-link nav-link-admin ms-3 d-none d-lg-flex" href="../Backend/views/auth/login.php">
+                      <i class="bi bi-shield-lock"></i>
+                      <span>Admin</span>
+                  </a>
+              </div>
           </div>
-        </div>
-        <li class="nav-item">
-          <a class="nav-link text-decoration-none tint-text"
-             href="../Backend/views/auth/login.php"
-             target="_blank">
-            <strong>🔐 Backoffice</strong>
-          </a>
-        </li>
+          </div>
       </nav>
-    </header>
+  </header>
 
     <main>
       <div class="container container-fluid">
+
         <div class="box"></div>
         <div class="col-11 col-md-5 offset-md-1">
           <h2 class="tint-text">Dons et engagements</h2>
@@ -126,32 +102,144 @@
               étudiants grâce à votre générosité.
             </p>
           </div>
+            <!-- Message de succès/erreur (ajoutez cet élément) -->
+            <div id="don-message" style="display: none;"></div>
+
           <div class="row">
-            <div class="col-9 bg-white rounded rounded-3 p-3 my-2">
-              <form>
-                <h4>Vos informations</h4>
-                <label class="form-label" for="identite">Prenom et Nom</label>
-                <input class="form-control mb-2" id="identite" />
-                <label class="form-label" for="paiement"
-                  >Methode de paiement</label
-                >
-                <select class="form-control mb-2" id="paiement">
-                  <option value="1">Espèce - Livraison postale</option>
-                  <option value="2">Cheque - Livraison postale</option>
-                  <option value="3">Paiement Bancaire</option>
-                </select>
-                <input type="checkbox" id="engagement" />
-                <label class="form-label" for="engagement"
-                  >Je m'engage à un paiement mensuel
-                  <a class="link-secondary">Termes et conditions</a></label
-                >
-              </form>
-            </div>
-            <div class="col-3 my-2 d-flex flex-column-reverse">
-              <a class="btn btn-primary"> Je m'engage </a>
-            </div>
+              <div class="col-9 bg-white rounded rounded-3 p-3 my-2">
+                  <form method="POST" action="../Backend/views/don/traiter_don.php" id="formDon">
+                      <h4>Vos informations</h4>
+
+                      <!-- Séparer prénom et nom -->
+                      <div class="row mb-3">
+                          <div class="col-md-6">
+                              <label class="form-label" for="prenom">Prénom *</label>
+                              <input class="form-control" id="prenom" name="prenom" required>
+                          </div>
+                          <div class="col-md-6">
+                              <label class="form-label" for="nom">Nom *</label>
+                              <input class="form-control" id="nom" name="nom" required>
+                          </div>
+                      </div>
+
+                      <div class="mb-3">
+                          <label class="form-label" for="email">Adresse email *</label>
+                          <input type="email" class="form-control" id="email" name="email" required>
+                      </div>
+
+                      <div class="mb-3">
+                          <label class="form-label" for="telephone">Téléphone</label>
+                          <input type="tel" class="form-control" id="telephone" name="telephone">
+                      </div>
+
+                      <div class="mb-3">
+                          <label class="form-label" for="montant">Montant du don (€) *</label>
+                          <div class="input-group">
+                              <input type="number" class="form-control" id="montant" name="montant"
+                                     min="1" step="0.01" value="15" required>
+                              <span class="input-group-text">€</span>
+                          </div>
+                          <small class="form-text text-muted">
+                              Montant minimum : 1 €
+                          </small>
+                      </div>
+
+                      <!-- Ajouter fréquence -->
+                      <div class="mb-3">
+                          <label class="form-label" for="frequence">Fréquence *</label>
+                          <select class="form-control" id="frequence" name="frequence" required>
+                              <option value="ponctuel" selected>Don ponctuel</option>
+                              <option value="mensuel">Don mensuel</option>
+                          </select>
+                      </div>
+
+                      <div class="mb-3">
+                          <label class="form-label" for="paiement">Méthode de paiement *</label>
+                          <select class="form-control" id="paiement" name="paiement" required>
+                              <option value="">Sélectionnez...</option>
+                              <option value="espece_postal">Espèce - Livraison postale</option>
+                              <option value="cheque_postal">Chèque - Livraison postale</option>
+                              <option value="paiement_bancaire">Paiement Bancaire</option>
+                          </select>
+                      </div>
+
+                      <div class="mb-3">
+                          <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="engagement" name="engagement">
+                              <label class="form-check-label" for="engagement">
+                                  Je m'engage à un paiement mensuel
+                                  <a href="#" data-bs-toggle="modal" data-bs-target="#modalConditions" class="link-secondary">Termes et conditions</a>
+                              </label>
+                          </div>
+                      </div>
+
+                      <!-- Ajouter demande de reçu -->
+                      <div class="mb-3">
+                          <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="receipt" name="receipt" checked>
+                              <label class="form-check-label" for="receipt">
+                                  Je souhaite recevoir un reçu fiscal
+                              </label>
+                          </div>
+                      </div>
+
+                      <div class="mb-3">
+                          <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="rgpd" name="rgpd" required>
+                              <label class="form-check-label" for="rgpd">
+                                  J'accepte que mes données soient utilisées pour le traitement de mon don
+                                  et que je puisse recevoir des informations de la FAGE *
+                              </label>
+                          </div>
+                      </div>
+
+                      <!-- Zone d'info dynamique -->
+                      <div class="alert alert-info" id="infoPaiement">
+                          Sélectionnez une méthode de paiement pour voir les instructions.
+                      </div>
+                  </form>
+              </div>
+
+              <div class="col-3 my-2 d-flex flex-column-reverse">
+                  <button type="submit" form="formDon" class="btn btn-primary btn-lg">
+                      Je fais un don
+                  </button>
+              </div>
           </div>
         </div>
+
+          <!-- Modal pour les conditions -->
+          <div class="modal fade" id="modalConditions" tabindex="-1">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title">Termes et conditions</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <div class="modal-body">
+                          <h6>Engagement mensuel</h6>
+                          <p>En cochant cette case, vous autorisez la FAGE à prélever mensuellement le montant indiqué sur votre compte bancaire.</p>
+                          <ul>
+                              <li>Le premier prélèvement aura lieu sous 48h</li>
+                              <li>Les prélèvements suivants interviendront le même jour chaque mois</li>
+                              <li>Vous recevrez un email de confirmation avant chaque prélèvement</li>
+                          </ul>
+
+                          <h6 class="mt-4">Déduction fiscale</h6>
+                          <p>Les dons à la FAGE ouvrent droit à une réduction d'impôt de 66% dans la limite de 20% du revenu imposable.</p>
+
+                          <h6 class="mt-4">Rétractation</h6>
+                          <p>Vous pouvez annuler votre engagement à tout moment en nous contactant à dons@fage.fr</p>
+
+                          <h6 class="mt-4">Confidentialité</h6>
+                          <p>Vos données sont traitées conformément au RGPD et ne seront pas transmises à des tiers.</p>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">J'ai compris</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
         <div class="row my-5">
           <div class="col-md-12 col-6 mx-auto"></div>
@@ -196,59 +284,60 @@
       </div>
     </main>
 
+    <!-- ⚫ FOOTER -->
     <footer class="footer">
-        <div class="footer-container">
-            <!-- Colonne 1 -->
-            <div class="footer-col">
-                <div class="footer-logo">
-                    <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
-                </div>
-                <p>
-                    FAGE – Fédération des Associations Générales Étudiantes<br />
-                    79 rue Périer, 92120 Montrouge<br />
-                    Tél : 01.40.33.70.70
-                </p>
-                <div class="footer-socials">
-                    <a
-                            href="https://www.facebook.com/fage.org/?locale=fr_FR"
-                            target="_blank"
-                    ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
-                    /></a>
-                    <a href="https://fr.linkedin.com/company/la-fage" target="_blank"
-                    ><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
-                    /></a>
-                    <a href="https://www.youtube.com/@associationfage" target="_blank"
-                    ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
-                    /></a>
-                    <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"
-                    ><img src="../assets/img/icon_instagram.svg" alt="Instagram"
-                    /></a>
-                </div>
-            </div>
-
-            <!-- Colonne 2 -->
-            <div class="footer-col">
-                <h4>Mentions légales</h4>
-                <ul>
-                    <li><a target="_blank" href="Mentions%20Legales.html">Mentions légales </a></li>
-                    <li><a target="_blank" href="Politique_confidentialité.html">Politique de confidentialité</a></li>
-                    <li><a target="_blank" href="Cookies.html">Cookies</a></li>
-                </ul>
-            </div>
-
-            <!-- Colonne 3 -->
-            <div class="footer-col">
-                <h4>Liens utiles</h4>
-                <ul>
-                    <li><a target="_blank" href="Assos_Projet.html">Assos & Projets</a></li>
-                    <li>
-                        <a target="_blank" href="Actualité_Ressources.html">Actualité & Ressources</a>
-                    </li>
-                    <li><a target="_blank" href="Dons_Engagement.html">Don & Engagement</a></li>
-                    <li><a target="_blank" href="A_propos.html">À propos</a></li>
-                </ul>
-            </div>
+      <div class="footer-container">
+        <!-- Colonne 1 -->
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
+          </div>
+          <p>
+            FAGE – Fédération des Associations Générales Étudiantes<br />
+            79 rue Périer, 92120 Montrouge<br />
+            Tél : 01.40.33.70.70
+          </p>
+          <div class="footer-socials">
+            <a
+              href="https://www.facebook.com/fage.org/?locale=fr_FR"
+              target="_blank"
+              ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
+            /></a>
+            <a href="https://fr.linkedin.com/company/la-fage" target="_blank"
+              ><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
+            /></a>
+            <a href="https://www.youtube.com/@associationfage" target="_blank"
+              ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
+            /></a>
+            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"
+              ><img src="../assets/img/icon_instagram.svg" alt="Instagram"
+            /></a>
+          </div>
         </div>
+
+        <!-- Colonne 2 -->
+        <div class="footer-col">
+          <h4>Mentions légales</h4>
+          <ul>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+
+        <!-- Colonne 3 -->
+        <div class="footer-col">
+          <h4>Liens utiles</h4>
+          <ul>
+            <li><a href="Asso_Projet.html">Assos & Projets</a></li>
+            <li>
+              <a href="Actualité_Ressource.html">Actualité & Ressources</a>
+            </li>
+            <li><a href="Dons_Engagement.html">Don & Engagement</a></li>
+            <li><a href="A_propos.html">À propos</a></li>
+          </ul>
+        </div>
+      </div>
     </footer>
 
     <!-- Bouton retour en haut-->
@@ -259,5 +348,6 @@
     >
       ↑
     </a>
+
   </body>
 </html>

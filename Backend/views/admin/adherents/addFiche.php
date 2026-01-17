@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $v_naiss = $formData['date_naissance'] ?: null;
 
             // Liaison des paramètres : 6 chaînes (s)
-            $stmt->bind_param("sssssss",
+            $stmt->bind_param("ssssss",
                     $formData['nom'],
                     $formData['prenom'],
                     $v_email,

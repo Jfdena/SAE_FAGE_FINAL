@@ -1,255 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAGE - À Propos</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
+    <title>FAGE - A propos</title>
     <link rel="stylesheet" href="../assets/css/stylesheet.css" />
     <link rel="icon" href="../assets/img/lgFage1C.png" type="image/x-icon" />
 
-    <style>
-        :root {
-            --fage-blue: #183146;
-            --fage-light-blue: #0d6efd;
-            --fage-bg: #f8f9fa;
-        }
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script src="../assets/Javascript/fichier.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--fage-bg);
-            color: #333;
-            /* Flexbox pour coller le footer en bas */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-        }
+  </head>
 
-        /* Le Main prend tout l'espace disponible */
-        main {
-            flex: 1;
-            width: 100%;
-        }
-
-        /* --- HEADER PAGE --- */
-        .page-header-banner {
-            background-color: var(--fage-blue) !important; /* Force le bleu foncé */
-            color: white !important; /* Force le texte en blanc */
-            padding: 60px 0;
-            text-align: center;
-            margin-bottom: 40px;
-            width: 100%;
-        }
-
-        .page-header-banner h1 {
-            font-weight: 800;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .page-header-banner p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-            margin: 0;
-        }
-
-        /* --- CONTENU --- */
-        .container-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
-        /* --- SECTION INTRO --- */
-        .intro-card {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
-            border-left: 5px solid var(--fage-blue);
-        }
-
-        .intro-card h2 {
-            color: var(--fage-blue);
-            margin-bottom: 20px;
-        }
-
-        .intro-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .intro-card li {
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .intro-card li::before {
-            content: "\f00c"; /* FontAwesome check */
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            color: var(--fage-light-blue);
-            position: absolute;
-            left: 0;
-            top: 4px;
-        }
-
-        /* --- PARTENAIRES --- */
-        .section-title {
-            text-align: center;
-            color: var(--fage-blue);
-            font-weight: 800;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            margin-top: 60px;
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-
-        .partner-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            border: 1px solid #eee;
-        }
-
-        .partner-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .partner-logo {
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 20px;
-            max-width: 100%;
-        }
-
-        .partner-name {
-            font-weight: 700;
-            color: var(--fage-blue);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .partner-desc {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .btn-visit {
-            background-color: transparent;
-            color: var(--fage-blue);
-            border: 2px solid var(--fage-blue);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-            margin-top: auto; /* Pousse le bouton en bas */
-        }
-
-        .btn-visit:hover {
-            background-color: var(--fage-blue);
-            color: white;
-        }
-
-        /* --- ORGANIGRAMME --- */
-        .organigramme-container {
-            text-align: center;
-            margin-bottom: 60px;
-            background: white;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-
-        .organigramme-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        /* --- FORMULAIRE CONTACT --- */
-        .contact-section {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            margin-bottom: 80px;
-            border: 1px solid #eee;
-        }
-
-        .form-label {
-            font-weight: 600;
-            color: var(--fage-blue);
-            margin-bottom: 8px;
-        }
-
-        .form-control {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            padding: 12px;
-            border-radius: 8px;
-        }
-
-        .form-control:focus {
-            background-color: white;
-            border-color: var(--fage-light-blue);
-            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
-        }
-
-        .btn-submit {
-            background-color: var(--fage-blue);
-            color: white;
-            padding: 12px 40px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .btn-submit:hover {
-            background-color: var(--fage-light-blue);
-            transform: translateY(-2px);
-        }
-
-        /* Footer margin */
-        .footer { margin-top: auto; }
-    </style>
-</head>
-
-<body>
-
+  <body>
+  <header>
     <header>
       <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
         <div class="container-fluid">
@@ -257,133 +33,278 @@
             <img src="../assets/img/logo_navbar.png" height="40" width="auto" alt="Logo FAGE" />
           </a>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <!-- Bouton hamburger pour mobile -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link tint-text" href="Accueil.html">Accueil</a></li>
-              <li class="nav-item"><a class="nav-link tint-text" href="Assos_Projet.html">Asso & Projets</a></li>
-              <li class="nav-item"><a class="nav-link tint-text" href="Actualité_Ressources.html">Actu & Ressources</a></li>
-              <li class="nav-item"><a class="nav-link tint-text" href="Dons_Engagement.html">Dons</a></li>
-              <li class="nav-item"><a class="nav-link tint-text fw-bold text-primary" href="A_propos.html" aria-current="page">À propos</a></li>
-            </ul>
+          <!-- Contenu principal de la navbar -->
+          <div class="collapse navbar-collapse" id="navbarMain">
+            <!-- Liens de navigation -->
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="Accueil.html">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Assos_Projet.html">Asso & Projets</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Actualité_Ressources.html">Actualité & Ressources</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Dons_Engagement.html">Dons & Engagement</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="A_propos.html">À propos</a>
+              </li>
 
-            <div class="d-flex">
-              <a href="../Backend/session_check.php" class="btn btn-outline-primary btn-sm px-3 rounded">Espace Membre</a>
-            </div>
+              <!-- Version mobile dans le menu déroulant -->
+              <li class="nav-item d-lg-none">
+                <a class="nav-link nav-link-admin" href="../Backend/views/auth/login.php">
+                  <i class="bi bi-shield-lock"></i>
+                  <span>Admin</span>
+                </a>
+              </li>
+            </ul>
+            <!-- Version desktop à droite -->
+            <a class="nav-link nav-link-admin ms-3 d-none d-lg-flex" href="../Backend/views/auth/login.php">
+              <i class="bi bi-shield-lock"></i>
+              <span>Admin</span>
+            </a>
           </div>
+        </div>
         </div>
       </nav>
     </header>
 
-    <main>
-        
-        <div class="page-header-banner">
-            <div class="container">
-                <h1>Qui sommes-nous ?</h1>
-                <p>Découvrez l'histoire, les valeurs et l'organisation de la FAGE</p>
-            </div>
+    <section class="container-fage-rapidement">
+      <header>
+        <h9>La F.A.G.E rapidement</h9>
+        <div class="barre"></div>
+
+        <section class="text-dintro">
+          <ul>
+            <li>
+              La Fédération des Associations Générales Étudiantes (F.A.G.E.),
+              créée en 1989, est la première organisation étudiante de France.
+            </li>
+            <li>
+              Elle regroupe un réseau d’associations locales et régionales
+              engagées pour améliorer les conditions de vie et d’études,
+              défendre les droits des étudiants et promouvoir l’engagement
+              associatif.
+            </li>
+            <li>
+              Fondée sur des valeurs de solidarité, égalité, démocratie et
+              responsabilité, la F.A.G.E. agit à travers un réseau structuré
+              avec un bureau national et des fédérations locales, permettant de
+              relayer les besoins des étudiants partout en France.
+            </li>
+            <li>
+              Elle mène également de nombreuses actions de prévention, de
+              formation et de représentation pour soutenir les étudiants au
+              quotidien.
+            </li>
+          </ul>
+        </section>
+      </header>
+
+      <section class="partenaire-partenaire">
+        <h10>Nos Partenaires</h10>
+        <div class="barre"></div>
+
+        <div class="partenaire-grid">
+          <div class="partenaire-carte">
+            <img
+              src="../../dossier_pour_demo/assets/img/logo-ministre-enseignement-superieur.png"
+              alt="Logo Ministère"
+              class="partenaire-logo"
+            /><br />
+
+            <p class="sous-titre">Ministère de l'Enseignement Supérieur</p>
+            <p>
+              Soutien et collaboration pour les politiques étudiantes et
+              l'enseignement supérieur en France.
+            </p>
+            <a
+              href="https://www.enseignementsup-recherche.gouv.fr/fr"
+              class="partenaire-lien"
+              >Visiter le site</a
+            >
+          </div>
+
+          <div class="partenaire-carte">
+            <img
+              src="../../dossier_pour_demo/assets/img/logo-erasmus+.png"
+              alt="Logo erasmus+"
+              class="partenaire-logo"
+            /><br />
+            <p class="sous-titre">Erasmus+</p>
+            <p>
+              Programme de mobilité et d'échange pour les étudiants européens et
+              international.
+            </p>
+            <a href="https://info.erasmusplus.fr/" class="partenaire-lien"
+              >Visiter le site</a
+            >
+          </div>
+
+          <div class="partenaire-carte">
+            <img
+              src="../../dossier_pour_demo/assets/img/logo-ministre-enseignement-superieur.png"
+              alt="Logo sante publique france"
+              class="partenaire-logo"
+            /><br />
+            <p class="sous-titre">Santé Publique France</p>
+            <p>
+              Prévention et promotion de la santé pour les étudiants et jeunes
+              adultes.
+            </p>
+            <a
+              href="https://www.santepubliquefrance.fr/"
+              target="_blank"
+              class="partenaire-lien"
+              >Visiter le site</a
+            >
+          </div>
+
+          <div class="partenaire-carte">
+            <img
+              src="../../dossier_pour_demo/assets/img/logo-service-civique.png"
+              alt="Logo service civique"
+              class="partenaire-logo"
+            /><br />
+            <p class="sous-titre">Service Civique</p>
+            <p>
+              Engagement citoyen et volontariat pour les jeunes de 16 à 25 ans.
+            </p>
+            <a
+              href="https://www.service-civique.gouv.fr/"
+              target="_blank"
+              class="partenaire-lien"
+              >Visiter le site</a
+            >
+          </div>
+
+          <div class="partenaire-carte">
+            <img
+              src="../../dossier_pour_demo/assets/img/logo-securite-routiere.png"
+              alt="Logo securite routiere"
+              class="partenaire-logo"
+            /><br />
+            <p class="sous-titre">Sécurité Routière</p>
+            <p>
+              Prévention et sensibilisation à la sécurité routière auprès des
+              étudiants.
+            </p>
+            <a
+              href="https://www.securite-routiere.gouv.fr/"
+              target="_blank"
+              class="partenaire-lien"
+              >Visiter le site</a
+            >
+          </div>
+
+          <div class="partenaire-carte">
+            <img
+              src="../../dossier_pour_demo/assets/img/logo-lafe.png"
+              alt="Logo france s'engage"
+              class="partenaire-logo"
+            /><br />
+            <p class="sous-titre">La Fondation La France S'Engage</p>
+            <p>
+              Soutien des projets d'engagement citoyen et d'innovation sociale
+              pour les jeunes.
+            </p>
+            <a
+              href="https://fondationlafrancesengage.org/"
+              target="_blank"
+              class="partenaire-lien"
+              >Visiter le site</a
+            >
+          </div>
         </div>
+      </section>
+      <br /><br />
 
-        <div class="container-content">
-            
-            <div class="intro-card">
-                <h2 class="h3 fw-bold">La F.A.G.E rapidement</h2>
-                <ul>
-                    <li>La Fédération des Associations Générales Étudiantes (F.A.G.E.), créée en 1989, est la première organisation étudiante de France.</li>
-                    <li>Elle regroupe un réseau d’associations locales et régionales engagées pour améliorer les conditions de vie et d’études, défendre les droits des étudiants et promouvoir l’engagement associatif.</li>
-                    <li>Fondée sur des valeurs de solidarité, égalité, démocratie et responsabilité, la F.A.G.E. agit à travers un réseau structuré avec un bureau national et des fédérations locales.</li>
-                    <li>Elle mène de nombreuses actions de prévention, de formation et de représentation pour soutenir les étudiants au quotidien.</li>
-                </ul>
-            </div>
+      <h11>Notre Organigramme</h11>
+      <div class="barre"></div>
 
-            <section class="partners-section">
-                <h2 class="section-title">Nos Partenaires</h2>
-                
-                <div class="partners-grid">
-                    <div class="partner-card">
-                        <img src="../assets/img/logo-ministre-enseignement-superieur.png" alt="Ministère" class="partner-logo" />
-                        <h3 class="partner-name">Ministère de l'Enseignement Supérieur</h3>
-                        <p class="partner-desc">Soutien et collaboration pour les politiques étudiantes.</p>
-                        <a href="https://www.enseignementsup-recherche.gouv.fr/fr" class="btn-visit" target="_blank">Visiter</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <img src="../assets/img/logo-erasmus.png" alt="Erasmus+" class="partner-logo" />
-                        <h3 class="partner-name">Erasmus+</h3>
-                        <p class="partner-desc">Programme de mobilité pour les étudiants européens.</p>
-                        <a href="https://info.erasmusplus.fr/" class="btn-visit" target="_blank">Visiter</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <img src="../assets/img/logo-sante-publique-france.png" alt="Santé Publique France" class="partner-logo" />
-                        <h3 class="partner-name">Santé Publique France</h3>
-                        <p class="partner-desc">Prévention et promotion de la santé pour les jeunes.</p>
-                        <a href="https://www.santepubliquefrance.fr/" class="btn-visit" target="_blank">Visiter</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <img src="../assets/img/logo-service-civique.png" alt="Service Civique" class="partner-logo" />
-                        <h3 class="partner-name">Service Civique</h3>
-                        <p class="partner-desc">Engagement citoyen et volontariat pour les jeunes.</p>
-                        <a href="https://www.service-civique.gouv.fr/" class="btn-visit" target="_blank">Visiter</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <img src="../assets/img/logo-securite-routiere.png" alt="Sécurité Routière" class="partner-logo" />
-                        <h3 class="partner-name">Sécurité Routière</h3>
-                        <p class="partner-desc">Prévention et sensibilisation à la sécurité routière.</p>
-                        <a href="https://www.securite-routiere.gouv.fr/" class="btn-visit" target="_blank">Visiter</a>
-                    </div>
-
-                    <div class="partner-card">
-                        <img src="../assets/img/logo-laffe.png" alt="La France S'Engage" class="partner-logo" />
-                        <h3 class="partner-name">Fondation La France S'Engage</h3>
-                        <p class="partner-desc">Soutien des projets d'engagement citoyen.</p>
-                        <a href="https://fondationlafrancesengage.org/" class="btn-visit" target="_blank">Visiter</a>
-                    </div>
-                </div>
-            </section>
-
-            <h2 class="section-title">Notre Organigramme</h2>
-            <div class="organigramme-container">
-                <img src="../assets/img/Organigramme-fage.png" alt="Organigramme FAGE" class="organigramme-img" />
-            </div>
-
-            <h2 class="section-title">Nous contacter</h2>
-            <div class="contact-section">
-                <form id="contactForm" action="../Backend/contact.php" method="POST">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="nom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="prenom" class="form-label">Prénom</label>
-                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre prénom" required>
-                        </div>
-                        <div class="col-12">
-                            <label for="email" class="form-label">Adresse Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="nom@exemple.com" required>
-                        </div>
-                        <div class="col-12">
-                            <label for="message" class="form-label">Votre Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
-                        </div>
-                        <div class="col-12 text-center">
-                            <button type="submit" class="btn-submit">Envoyer le message</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
+      <section class="fond-organigramme">
+        <div class="carre">
+          <img
+            src="../../dossier_pour_demo/assets/img/image-organigramme.png"
+            alt="Description de l'image"
+          />
         </div>
-    </main>
+      </section>
+      <br />
 
+      <section class="formulaire-de-contact">
+        <div class="container">
+          <h12>Formulaire de Contact</h12>
+          <div class="barre"></div>
+
+          <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input
+                  type="text"
+                  id="nom"
+                  name="nom"
+                  placeholder="Emile"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input
+                  type="text"
+                  id="prenom"
+                  name="prenom"
+                  placeholder="Dubois"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Adresse Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="emile.dubois@gmail.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="message">Votre Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Entrer votre message"
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="button-container-form">
+              <button onclick="messageEnvoye()" type="submit">Envoyer</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </section>
+
+    <!-- ⚫ FOOTER -->
     <footer class="footer">
       <div class="footer-container">
+        <!-- Colonne 1 -->
         <div class="footer-col">
           <div class="footer-logo">
             <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
@@ -394,36 +315,55 @@
             Tél : 01.40.33.70.70
           </p>
           <div class="footer-socials">
-            <a href="https://www.facebook.com/fage.org/?locale=fr_FR" target="_blank"><img src="../assets/img/icon_facebook.svg" alt="Facebook"/></a>
-            <a href="https://fr.linkedin.com/company/la-fage" target="_blank"><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"/></a>
-            <a href="https://www.youtube.com/@associationfage" target="_blank"><img src="../assets/img/icon_youtube.svg" alt="YouTube"/></a>
-            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"><img src="../assets/img/icon_instagram.svg" alt="Instagram"/></a>
+            <a
+              href="https://www.facebook.com/fage.org/?locale=fr_FR"
+              target="_blank"
+              ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
+            /></a>
+            <a href="https://fr.linkedin.com/company/la-fage" target="_blank"
+              ><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
+            /></a>
+            <a href="https://www.youtube.com/@associationfage" target="_blank"
+              ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
+            /></a>
+            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"
+              ><img src="../assets/img/icon_instagram.svg" alt="Instagram"
+            /></a>
           </div>
         </div>
 
+        <!-- Colonne 2 -->
         <div class="footer-col">
           <h4>Mentions légales</h4>
           <ul>
-            <li><a href="Mentions Legales.html">Mentions légales</a></li>
-            <li><a href="Politique_confidentialité.html">Politique de confidentialité</a></li>
-            <li><a href="Cookies.html">Cookies</a></li>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Cookies</a></li>
           </ul>
         </div>
 
+        <!-- Colonne 3 -->
         <div class="footer-col">
           <h4>Liens utiles</h4>
           <ul>
-            <li><a href="Assos_Projet.html">Assos & Projets</a></li>
-            <li><a href="Actualité_Ressources.html">Actu & Ressources</a></li>
-            <li><a href="Dons_Engagement.html">Dons</a></li>
+            <li><a href="Asso_Projet.html">Assos & Projets</a></li>
+            <li>
+              <a href="Actualité_Ressource.html">Actualité & Ressources</a>
+            </li>
+            <li><a href="Dons_Engagement.html">Don & Engagement</a></li>
             <li><a href="A_propos.html">À propos</a></li>
           </ul>
         </div>
       </div>
     </footer>
 
-    <a href="#top" class="scroll-to-top-nojs" aria-label="Remonter en haut de la page">↑</a>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- Bouton retour en haut-->
+    <a
+      href="#top"
+      class="scroll-to-top-nojs"
+      aria-label="Remonter en haut de la page"
+    >
+      ↑
+    </a>
+  </body>
 </html>

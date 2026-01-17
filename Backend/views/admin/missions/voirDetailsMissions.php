@@ -19,8 +19,10 @@ $conn = $db->getConnection();
 
 // Récupérer l'événement
 $stmt = $conn->prepare("SELECT * FROM Evenement WHERE id_evenement = ?");
-$stmt->execute([$event_id]);
-$event = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt->bind_param('i', $event_id);
+$stmt->execute();
+$results = $stmt->get_result();
+$event = $results->fetch_all();
 
 // Vérifier si l'événement existe
 if (!$event) {

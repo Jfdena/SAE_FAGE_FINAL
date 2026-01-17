@@ -1,5 +1,4 @@
 <?php
-# ⭐ PRIORITAIRE - Création
 // Backend/views/admin/missions/addMissions.php
 
 // Protection
@@ -11,7 +10,7 @@ $db = new Database();
 try {
     $conn = $db->getConnection();
 } catch (Exception $e) {
-
+    die("Erreur de connexion à la base de données : " . $e->getMessage());
 }
 
 // Variables
@@ -21,17 +20,17 @@ $new_event_id = null;
 
 // Données par défaut
 $formData = [
-    'nom' => '',
-    'type' => 'formation',
-    'lieu' => '',
-    'date_debut' => $_GET['date'] ?? date('Y-m-d'),
-    'date_fin' => $_GET['date'] ?? date('Y-m-d'),
-    'heure_debut' => '09:00',
-    'heure_fin' => '17:00',
-    'nb_participants_prevus' => 10,
-    'budget' => '',
-    'statut' => 'planifié',
-    'description' => ''
+        'nom' => '',
+        'type' => 'formation',
+        'lieu' => '',
+        'date_debut' => $_GET['date'] ?? date('Y-m-d'),
+        'date_fin' => $_GET['date'] ?? date('Y-m-d'),
+        'heure_debut' => '09:00',
+        'heure_fin' => '17:00',
+        'nb_participants_prevus' => 10,
+        'budget' => '',
+        'statut' => 'planifié',
+        'description' => ''
 ];
 
 // Traitement du formulaire
@@ -45,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $formData['heure_debut'] = $_POST['heure_debut'] ?? '09:00';
     $formData['heure_fin'] = $_POST['heure_fin'] ?? '17:00';
     $formData['nb_participants_prevus'] = (int)($_POST['nb_participants_prevus'] ?? 10);
-    $formData['budget'] = $_POST['budget'] ? (float)$_POST['budget'] : null;
+    $formData['budget'] = !empty($_POST['budget']) ? (float)$_POST['budget'] : null;
     $formData['statut'] = $_POST['statut'] ?? 'planifié';
     $formData['description'] = trim($_POST['description'] ?? '');
 
@@ -77,38 +76,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Insérer l'événement
             $sql = "INSERT INTO Evenement (nom, type, lieu, date_debut, date_fin, 
-                    nb_participants_prevus, budget, statut) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    nb_participants_prevus, budget, statut, details) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql);
-            $stmt->execute([
-                $formData['nom'],
-                $formData['type'],
-                $formData['lieu'],
-                $datetime_debut,
-                $datetime_fin,
-                $formData['nb_participants_prevus'],
-                $formData['budget'],
-                $formData['statut']
-            ]);
+            $stmt->bind_param("sssssidss",
+                    $formData['nom'],
+                    $formData['type'],
+                    $formData['lieu'],
+                    $datetime_debut,
+                    $datetime_fin,
+                    $formData['nb_participants_prevus'],
+                    $formData['budget'],
+                    $formData['statut'],
+                    $formData['description']
+            );
 
-            $new_event_id = $conn->lastInsertId();
-            $success = true;
+            if ($stmt->execute()) {
+                $new_event_id = $stmt->insert_id;
+                $success = true;
 
-            // Réinitialiser le formulaire après succès
-            $formData = [
-                'nom' => '',
-                'type' => 'formation',
-                'lieu' => '',
-                'date_debut' => date('Y-m-d'),
-                'date_fin' => date('Y-m-d'),
-                'heure_debut' => '09:00',
-                'heure_fin' => '17:00',
-                'nb_participants_prevus' => 10,
-                'budget' => '',
-                'statut' => 'planifié',
-                'description' => ''
-            ];
+                // Réinitialiser le formulaire après succès
+                $formData = [
+                        'nom' => '',
+                        'type' => 'formation',
+                        'lieu' => '',
+                        'date_debut' => date('Y-m-d'),
+                        'date_fin' => date('Y-m-d'),
+                        'heure_debut' => '09:00',
+                        'heure_fin' => '17:00',
+                        'nb_participants_prevus' => 10,
+                        'budget' => '',
+                        'statut' => 'planifié',
+                        'description' => ''
+                ];
+            } else {
+                $errors[] = "Erreur lors de l'insertion : " . $stmt->error;
+            }
+
+            $stmt->close();
 
         } catch (Exception $e) {
             $errors[] = "Erreur lors de la création : " . $e->getMessage();
@@ -118,15 +124,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Types d'événements prédéfinis
 $event_types = [
-    'formation' => 'Formation',
-    'reunion' => 'Réunion',
-    'evenement' => 'Événement public',
-    'collecte' => 'Collecte',
-    'manifestation' => 'Manifestation',
-    'festival' => 'Festival',
-    'assemblee' => 'Assemblée générale',
-    'autre' => 'Autre'
+        'formation' => 'Formation',
+        'reunion' => 'Réunion',
+        'evenement' => 'Événement public',
+        'collecte' => 'Collecte',
+        'manifestation' => 'Manifestation',
+        'festival' => 'Festival',
+        'assemblee' => 'Assemblée générale',
+        'autre' => 'Autre'
 ];
+
+// Récupérer les statuts disponibles depuis la base
+$statut_types = ['planifié', 'en cours', 'termine', 'annule'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -168,52 +177,52 @@ $event_types = [
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../dashboard.php">
-                <i class="bi bi-house"></i> Dashboard
-            </a>
-            <div class="navbar-text text-white">
-                <i class="bi bi-calendar-plus"></i> Nouvel événement
+<!-- Navigation -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../dashboard.php">
+            <i class="bi bi-house"></i> Dashboard
+        </a>
+        <div class="navbar-text text-white">
+            <i class="bi bi-calendar-plus"></i> Nouvel événement
+        </div>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <div class="form-container">
+        <!-- En-tête -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2><i class="bi bi-calendar-plus"></i> Créer un événement</h2>
+                <p class="text-muted mb-0">
+                    Planifiez un nouvel événement ou mission pour la FAGE
+                </p>
+            </div>
+            <div>
+                <a href="calendrier.php" class="btn btn-outline-primary">
+                    <i class="bi bi-calendar-event"></i> Retour au calendrier
+                </a>
             </div>
         </div>
-    </nav>
 
-    <div class="container py-4">
-        <div class="form-container">
-            <!-- En-tête -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h2><i class="bi bi-calendar-plus"></i> Créer un événement</h2>
-                    <p class="text-muted mb-0">
-                        Planifiez un nouvel événement ou mission pour la FAGE
-                    </p>
-                </div>
-                <div>
-                    <a href="calendrier.php" class="btn btn-outline-primary">
-                        <i class="bi bi-calendar-event"></i> Retour au calendrier
-                    </a>
-                </div>
+        <!-- Carte principale -->
+        <div class="card shadow">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="bi bi-pencil"></i> Informations de l'événement
+                </h4>
             </div>
 
-            <!-- Carte principale -->
-            <div class="card shadow">
-                <div class="card-header">
-                    <h4 class="mb-0">
-                        <i class="bi bi-pencil"></i> Informations de l'événement
-                    </h4>
-                </div>
-
-                <div class="card-body p-4">
-                    <!-- Messages -->
-                    <?php if ($success): ?>
+            <div class="card-body p-4">
+                <!-- Messages -->
+                <?php if ($success): ?>
                     <div class="alert alert-success alert-dismissible fade show">
                         <h5><i class="bi bi-check-circle"></i> Événement créé !</h5>
                         <p class="mb-0">
                             L'événement a été créé avec succès.
                             <?php if ($new_event_id): ?>
-                            <br><small>ID : #<?php echo $new_event_id; ?></small>
+                                <br><small>ID : #<?php echo $new_event_id; ?></small>
                             <?php endif; ?>
                         </p>
                         <div class="mt-3">
@@ -229,269 +238,249 @@ $event_types = [
                             </a>
                         </div>
                     </div>
-                    <?php endif; ?>
+                <?php endif; ?>
 
-                    <?php if (!empty($errors)): ?>
+                <?php if (!empty($errors)): ?>
                     <div class="alert alert-danger">
                         <h5><i class="bi bi-exclamation-triangle"></i> Erreurs :</h5>
                         <ul class="mb-0">
                             <?php foreach ($errors as $error): ?>
-                            <li><?php echo htmlspecialchars($error); ?></li>
+                                <li><?php echo htmlspecialchars($error); ?></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <?php endif; ?>
+                <?php endif; ?>
 
-                    <!-- Aperçu dynamique -->
-                    <div class="event-preview">
-                        <h6><i class="bi bi-eye"></i> Aperçu :</h6>
-                        <div id="eventPreview">
-                            <span class="text-muted">Remplissez le formulaire pour voir l'aperçu...</span>
-                        </div>
+                <!-- Aperçu dynamique -->
+                <div class="event-preview">
+                    <h6><i class="bi bi-eye"></i> Aperçu :</h6>
+                    <div id="eventPreview">
+                        <span class="text-muted">Remplissez le formulaire pour voir l'aperçu...</span>
                     </div>
+                </div>
 
-                    <!-- Formulaire -->
-                    <form method="POST" action="" id="eventForm">
-                        <div class="row g-3">
-                            <!-- Nom -->
-                            <div class="col-md-8">
-                                <label for="nom" class="form-label required">Nom de l'événement</label>
-                                <input type="text"
-                                       id="nom"
-                                       name="nom"
-                                       class="form-control"
-                                       value="<?php echo htmlspecialchars($formData['nom']); ?>"
-                                       required
-                                       placeholder="Ex: Formation premiers secours"
-                                       oninput="updatePreview()">
-                                <div class="form-text">Nom clair et descriptif de l'événement</div>
-                            </div>
+                <!-- Formulaire -->
+                <form method="POST" action="" id="eventForm">
+                    <div class="row g-3">
+                        <!-- Nom -->
+                        <div class="col-md-8">
+                            <label for="nom" class="form-label required">Nom de l'événement</label>
+                            <input type="text"
+                                   id="nom"
+                                   name="nom"
+                                   class="form-control"
+                                   value="<?php echo htmlspecialchars($formData['nom']); ?>"
+                                   required
+                                   placeholder="Ex: Formation premiers secours"
+                                   oninput="updatePreview()">
+                            <div class="form-text">Nom clair et descriptif de l'événement</div>
+                        </div>
 
-                            <!-- Type -->
-                            <div class="col-md-4">
-                                <label for="type" class="form-label">Type</label>
-                                <select id="type" name="type" class="form-select" onchange="updatePreview()">
-                                    <?php foreach ($event_types as $value => $label): ?>
+                        <!-- Type -->
+                        <div class="col-md-4">
+                            <label for="type" class="form-label">Type</label>
+                            <select id="type" name="type" class="form-select" onchange="updatePreview()">
+                                <?php foreach ($event_types as $value => $label): ?>
                                     <option value="<?php echo $value; ?>"
-                                        <?php echo $formData['type'] === $value ? 'selected' : ''; ?>>
+                                            <?php echo $formData['type'] === $value ? 'selected' : ''; ?>>
                                         <?php echo $label; ?>
                                     </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-                            <!-- Lieu -->
-                            <div class="col-md-6">
-                                <label for="lieu" class="form-label">
-                                    <i class="bi bi-geo-alt"></i> Lieu
-                                </label>
-                                <input type="text"
-                                       id="lieu"
-                                       name="lieu"
-                                       class="form-control"
-                                       value="<?php echo htmlspecialchars($formData['lieu']); ?>"
-                                       placeholder="Ex: Campus universitaire, Salle A12"
-                                       oninput="updatePreview()">
-                                <div class="form-text">Lieu précis de l'événement</div>
-                            </div>
+                        <!-- Lieu -->
+                        <div class="col-md-6">
+                            <label for="lieu" class="form-label">
+                                <i class="bi bi-geo-alt"></i> Lieu
+                            </label>
+                            <input type="text"
+                                   id="lieu"
+                                   name="lieu"
+                                   class="form-control"
+                                   value="<?php echo htmlspecialchars($formData['lieu']); ?>"
+                                   placeholder="Ex: Campus universitaire, Salle A12"
+                                   oninput="updatePreview()">
+                            <div class="form-text">Lieu précis de l'événement</div>
+                        </div>
 
-                            <!-- Participants -->
-                            <div class="col-md-3">
-                                <label for="nb_participants_prevus" class="form-label required">
-                                    <i class="bi bi-people"></i> Participants
-                                </label>
-                                <input type="number"
-                                       id="nb_participants_prevus"
-                                       name="nb_participants_prevus"
-                                       class="form-control"
-                                       value="<?php echo $formData['nb_participants_prevus']; ?>"
-                                       min="1"
-                                       max="1000"
-                                       required
-                                       oninput="updatePreview()">
-                                <div class="form-text">Nombre prévu</div>
-                            </div>
+                        <!-- Participants -->
+                        <div class="col-md-3">
+                            <label for="nb_participants_prevus" class="form-label required">
+                                <i class="bi bi-people"></i> Participants
+                            </label>
+                            <input type="number"
+                                   id="nb_participants_prevus"
+                                   name="nb_participants_prevus"
+                                   class="form-control"
+                                   value="<?php echo $formData['nb_participants_prevus']; ?>"
+                                   min="1"
+                                   max="1000"
+                                   required
+                                   oninput="updatePreview()">
+                            <div class="form-text">Nombre prévu</div>
+                        </div>
 
-                            <!-- Budget -->
-                            <div class="col-md-3">
-                                <label for="budget" class="form-label">
-                                    <i class="bi bi-cash-coin"></i> Budget (€)
-                                </label>
-                                <input type="number"
-                                       id="budget"
-                                       name="budget"
-                                       class="form-control"
-                                       value="<?php echo $formData['budget']; ?>"
-                                       min="0"
-                                       step="0.01"
-                                       placeholder="Optionnel">
-                                <div class="form-text">Budget estimé</div>
-                            </div>
+                        <!-- Budget -->
+                        <div class="col-md-3">
+                            <label for="budget" class="form-label">
+                                <i class="bi bi-cash-coin"></i> Budget (€)
+                            </label>
+                            <input type="number"
+                                   id="budget"
+                                   name="budget"
+                                   class="form-control"
+                                   value="<?php echo $formData['budget']; ?>"
+                                   min="0"
+                                   step="0.01"
+                                   placeholder="Optionnel">
+                            <div class="form-text">Budget estimé</div>
+                        </div>
 
-                            <!-- Dates et heures -->
-                            <div class="col-12">
-                                <div class="datetime-group">
-                                    <h6><i class="bi bi-clock"></i> Dates et horaires</h6>
-                                    <div class="row g-3">
-                                        <div class="col-md-3">
-                                            <label for="date_debut" class="form-label required">Date début</label>
-                                            <input type="date"
-                                                   id="date_debut"
-                                                   name="date_debut"
-                                                   class="form-control"
-                                                   value="<?php echo $formData['date_debut']; ?>"
-                                                   required
-                                                   onchange="updateDates()">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="heure_debut" class="form-label">Heure début</label>
-                                            <input type="time"
-                                                   id="heure_debut"
-                                                   name="heure_debut"
-                                                   class="form-control"
-                                                   value="<?php echo $formData['heure_debut']; ?>"
-                                                   onchange="updatePreview()">
-                                        </div>
-
-                                        <div class="col-md-1 text-center pt-4">
-                                            <i class="bi bi-arrow-right" style="font-size: 1.5rem;"></i>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <label for="date_fin" class="form-label required">Date fin</label>
-                                            <input type="date"
-                                                   id="date_fin"
-                                                   name="date_fin"
-                                                   class="form-control"
-                                                   value="<?php echo $formData['date_fin']; ?>"
-                                                   required
-                                                   onchange="updatePreview()">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="heure_fin" class="form-label">Heure fin</label>
-                                            <input type="time"
-                                                   id="heure_fin"
-                                                   name="heure_fin"
-                                                   class="form-control"
-                                                   value="<?php echo $formData['heure_fin']; ?>"
-                                                   onchange="updatePreview()">
-                                        </div>
-
-                                        <div class="col-md-1">
-                                            <div class="form-check pt-4">
-                                                <input class="form-check-input"
-                                                       type="checkbox"
-                                                       id="same_date"
-                                                       onchange="toggleSameDate()">
-                                                <label class="form-check-label small" for="same_date">
-                                                    Même jour
-                                                </label>
-                                            </div>
-                                        </div>
+                        <!-- Dates et heures -->
+                        <div class="col-12">
+                            <div class="datetime-group">
+                                <h6><i class="bi bi-clock"></i> Dates et horaires</h6>
+                                <div class="row g-3">
+                                    <div class="col-md-3">
+                                        <label for="date_debut" class="form-label required">Date début</label>
+                                        <input type="date"
+                                               id="date_debut"
+                                               name="date_debut"
+                                               class="form-control"
+                                               value="<?php echo $formData['date_debut']; ?>"
+                                               required
+                                               onchange="updateDates()">
                                     </div>
-                                    <div class="form-text mt-2">
-                                        <span id="durationInfo">Durée : 1 jour</span>
+                                    <div class="col-md-2">
+                                        <label for="heure_debut" class="form-label">Heure début</label>
+                                        <input type="time"
+                                               id="heure_debut"
+                                               name="heure_debut"
+                                               class="form-control"
+                                               value="<?php echo $formData['heure_debut']; ?>"
+                                               onchange="updatePreview()">
+                                    </div>
+
+                                    <div class="col-md-1 text-center pt-4">
+                                        <i class="bi bi-arrow-right" style="font-size: 1.5rem;"></i>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label for="date_fin" class="form-label required">Date fin</label>
+                                        <input type="date"
+                                               id="date_fin"
+                                               name="date_fin"
+                                               class="form-control"
+                                               value="<?php echo $formData['date_fin']; ?>"
+                                               required
+                                               onchange="updatePreview()">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="heure_fin" class="form-label">Heure fin</label>
+                                        <input type="time"
+                                               id="heure_fin"
+                                               name="heure_fin"
+                                               class="form-control"
+                                               value="<?php echo $formData['heure_fin']; ?>"
+                                               onchange="updatePreview()">
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <div class="form-check pt-4">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   id="same_date"
+                                                   onchange="toggleSameDate()">
+                                            <label class="form-check-label small" for="same_date">
+                                                Même jour
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Statut -->
-                            <div class="col-md-4">
-                                <label for="statut" class="form-label">
-                                    <i class="bi bi-toggle-on"></i> Statut
-                                </label>
-                                <select id="statut" name="statut" class="form-select" onchange="updatePreview()">
-                                    <option value="planifié" <?php echo $formData['statut'] == 'planifié' ? 'selected' : ''; ?>>
-                                        Planifié
-                                    </option>
-                                    <option value="en cours" <?php echo $formData['statut'] == 'en cours' ? 'selected' : ''; ?>>
-                                        En cours
-                                    </option>
-                                    <option value="termine" <?php echo $formData['statut'] == 'termine' ? 'selected' : ''; ?>>
-                                        Terminé
-                                    </option>
-                                    <option value="annule" <?php echo $formData['statut'] == 'annule' ? 'selected' : ''; ?>>
-                                        Annulé
-                                    </option>
-                                </select>
-                            </div>
-
-                            <!-- Description -->
-                            <div class="col-12">
-                                <label for="description" class="form-label">
-                                    <i class="bi bi-card-text"></i> Description
-                                </label>
-                                <textarea id="description"
-                                          name="description"
-                                          class="form-control"
-                                          rows="3"
-                                          placeholder="Description détaillée de l'événement, objectifs, programme..."
-                                          oninput="updatePreview()"><?php echo htmlspecialchars($formData['description']); ?></textarea>
-                                <div class="form-text">Optionnel - Détails complémentaires</div>
+                                <div class="form-text mt-2">
+                                    <span id="durationInfo">Durée : 1 jour</span>
+                                </div>
                             </div>
                         </div>
 
-                        <hr class="my-4">
-
-                        <!-- Boutons -->
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <a href="calendrier.php" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-circle"></i> Annuler
-                                </a>
-                                <button type="reset" class="btn btn-outline-warning ms-2">
-                                    <i class="bi bi-eraser"></i> Réinitialiser
-                                </button>
-                            </div>
-
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-lg">
-                                    <i class="bi bi-check-circle"></i> Créer l'événement
-                                </button>
-                            </div>
+                        <!-- Statut -->
+                        <div class="col-md-4">
+                            <label for="statut" class="form-label">
+                                <i class="bi bi-toggle-on"></i> Statut
+                            </label>
+                            <select id="statut" name="statut" class="form-select" onchange="updatePreview()">
+                                <?php foreach ($statut_types as $statut): ?>
+                                    <option value="<?php echo $statut; ?>"
+                                            <?php echo $formData['statut'] == $statut ? 'selected' : ''; ?>>
+                                        <?php echo ucfirst($statut); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
-                    </form>
-                </div>
 
-                <!-- Aide -->
-                <div class="card-footer bg-light">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <small class="text-muted">
-                                <i class="bi bi-info-circle"></i>
-                                L'événement apparaîtra immédiatement dans le calendrier.
-                            </small>
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <small class="text-muted">
-                                <i class="bi bi-shield-check"></i>
-                                Tous les champs marqués d'un * sont obligatoires.
-                            </small>
+                        <!-- Description -->
+                        <div class="col-12">
+                            <label for="description" class="form-label">
+                                <i class="bi bi-card-text"></i> Description
+                            </label>
+                            <textarea id="description"
+                                      name="description"
+                                      class="form-control"
+                                      rows="3"
+                                      placeholder="Description détaillée de l'événement, objectifs, programme..."
+                                      oninput="updatePreview()"><?php echo htmlspecialchars($formData['description']); ?></textarea>
+                            <div class="form-text">Optionnel - Détails complémentaires</div>
                         </div>
                     </div>
-                </div>
+
+                    <hr class="my-4">
+
+                    <!-- Boutons -->
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a href="calendrier.php" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-circle"></i> Annuler
+                            </a>
+                            <button type="reset" class="btn btn-outline-warning ms-2">
+                                <i class="bi bi-eraser"></i> Réinitialiser
+                            </button>
+                        </div>
+
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-check-circle"></i> Créer l'événement
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <!-- Conseils -->
-            <div class="card mt-3 border-info">
-                <div class="card-body">
-                    <h6><i class="bi bi-lightbulb"></i> Conseils pour un bon événement :</h6>
-                    <ul class="small mb-0">
-                        <li><strong>Nom clair</strong> : Ex: "Formation premiers secours" plutôt que "Formation"</li>
-                        <li><strong>Lieu précis</strong> : Salle, adresse, point de rendez-vous</li>
-                        <li><strong>Dates réalistes</strong> : Vérifiez les disponibilités du lieu</li>
-                        <li><strong>Budget estimé</strong> : Aide à la planification financière</li>
-                        <li><strong>Participants</strong> : Estimez selon la capacité du lieu</li>
-                    </ul>
+            <!-- Aide -->
+            <div class="card-footer bg-light">
+                <div class="row">
+                    <div class="col-md-6">
+                        <small class="text-muted">
+                            <i class="bi bi-info-circle"></i>
+                            L'événement apparaîtra immédiatement dans le calendrier.
+                        </small>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <small class="text-muted">
+                            <i class="bi bi-shield-check"></i>
+                            Tous les champs marqués d'un * sont obligatoires.
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
+<script>
     // Aperçu dynamique
     function updatePreview() {
         const nom = document.getElementById('nom').value || '[Nom de l\'événement]';
@@ -573,13 +562,14 @@ $event_types = [
     }
 
     function getStatusColor(statut) {
+        const statutLower = statut.toLowerCase();
         const colors = {
-            'Planifie': 'warning',
-            'En cours': 'success',
-            'Termine': 'secondary',
-            'Annule': 'danger'
+            'planifié': 'warning',
+            'en cours': 'success',
+            'termine': 'secondary',
+            'annule': 'danger'
         };
-        return colors[statut] || 'secondary';
+        return colors[statutLower] || 'secondary';
     }
 
     // Gestion des dates
@@ -616,6 +606,7 @@ $event_types = [
         const nom = document.getElementById('nom').value.trim();
         const dateDebut = document.getElementById('date_debut').value;
         const dateFin = document.getElementById('date_fin').value;
+        const participants = document.getElementById('nb_participants_prevus').value;
 
         // Validation basique
         if (!nom) {
@@ -634,6 +625,13 @@ $event_types = [
         if (new Date(dateFin) < new Date(dateDebut)) {
             e.preventDefault();
             alert('La date de fin ne peut pas être avant la date de début');
+            return false;
+        }
+
+        if (!participants || participants < 1) {
+            e.preventDefault();
+            alert('Le nombre de participants doit être au moins 1');
+            document.getElementById('nb_participants_prevus').focus();
             return false;
         }
 
@@ -684,6 +682,6 @@ $event_types = [
         }
         return false;
     });
-    </script>
+</script>
 </body>
 </html>
