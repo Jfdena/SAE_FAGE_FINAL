@@ -1176,3 +1176,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+    // Petit script pour simuler la sauvegarde
+    function savePreferences() {
+    const btn = document.querySelector('.btn-save');
+    const originalText = btn.innerText;
+
+    btn.innerText = "Préférences enregistrées ! ✅";
+    btn.style.backgroundColor = "#198754"; // Vert
+
+    setTimeout(() => {
+    btn.innerText = originalText;
+    btn.style.backgroundColor = ""; // Retour couleur origine
+}, 2000);
+}
+
+
+function handleRegistration(event) {
+    event.preventDefault(); // Empêche le rechargement
+
+    // Récupération des éléments
+    const formWrapper = document.getElementById('formWrapper');
+    const successMessage = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnLabel = document.getElementById('btnLabel');
+    const btnLoader = document.getElementById('btnLoader');
+
+    // Animation chargement
+    submitBtn.disabled = true;
+    btnLabel.textContent = "Traitement en cours...";
+    btnLoader.style.display = "inline-block";
+
+    // Simulation d'envoi (1.5 secondes)
+    setTimeout(() => {
+        formWrapper.style.display = 'none'; // Cache le form
+        successMessage.style.display = 'block'; // Affiche le succès
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Remonte en haut
+    }, 1500);
+}
+

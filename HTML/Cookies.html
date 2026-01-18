@@ -3,195 +3,100 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAGE - Gestion des Cookies</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
+    <title>FAGE - Cookies</title>
     <link rel="stylesheet" href="../assets/css/stylesheet.css" />
     <link rel="icon" href="../assets/img/lgFage1C.png" type="image/x-icon" />
+    <link
+            rel="shortcut icon"
+            href="../assets/img/logo.ico"
+            type="image/x-icon"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+    ></script>
+    <script src="../assets/Javascript/fichier.js"></script>
+</head>
 
-    <style>
-        :root {
-            --fage-blue: #183146;
-            --fage-light-blue: #0d6efd;
-            --fage-bg: #f8f9fa;
-        }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--fage-bg);
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* --- CONTENU PRINCIPAL --- */
-        .cookie-page-container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .page-header h1 {
-            color: var(--fage-blue);
-            font-weight: 800;
-            font-size: 2.5rem;
-        }
-
-        .intro-text {
-            color: #666;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* --- CARTES DES SECTIONS --- */
-        .cookie-card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            border: 1px solid #eee;
-        }
-
-        .cookie-card h2 {
-            font-size: 1.4rem;
-            color: var(--fage-blue);
-            font-weight: 700;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-        }
-
-        .cookie-card p {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        /* --- SWITCH TOGGLE DESIGN (Le truc stylé) --- */
-        .toggle-wrapper {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-
-        .switch-field {
-            display: flex;
-            overflow: hidden;
-            background-color: #e9ecef;
-            border-radius: 30px;
-            padding: 4px;
-            width: fit-content;
-        }
-
-        .switch-field input {
-            position: absolute !important;
-            clip: rect(0, 0, 0, 0);
-            height: 1px;
-            width: 1px;
-            border: 0;
-            overflow: hidden;
-        }
-
-        .switch-field label {
-            background-color: transparent;
-            color: #6c757d;
-            font-size: 0.9rem;
-            line-height: 1;
-            text-align: center;
-            padding: 10px 20px;
-            margin-right: 0;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            border-radius: 25px;
-            font-weight: 600;
-        }
-
-        .switch-field label:hover {
-            color: var(--fage-blue);
-        }
-
-        /* Style quand "J'accepte" est coché */
-        .switch-field input:checked + label {
-            background-color: var(--fage-blue);
-            color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        /* Style spécifique pour "Je refuse" quand coché (rouge léger ou gris foncé) */
-        .switch-field input[value="refuse"]:checked + label {
-            background-color: #6c757d;
-        }
-
-        /* --- BOUTON SAUVEGARDER --- */
-        .save-btn-container {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .btn-save {
-            background-color: var(--fage-light-blue);
-            color: white;
-            font-weight: 700;
-            padding: 15px 50px;
-            border-radius: 50px;
-            border: none;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.2);
-        }
-
-        .btn-save:hover {
-            background-color: var(--fage-blue);
-            transform: translateY(-2px);
-            color: white;
-        }
-
-        /* Footer ajustement */
-        .footer { margin-top: auto; }
-    </style>
 </head>
 
 <body>
 
     <header>
-      <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="Accueil.html">
-            <img src="../assets/img/logo_navbar.png" height="40" width="auto" alt="Logo FAGE" />
-          </a>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="Accueil.html">
+                    <img
+                            src="../assets/img/logo_navbar.png"
+                            height="40"
+                            width="auto"
+                            alt="Logo"
+                    />
+                </a>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+                <!-- Bouton hamburger pour mobile -->
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-          <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link tint-text" href="Accueil.html">Accueil</a></li>
-              <li class="nav-item"><a class="nav-link tint-text" href="Assos_Projet.html">Asso & Projets</a></li>
-              <li class="nav-item"><a class="nav-link tint-text" href="Actualité_Ressources.html">Actualité & Ressources</a></li>
-              <li class="nav-item"><a class="nav-link tint-text" href="Dons_Engagement.html">Dons</a></li>
-              <li class="nav-item"><a class="nav-link tint-text" href="A_propos.html">À propos</a></li>
-            </ul>
-
-            <div class="d-flex">
-              <a href="../Backend/session_check.php" class="btn btn-outline-primary btn-sm px-3 rounded">Espace Membre</a>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul
+                            class="navbar-nav flex-grow-1 justify-content-evenly mb-2 mb-lg-0"
+                    >
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link text-decoration-none tint-text"
+                                    aria-current="page"
+                                    href="Accueil.html"
+                            >Accueil</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link text-decoration-none tint-text"
+                                    href="Assos_Projet.html"
+                            >Asso & Projets</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link text-decoration-none tint-text"
+                                    href="Actualité_Ressources.html"
+                            >Actualité & Ressources</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link text-decoration-none tint-text"
+                                    href="Dons_Engagement.html"
+                            >Dons & Engagement</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link text-decoration-none tint-text"
+                                    href="A_propos.html"
+                            >À propos</a
+                            >
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
-        </div>
-      </nav>
+        </nav>
     </header>
 
     <div class="cookie-page-container">
@@ -294,60 +199,59 @@
     </div>
 
     <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-col">
-          <div class="footer-logo">
-            <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
-          </div>
-          <p>
-            FAGE – Fédération des Associations Générales Étudiantes<br />
-            79 rue Périer, 92120 Montrouge<br />
-            Tél : 01.40.33.70.70
-          </p>
-          <div class="footer-socials">
-            <a href="https://www.facebook.com/fage.org/?locale=fr_FR" target="_blank"><img src="../assets/img/icon_facebook.svg" alt="Facebook"/></a>
-            <a href="https://fr.linkedin.com/company/la-fage" target="_blank"><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"/></a>
-            <a href="https://www.youtube.com/@associationfage" target="_blank"><img src="../assets/img/icon_youtube.svg" alt="YouTube"/></a>
-            <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"><img src="../assets/img/icon_instagram.svg" alt="Instagram"/></a>
-          </div>
-        </div>
+        <div class="footer-container">
 
-        <div class="footer-col">
-          <h4>Mentions légales</h4>
-          <ul>
-            <li><a href="Mentions Legales.html">Mentions légales</a></li>
-            <li><a href="Politique_confidentialité.html">Politique de confidentialité</a></li>
-            <li><a href="Cookies.html">Cookies</a></li>
-          </ul>
-        </div>
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="../assets/img/logo_navbar.png" alt="Logo FAGE" />
+                </div>
+                <p>
+                    FAGE – Fédération des Associations Générales Étudiantes<br />
+                    79 rue Périer, 92120 Montrouge<br />
+                    Tél : 01.40.33.70.70
+                </p>
+                <div class="footer-socials">
+                    <a
+                            href="https://www.facebook.com/fage.org/?locale=fr_FR"
+                            target="_blank"
+                    ><img src="../assets/img/icon_facebook.svg" alt="Facebook"
+                    /></a>
+                    <a href="https://fr.linkedin.com/company/la-fage" target="_blank"
+                    ><img src="../assets/img/icon_linkedin.svg" alt="LinkedIn"
+                    /></a>
+                    <a href="https://www.youtube.com/@associationfage" target="_blank"
+                    ><img src="../assets/img/icon_youtube.svg" alt="YouTube"
+                    /></a>
+                    <a href="https://www.instagram.com/la_fage/?hl=fr" target="_blank"
+                    ><img src="../assets/img/icon_instagram.svg" alt="Instagram"
+                    /></a>
+                </div>
+            </div>
 
-        <div class="footer-col">
-          <h4>Liens utiles</h4>
-          <ul>
-            <li><a href="Assos_Projet.html">Assos & Projets</a></li>
-            <li><a href="Actualité_Ressources.html">Actualité & Ressources</a></li>
-            <li><a href="Dons_Engagement.html">Dons</a></li>
-            <li><a href="A_propos.html">À propos</a></li>
-          </ul>
+
+            <div class="footer-col">
+                <h4>Mentions légales</h4>
+                <ul>
+                    <li><a target="_blank" href="Mentions%20Legales.html">Mentions légales </a></li>
+                    <li><a target="_blank" href="Politique_confidentialité.html">Politique de confidentialité</a></li>
+                    <li><a target="_blank" href="Cookies.html">Cookies</a></li>
+                </ul>
+            </div>
+
+
+            <div class="footer-col">
+                <h4>Liens utiles</h4>
+                <ul>
+                    <li><a target="_blank" href="Assos_Projet.html">Assos & Projets</a></li>
+                    <li>
+                        <a target="_blank" href="Actualité_Ressources.html">Actualité & Ressources</a>
+                    </li>
+                    <li><a target="_blank" href="Dons_Engagement.html">Don & Engagement</a></li>
+                    <li><a target="_blank" href="A_propos.html">À propos</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Petit script pour simuler la sauvegarde
-        function savePreferences() {
-            const btn = document.querySelector('.btn-save');
-            const originalText = btn.innerText;
-            
-            btn.innerText = "Préférences enregistrées ! ✅";
-            btn.style.backgroundColor = "#198754"; // Vert
-            
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.style.backgroundColor = ""; // Retour couleur origine
-            }, 2000);
-        }
-    </script>
 </body>
+
 </html>
