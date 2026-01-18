@@ -893,6 +893,242 @@
     transform: scale(1.15);
 }
 
+/*----------------------------------------------------------------------------<-Assos & Projet->------------------------------------------------------------------------------------------------------*/
+
+:root {
+    --fage-blue: #183146;
+    --fage-light-blue: #0d6efd;
+    --fage-bg: #f8f9fa;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--fage-bg);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- HERO --- */
+.hero-banner {
+    background: linear-gradient(135deg, var(--fage-blue) 0%, #2c4a6b 100%);
+    color: var(--fage-blue);
+    padding: 80px 0;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero-banner h1 {
+    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.hero-banner p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.btn-cta {
+    background-color: white;
+    color: var(--fage-blue);
+    font-weight: 700;
+    padding: 12px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.btn-cta:hover {
+    background-color: var(--fage-light-blue);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* --- CARTE ASSO --- */
+.map-section { margin-bottom: 80px; }
+
+.map-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.map-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.region-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 4px solid var(--fage-blue);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    height: 100%;
+    transition: transform 0.3s;
+}
+
+.region-card:hover { transform: translateY(-5px); }
+
+.region-title {
+    font-weight: 700;
+    color: var(--fage-blue);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.region-desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.link-arrow {
+    color: var(--fage-light-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.link-arrow:hover { text-decoration: underline; }
+
+/* Bloc Action (Rejoindre) */
+.action-block {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    border: 2px solid var(--fage-blue);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.action-text h3 {
+    color: var(--fage-blue);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+/* --- PROJETS --- */
+.projects-section {
+    background-color: white;
+    padding: 60px 0;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    text-align: center;
+    color: var(--fage-blue);
+    font-weight: 800;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+.project-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s;
+    height: 100%;
+    border: 1px solid #eee;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    background: white;
+    border-color: var(--fage-light-blue);
+}
+
+.project-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.project-title {
+    font-weight: 700;
+    color: var(--fage-blue);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Couleurs pastels légères pour les fonds de cartes */
+.bg-blue-light { background-color: #eef6fc; }
+.bg-red-light { background-color: #fceeee; }
+.bg-yellow-light { background-color: #fff9e6; }
+.bg-green-light { background-color: #eefce6; }
+
+/* --- TÉMOIGNAGES --- */
+.testimonial-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    height: 100%;
+    border: 1px solid #f0f0f0;
+}
+
+.testimonial-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--fage-light-blue);
+    margin-bottom: 15px;
+}
+
+.testimonial-name {
+    font-weight: 700;
+    color: var(--fage-blue);
+    margin-bottom: 5px;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.btn-donate {
+    background-color: var(--fage-blue);
+    color: white;
+    padding: 12px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 40px;
+    transition: all 0.3s;
+}
+.btn-donate:hover {
+    background-color: var(--fage-light-blue);
+    transform: translateY(-3px);
+    color: white;
+}
 
 
 /* Responsive Design*/
