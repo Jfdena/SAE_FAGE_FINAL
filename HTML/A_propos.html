@@ -18,6 +18,10 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
     />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
     <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -27,8 +31,8 @@
 </head>
 
   <body>
-  <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
           <div class="container-fluid">
               <a class="navbar-brand" href="Accueil.html">
                   <img
@@ -89,7 +93,18 @@
                           >À propos</a
                           >
                       </li>
+                        <li class="nav-item d-lg-none">
+                          <a class="nav-link nav-link-admin" href="../Backend/views/auth/login.php">
+                              <i class="bi bi-shield-lock"></i>
+                              <span>Admin</span>
+                          </a>
+                      </li>
                   </ul>
+                  <!-- Version desktop à droite -->
+                  <a class="nav-link nav-link-admin ms-3 d-none d-lg-flex" href="../Backend/views/auth/login.php">
+                        <i class="bi bi-shield-lock"></i>
+                        <span>Admin</span>
+                      </a>
               </div>
           </div>
       </nav>

@@ -44,7 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (btnInscription) {
     // Quand on clique sur le bouton "Inscription", on redirige vers la page d'inscription
     btnInscription.addEventListener("click", function () {
-      window.location.href = "mettre lien page inscription"; // Remplace par ton vrai lien que wallid te donne
+      window.location.href = "Inscription_Asso.html";
     });
   }
 
@@ -79,89 +79,94 @@ window.addEventListener("DOMContentLoaded", () => {
       banniere.classList.add("hidden");
       afficher.style.display = "none"; // On cache le bouton
     });
-
-    const counters = document.querySelectorAll(".Nombre");
-    let started = false; // empêche que l'animation se rejoue
-
-    function animateCounters() {
-      if (
-        !started &&
-        window.scrollY + window.innerHeight >=
-          document.querySelector("#Chiffres").offsetTop
-      ) {
-        started = true;
-
-        counters.forEach((counter) => {
-          const updateCount = () => {
-            const target = +counter.getAttribute("data-target");
-            const count = +counter.innerText;
-            const speed = 200; // plus grand = plus lent
-            const increment = target / speed;
-
-            if (count < target) {
-              counter.innerText = Math.ceil(count + increment);
-              setTimeout(updateCount, 10);
-            } else {
-              counter.innerText = target.toLocaleString();
-            }
-          };
-          updateCount();
-        });
-      }
-    }
-
-    window.addEventListener("scroll", animateCounters);
   }
+
+  // --- Compteur d'animation au scroll ---
+  const counters = document.querySelectorAll(".Nombre");
+  let started = false; // empêche que l'animation se rejoue
+
+  function animateCounters() {
+    if (
+      !started &&
+      window.scrollY + window.innerHeight >=
+        document.querySelector("#Chiffres").offsetTop
+    ) {
+      started = true;
+
+      counters.forEach((counter) => {
+        const updateCount = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText;
+          const speed = 200; // plus grand = plus lent
+          const increment = target / speed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 10);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        updateCount();
+      });
+    }
+  }
+
+  window.addEventListener("scroll", animateCounters);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    let currentSlide = 0;
-    const cards = document.querySelectorAll(
-        ".temoignage-carte_premiere, .temoignage-carte"
-    );
-    const indicators = document.querySelectorAll(".indicateur");
-    const totalSlides = cards.length;
+  let currentSlide = 0;
+  const cards = document.querySelectorAll(
+    ".temoignage-carte_premiere, .temoignage-carte",
+  );
+  const indicators = document.querySelectorAll(".indicateur");
+  const totalSlides = cards.length;
 
-    function showSlide(n) {
-        if (n >= totalSlides) {
-            currentSlide = 0;
-        } else if (n < 0) {
-            currentSlide = totalSlides - 1;
-        } else {
-            currentSlide = n;
-        }
-
-        cards.forEach((card) => {
-            card.style.display = "none";
-            card.classList.remove("active");
-        });
-
-        indicators.forEach((ind) => ind.classList.remove("active"));
-
-        cards[currentSlide].style.display = "block";
-        cards[currentSlide].classList.add("active");
-        indicators[currentSlide].classList.add("active");
+  function showSlide(n) {
+    if (n >= totalSlides) {
+      currentSlide = 0;
+    } else if (n < 0) {
+      currentSlide = totalSlides - 1;
+    } else {
+      currentSlide = n;
     }
 
-    // ✅ Event Listeners au lieu de onclick
-    document.querySelector('.fleche-gauche-tmng')?.addEventListener('click', () => {
-        currentSlide--;
-        showSlide(currentSlide);
+    cards.forEach((card) => {
+      card.style.display = "none";
+      card.classList.remove("active");
     });
 
-    document.querySelector('.fleche-droite-tmng')?.addEventListener('click', () => {
-        currentSlide++;
-        showSlide(currentSlide);
+    indicators.forEach((ind) => ind.classList.remove("active"));
+
+    cards[currentSlide].style.display = "block";
+    cards[currentSlide].classList.add("active");
+    indicators[currentSlide].classList.add("active");
+  }
+
+  // ✅ Event Listeners au lieu de onclick
+  document
+    .querySelector(".fleche-gauche-tmng")
+    ?.addEventListener("click", () => {
+      currentSlide--;
+      showSlide(currentSlide);
     });
 
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            currentSlide = index;
-            showSlide(currentSlide);
-        });
+  document
+    .querySelector(".fleche-droite-tmng")
+    ?.addEventListener("click", () => {
+      currentSlide++;
+      showSlide(currentSlide);
     });
 
-    showSlide(0);
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => {
+      currentSlide = index;
+      showSlide(currentSlide);
+    });
+  });
+
+  showSlide(0);
 });
 
 // JS DE JF
@@ -170,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Gestion du changement de vidéo avec animations et navigation au clavier
 document.addEventListener("DOMContentLoaded", function () {
   const videoContainer = document.querySelector(
-    ".Actualite-Ressource-container2"
+    ".Actualite-Ressource-container2",
   );
   const videos = document.querySelectorAll(".background-video");
   const videoIndicators = document.querySelectorAll(".video-indicator");
@@ -291,12 +296,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Sélection des éléments du carrousel
   const track = carouselContainer.querySelector(".carousel-track");
   const slides = Array.from(
-    carouselContainer.querySelectorAll(".carousel-slide")
+    carouselContainer.querySelectorAll(".carousel-slide"),
   );
   const prevBtn = carouselContainer.querySelector(".carousel-prev");
   const nextBtn = carouselContainer.querySelector(".carousel-next");
   const indicators = Array.from(
-    carouselContainer.querySelectorAll(".indicator")
+    carouselContainer.querySelectorAll(".indicator"),
   );
   // État initial du carrousel
   let currentSlide = 0;
@@ -507,7 +512,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const actualitesData = [
     {
       element: document.querySelector(
-        '.actu-card[title*="Indicateur du coût de la rentrée étudiante 2025"]'
+        '.actu-card[title*="Indicateur du coût de la rentrée étudiante 2025"]',
       ),
       date: "2025-09",
       types: ["2", "3"],
@@ -516,7 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Résultats des élections CNESER 2025"]'
+        '.actu-card[title*="Résultats des élections CNESER 2025"]',
       ),
       date: "2025-06",
       types: ["2", "3"],
@@ -532,7 +537,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Baromètre de la précarité étudiante"]'
+        '.actu-card[title*="Baromètre de la précarité étudiante"]',
       ),
       date: "2025-02",
       types: ["2", "3"],
@@ -541,7 +546,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Un arrondi en caisse"]'
+        '.actu-card[title*="Un arrondi en caisse"]',
       ),
       date: "2024-09",
       types: ["2", "3"],
@@ -550,7 +555,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Indicateur du coût de la rentrée étudiante 2024"]'
+        '.actu-card[title*="Indicateur du coût de la rentrée étudiante 2024"]',
       ),
       date: "2024-09",
       types: ["2", "3"],
@@ -559,7 +564,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="20 ans après le 21 avril"]'
+        '.actu-card[title*="20 ans après le 21 avril"]',
       ),
       date: "2024-07",
       types: ["2", "3"],
@@ -568,7 +573,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Dégel des frais universitaires"]'
+        '.actu-card[title*="Dégel des frais universitaires"]',
       ),
       date: "2024-05",
       types: ["2", "3"],
@@ -584,7 +589,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Repensons l\'éducation"]'
+        '.actu-card[title*="Repensons l\'éducation"]',
       ),
       date: "2024-03",
       types: ["1"],
@@ -612,19 +617,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedActor = actorsSelect.value;
     const selectedDate = monthsSelect.value;
 
-    console.log("Filtres actuels:", {
-      type: selectedType,
-      theme: selectedTheme,
-      actor: selectedActor,
-      date: selectedDate,
-    });
-
     // D'abord, réinitialiser TOUTES les bordures
     resetAllHighlights();
 
     // Si aucun filtre n'est sélectionné, on s'arrête là
     if (!selectedType && !selectedTheme && !selectedActor && !selectedDate) {
-      console.log("Aucun filtre sélectionné - bordures réinitialisées");
       return;
     }
 
@@ -663,14 +660,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Appliquer la bordure rouge seulement si l'élément correspond à TOUS les filtres sélectionnés
       if (matchesAllSelectedFilters) {
         actualite.element.classList.add("filter-highlight");
-        console.log(
-          "Bordure ajoutée à:",
-          actualite.element.querySelector("h4").textContent
-        );
       }
     });
-
-    console.log("Mise à jour des bordures terminée");
   }
 
   // Fonction pour réinitialiser les filtres
@@ -680,17 +671,15 @@ document.addEventListener("DOMContentLoaded", function () {
     actorsSelect.value = "";
     monthsSelect.value = "";
     resetAllHighlights();
-    console.log("Tous les filtres réinitialisés");
   }
 
   // Mise à jour automatique quand on change un filtre
   [newsTypesSelect, themesSelect, actorsSelect, monthsSelect].forEach(
     (select) => {
       select.addEventListener("change", function () {
-        console.log("Changement détecté dans:", select.id);
         highlightActualites();
       });
-    }
+    },
   );
 
   // Ajouter un bouton de réinitialisation
@@ -706,7 +695,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.resetFilters = resetFilters;
 
   // Initialisation
-  console.log("Système de filtrage corrigé initialisé");
 });
 // Gestion du modal des actualités
 // Données détaillées des actualités
@@ -822,7 +810,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const actualitesData = [
     {
       element: document.querySelector(
-        '.actu-card[title*="Indicateur du coût de la rentrée étudiante 2025"]'
+        '.actu-card[title*="Indicateur du coût de la rentrée étudiante 2025"]',
       ),
       date: "2025-09",
       types: ["2", "3"],
@@ -831,7 +819,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Résultats des élections CNESER 2025"]'
+        '.actu-card[title*="Résultats des élections CNESER 2025"]',
       ),
       date: "2025-06",
       types: ["2", "3"],
@@ -847,7 +835,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Baromètre de la précarité étudiante"]'
+        '.actu-card[title*="Baromètre de la précarité étudiante"]',
       ),
       date: "2025-02",
       types: ["2", "3"],
@@ -856,7 +844,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Un arrondi en caisse"]'
+        '.actu-card[title*="Un arrondi en caisse"]',
       ),
       date: "2024-09",
       types: ["2", "3"],
@@ -865,7 +853,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Indicateur du coût de la rentrée étudiante 2024"]'
+        '.actu-card[title*="Indicateur du coût de la rentrée étudiante 2024"]',
       ),
       date: "2024-09",
       types: ["2", "3"],
@@ -874,7 +862,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="20 ans après le 21 avril"]'
+        '.actu-card[title*="20 ans après le 21 avril"]',
       ),
       date: "2024-07",
       types: ["2", "3"],
@@ -883,7 +871,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Dégel des frais universitaires"]'
+        '.actu-card[title*="Dégel des frais universitaires"]',
       ),
       date: "2024-05",
       types: ["2", "3"],
@@ -892,7 +880,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="FEEL Festival - 2 juin 2024"]'
+        '.actu-card[title*="FEEL Festival - 2 juin 2024"]',
       ),
       date: "2024-06",
       types: ["2"],
@@ -901,7 +889,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(
-        '.actu-card[title*="Repensons l\'éducation"]'
+        '.actu-card[title*="Repensons l\'éducation"]',
       ),
       date: "2024-03",
       types: ["1"],
@@ -989,7 +977,7 @@ document.addEventListener("DOMContentLoaded", function () {
   [newsTypesSelect, themesSelect, actorsSelect, monthsSelect].forEach(
     (select) => {
       select.addEventListener("change", highlightActualites);
-    }
+    },
   );
 
   // Gestion des clics sur les cartes d'actualités
@@ -1051,7 +1039,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.closeActuModal = closeActuModal;
 
   // Initialisation
-  console.log("Système des actualités initialisé");
 });
 // Gestion de la modal du blog
 //  Blog Modal
@@ -1140,7 +1127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   // Sélection des éléments
   const contactButtons = document.querySelectorAll(
-    'a[href="#contact"], .btn-contact-faq, .btn-contact'
+    'a[href="#contact"], .btn-contact-faq, .btn-contact',
   );
   const closeContactModal = document.getElementById("closeContactModal");
   const contactModal = document.getElementById("contactModal");
@@ -1177,42 +1164,39 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Petit script pour simuler la sauvegarde
+function savePreferences() {
+  const btn = document.querySelector(".btn-save");
+  const originalText = btn.innerText;
 
-    // Petit script pour simuler la sauvegarde
-    function savePreferences() {
-    const btn = document.querySelector('.btn-save');
-    const originalText = btn.innerText;
+  btn.innerText = "Préférences enregistrées ! ✅";
+  btn.style.backgroundColor = "#198754"; // Vert
 
-    btn.innerText = "Préférences enregistrées ! ✅";
-    btn.style.backgroundColor = "#198754"; // Vert
-
-    setTimeout(() => {
+  setTimeout(() => {
     btn.innerText = originalText;
     btn.style.backgroundColor = ""; // Retour couleur origine
-}, 2000);
+  }, 2000);
 }
-
 
 function handleRegistration(event) {
-    event.preventDefault(); // Empêche le rechargement
+  event.preventDefault(); // Empêche le rechargement
 
-    // Récupération des éléments
-    const formWrapper = document.getElementById('formWrapper');
-    const successMessage = document.getElementById('successMessage');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnLabel = document.getElementById('btnLabel');
-    const btnLoader = document.getElementById('btnLoader');
+  // Récupération des éléments
+  const formWrapper = document.getElementById("formWrapper");
+  const successMessage = document.getElementById("successMessage");
+  const submitBtn = document.getElementById("submitBtn");
+  const btnLabel = document.getElementById("btnLabel");
+  const btnLoader = document.getElementById("btnLoader");
 
-    // Animation chargement
-    submitBtn.disabled = true;
-    btnLabel.textContent = "Traitement en cours...";
-    btnLoader.style.display = "inline-block";
+  // Animation chargement
+  submitBtn.disabled = true;
+  btnLabel.textContent = "Traitement en cours...";
+  btnLoader.style.display = "inline-block";
 
-    // Simulation d'envoi (1.5 secondes)
-    setTimeout(() => {
-        formWrapper.style.display = 'none'; // Cache le form
-        successMessage.style.display = 'block'; // Affiche le succès
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Remonte en haut
-    }, 1500);
+  // Simulation d'envoi (1.5 secondes)
+  setTimeout(() => {
+    formWrapper.style.display = "none"; // Cache le form
+    successMessage.style.display = "block"; // Affiche le succès
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Remonte en haut
+  }, 1500);
 }
-

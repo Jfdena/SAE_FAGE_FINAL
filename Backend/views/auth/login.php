@@ -22,7 +22,7 @@ $email = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
     // Validation basique
     if (empty($email) || empty($password)) {
         $error = "Veuillez remplir tous les champs";
@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $result->fetch_assoc();
 
             if ($user) {
-                // Vérifier le mot de passe (Hash ou Fallback pour le développement)
-                $is_valid = password_verify($password, $user['password']) || ($password === 'admin123' && $email === 'admin@fage.fr');
+                // Vérifier le mot de passe
+                $is_valid = password_verify($password, $user['password']);
 
                 if ($is_valid) {
                     // SUCCÈS : créer la session
@@ -200,13 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </form>
 
-            <!-- Identifiants de test (à enlever en production) -->
-            <div class="test-credentials">
-                <h6><i class="bi bi-info-circle"></i> Pour tester :</h6>
-                <p class="mb-1"><strong>Email :</strong> admin@fage.org</p>
-                <p class="mb-0"><strong>Mot de passe :</strong> admin123</p>
-                <small class="text-muted">Compte créé pour le développement</small>
-            </div>
+
         </div>
     </div>
 
@@ -225,11 +219,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Focus sur le premier champ
     document.querySelector('input[name="email"]').focus();
 
-    // Auto-remplir pour tester rapidement
-    if (window.location.search.includes('test')) {
-        document.querySelector('input[name="email"]').value = 'admin@fage.org';
-        document.querySelector('input[name="password"]').value = 'admin123';
-    }
 </script>
 </body>
 </html>

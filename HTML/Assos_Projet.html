@@ -18,6 +18,10 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
     />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
     <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -29,7 +33,7 @@
 <body>
     <header>
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Accueil.html">
                     <img
@@ -90,7 +94,18 @@
                             >À propos</a
                             >
                         </li>
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link nav-link-admin" href="../Backend/views/auth/login.php">
+                                <i class="bi bi-shield-lock"></i>
+                                <span>Admin</span>
+                            </a>
+                        </li>
                     </ul>
+                    <!-- Version desktop à droite -->
+                    <a class="nav-link nav-link-admin ms-3 d-none d-lg-flex" href="../Backend/views/auth/login.php">
+                        <i class="bi bi-shield-lock"></i>
+                        <span>Admin</span>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -119,30 +134,22 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="region-card">
-                            <h3 class="region-title">Auvergne-Rhône-Alpes</h3>
-                            <p class="region-desc">Soutient les initiatives associatives locales.</p>
-                            <a href="#" class="link-arrow">Voir plus &rarr;</a>
+                            <a href="javascript:void(0);" class="link-arrow" onclick="alert('Page de région en développement')">Voir plus &rarr;</a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="region-card">
-                            <h3 class="region-title">Grand Est</h3>
-                            <p class="region-desc">Regroupe les assos d’Alsace et de Lorraine.</p>
-                            <a href="#" class="link-arrow">Voir plus &rarr;</a>
+                            <a href="javascript:void(0);" class="link-arrow" onclick="alert('Page de région en développement')">Voir plus &rarr;</a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="region-card">
-                            <h3 class="region-title">Île-de-France</h3>
-                            <p class="region-desc">Favorise la collaboration francilienne.</p>
-                            <a href="#" class="link-arrow">Voir plus &rarr;</a>
+                            <a href="javascript:void(0);" class="link-arrow" onclick="alert('Page de région en développement')">Voir plus &rarr;</a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="region-card">
-                            <h3 class="region-title">Occitanie</h3>
-                            <p class="region-desc">Encourage les initiatives du sud.</p>
-                            <a href="#" class="link-arrow">Voir plus &rarr;</a>
+                            <a href="javascript:void(0);" class="link-arrow" onclick="alert('Page de région en développement')">Voir plus &rarr;</a>
                         </div>
                     </div>
 
@@ -154,7 +161,7 @@
                             </div>
                             <div class="d-flex gap-2">
                                 <a href="Inscription_Asso.html" class="btn btn-sm btn-primary rounded-pill px-3">Rejoindre</a>
-                                <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Proposer</a>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="alert('Formulaire de proposition en développement')">Proposer</a>
                             </div>
                         </div>
                     </div>
@@ -312,6 +319,6 @@
 
     <a href="#top" class="scroll-to-top-nojs" aria-label="Remonter en haut de la page">↑</a>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

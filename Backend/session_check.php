@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id']) || $_SESSION['us
     session_destroy();
 
     // Redirect to login
-    header('Location: /auth/login.php');
+    header('Location: ../views/auth/login.php');
     exit();
 }
 
